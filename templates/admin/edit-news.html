@@ -1,0 +1,14 @@
+<div class="add-news">
+    <p id="Title"><b>Edit news</b></p>
+    <form method=post enctype="multipart/form-data">
+        <p id="lable">Title:</p>
+        <input type="text" id="title" name="title" value="{{data[1]}}">
+        <p id="lable">Discription:</p>
+        <input type="text" id="discription" name="discription" value="{{data[2]}}">
+        <p id="lable">Content:</p>
+        <textarea rows="10" id="text" name="text">{{data[3]}}</textarea>
+        <p id="lable">Media:</p>
+        <input type="file" id="file" name="file">
+        <input type="submit" id="sub" value="Submit">
+    </form>
+</div>

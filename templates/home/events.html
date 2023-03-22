@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+    </head>
+    <body>
+        <div class="menu_bar">
+            {% if log == False %}
+                <a href="/singup" id="singup">singup</a>
+                <a href="/login" id="login">Log in</a>
+            {% else %}
+                <h1>{{test}}</h1>
+                <a href="/logout">logout</a>
+            {% endif %}
+            <a href="/becoach" id="be_teach">Become a coach</a>
+            <a href="/">home</a>
+            <a href="/news" id="news">news</a>
+        </div>
+        <h1>EVENTS</h1>
+        <div class="events">
+            {% for element in data %}
+                <div class="el">
+                    <p>title: {{element[1]}}</p>
+                    <p>text: {{element[2]}}</p>
+                    <img src="static/{{element[3]}}" style="width: 10vw">
+                    <p>date: {{element[4]}}</p>
+                <div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

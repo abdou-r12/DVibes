@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200&display=swap');
+@keyframes move{
+    0%{margin-top: 20vh;}
+    100%{margin-top: 0vh;}
+}
+@keyframes move1{
+    0%{margin-top: 18vh;}
+    100%{margin-top: 0vh;}
+}
+@keyframes move2{
+    0%{margin-top: 15vh;}
+    100%{margin-top: 0vh;}
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+.first_label{
+    background-image: url("../assets/index.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+.menu_bar{
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+.logo{
+    width: 50vw;
+    height: auto;
+    float: left;
+}
+#logo{
+    width: 12rem;
+    margin-left: 4rem;
+    float: left;
+}
+.logins{
+    width: 50vw;
+    height: 6.9vh;
+    float: right;
+}
+.logins *{
+    float: right;
+}
+#be_teach,#login,#singup,#logout{
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 2rem;
+    background-color: #313131;
+    text-decoration: none;
+    color: white;
+    margin-left: 1rem;
+    transition: 0.5s;
+}
+#be_teach{
+    text-shadow: -1px 0px #00FFFF,1px 0px #FF00FF;
+}
+.profile{
+    background-color: #313131;
+    min-width: fit-content;
+    height: 6.9vh;
+    border-radius: 5rem;
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    -ms-border-radius: 5rem;
+    -o-border-radius: 5rem;
+    text-decoration: none;
+    color: white;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+#acpic{
+    width: 2vw;
+    background-color: white;
+    border-radius: 5rem;
+    margin-top: 1.5vh;
+    margin-right: 0.8vw;
+}
+.profile p{
+    margin-top: 2vh;
+    margin-right: 1vw;
+    margin-left: 3vw;
+}
+#back{
+    position: absolute;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-top: 0.2rem solid white;
+    border-left: 0.2rem solid white;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    margin-top: 2.2vh;
+    margin-left: 1vw;
+}
+.profile:hover,.profile#back:hover{
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+#singup,#logout{
+    margin-right: 4rem;
+}
+#be_teach:hover,#login:hover,#singup:hover{
+    color: black;
+    background-color: white;
+    transition: 0.5s;
+}
+#logout:hover{
+    background-color: #e70000;
+    transition: 0.5s;
+}
+.text{
+    width: 100vw;
+    height: 80vh;
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+    text-shadow: -2px 0px #00FFFF,2px 0px #FF00FF;
+    transition: 0.5s;
+
+}
+#second{
+    margin-top: 30vh;
+    text-shadow: none;
+    transition: 0.5s;
+
+}
+.arrows{
+    margin-left: 48vw;
+    height: auto;
+    transition: 0.5s;
+
+}
+.arrow3{
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    border-top: 1.5rem solid white;
+    border-left: 1.5rem solid white;
+    transform: rotate(45deg);
+    animation: move 1.02s infinite ease-in-out;
+    -webkit-animation: move 1.02s infinite ease-in-out;
+}
+.arrow2{
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    border-top: 1.5rem solid #C0EFCC;
+    border-left: 1.5rem solid #C0EFCC;
+    transform: rotate(45deg);
+    animation: move 1.01s infinite ease-in-out;
+    -webkit-animation: move 1.01s infinite ease-in-out;
+}
+.arrow1{
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    border-top: 1.5rem solid #5499C7;
+    border-left: 1.5rem solid #5499C7;
+    transform: rotate(45deg);
+    animation: move 1s infinite ease-in-out;
+    -webkit-animation: move 1s infinite ease-in-out;
+}
+.next_label{
+    background-image: linear-gradient(to right top, #62e6dc, #5ddfe4, #62d7e9, #6ccfeb, #7ac6e9, #7fc9e4, #86ccdf, #8fcfdb, #a7dbd2, #c7e4cf, #e6ecd4, #fff5e3);
+    width: 100vw;
+    height: 100vh;
+    transition: 0.5s;
+
+}
+.ne,.coach,.cours{
+    float: left;
+    width: 20vw;
+    height: 55vh;
+    background-color: white;
+    margin-left: 10vw;
+    margin-top: 20vh;
+    border-radius: 0 4rem 0 4rem;
+    -webkit-border-radius: 0 4rem 0 4rem;
+    -moz-border-radius: 0 4rem 0 4rem;
+    -ms-border-radius: 0 4rem 0 4rem;
+    -o-border-radius: 0 4rem 0 4rem;
+    color: black;
+    transition: 0.5s;
+}
+.ne:hover,.coach:hover,.cours:hover{
+    margin-top: 18vh;
+    transition: 0.5s;
+}
+#pic{
+    width: 17.5vw;
+    height: 35vh;
+    margin-top: 2.5vh;
+    margin-left: 1.25vw;
+    margin-bottom: 2.5vh;
+    border-radius: 0 4rem 0 0;
+    -webkit-border-radius: 0 4rem 0 0;
+    -moz-border-radius: 0 4rem 0 0;
+    -ms-border-radius: 0 4rem 0 0;
+    -o-border-radius: 0 4rem 0 0;
+    transition: 0.5s;
+}
+#title{
+    margin-left: 5vw;
+    font-size: 1.2rem;
+    transition: 0.5s;
+}
+#desciption{
+    margin: 1.2vw;
+    text-align: center;
+    transition: 0.5s;
+}

@@ -1,0 +1,130 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+#myVideo{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100vw;
+}
+.back{
+    left: 1.5vw;
+    top: 5vh;
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    border-top: 0.6rem solid white;
+    border-left: 0.6rem solid white;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+}
+.back:hover{
+    left: 2.5vw;
+    border-top: 0.6 solid black;
+    border-left: 0.6 solid black;
+    transition: 0.5s;
+}
+.news,.events{
+    width: 40vw;
+    height: auto;
+    background-color: white;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+    transition: 0.5s;
+    opacity: 0.9;
+}
+.news{
+    position: absolute;
+    left: 5vw;
+}
+.events{
+    position: absolute;
+    right: 5vw;
+}
+.news:hover,.events:hover{
+    margin-top: 4vh;
+    transition: 0.5s;
+}
+.newscontent,.eventscontent{
+    margin-top: 2vh;
+    margin-left: 5vw;
+}
+.el{
+    width: 30vw;
+    height: 30vh;
+    margin-bottom: 2vh;
+    background-color: rgba(228, 228, 228, 0.751);
+    border-radius: 2rem;
+    color: black;
+    transition: 0.5s;
+    text-decoration: none;
+
+}
+.el:hover{
+    margin-left: 1vw;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+#newstitle,#eventstitle{
+    text-shadow: -2px 0px #00FFFF,2px 0px #FF00FF;
+    margin-left: 5vh;
+    font-size: 3rem;
+}
+#img{
+    width: 10vw;
+    float: right;
+    margin-right: 1vw;
+    display: inline-grid;
+}
+#title{
+    font-size: 1.5rem;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    width: 25vw;
+    display: grid;
+}
+#text{
+    font-size: 1rem;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    width: 15vw;
+    overflow: hidden;
+    display: inline-grid;
+}
+.more,.more1{
+    width: 30vw;
+    height: 5vh;
+    margin-bottom: 2vh;
+    background-color: rgba(228, 228, 228, 0.751);
+    border-radius: 2rem;
+    color: black;
+    transition: 0.5s;
+    text-decoration: none;
+    text-align: center;
+}
+.more1{
+    margin-left: 5vw;
+}
+.more:hover,.more1:hover{
+    width: 10vw;
+    margin-left: 10vw;
+    background-color: #313131;
+    color: white;
+}
+.more1:hover{
+    margin-left: 15vw;
+}

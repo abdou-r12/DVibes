@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/be-coach.css')}}">
+    </head>
+    <body>
+        <video autoplay muted loop id="myVideo">
+            <source src="{{ url_for('static',filename='assets/pexels-yan-krukov-8190974.mp4')}}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <a href="/"><div class="back"></div></a>
+        <div class="container">
+            <p id="title">Become a coach</p>
+            <form method=post enctype="multipart/form-data">
+                <input type="text" id="fullname" name="fullname" placeholder="Full name" required>
+                <p id="title_1">Gender:</p>
+                <input type="Radio" name="check" value="male" >male
+                <input type="Radio" name="check" value="female">female
+                <p id="title_2">Birthday:</p>
+                <input type="date" id="bday" name="bday" required>
+                <input type="text" id="email" name="email" placeholder="Email" required>
+                <input type="text" id="resume" name="resume" placeholder="Resume" required>
+                <p id="title_3">CV:</p>
+                <input type="file" id="file" name="file" required>
+                <input type="submit" id="sub" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>

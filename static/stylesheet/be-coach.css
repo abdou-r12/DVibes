@@ -1,0 +1,104 @@
+*{
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+body{
+    margin: 0;
+}
+#myVideo{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+}
+.back{
+    left: 5vw;
+    top: 5vh;
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    border-top: 0.6rem solid white;
+    border-left: 0.6rem solid white;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+}
+.back:hover{
+    left: 4.5vw;
+    border-top: 0.6 solid black;
+    border-left: 0.6 solid black;
+    transition: 0.5s;
+}
+.container{
+    position: fixed;
+    background-color: white;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    width: 40vw;
+    border-radius: 1rem;
+}
+#title{
+    margin-top: 5vh;
+    margin-left: 5vw;
+    font-size: 2rem;
+}
+#fullname,#bday,#email,#resume{
+    width: 30vw;
+    height: 5vh;
+    margin-left: 5vw;
+    margin-top: 5vh;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    display: block;
+    border: 1px #313131 solid;
+}
+#title_1{
+    font-size: 1.2rem;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    display: inline-block;
+}
+#check{
+    margin-right: 5vw;
+    display: inline-block;
+}
+#title_2,#title_3{
+    font-size: 1.2rem;
+    margin-left: 5vw;
+    display: block;
+}
+#file{
+    margin-left: 5vw;
+    margin-bottom: 5vh;
+    width: 25vw;
+}
+#sub{
+    width: 10vw;
+    height: 5vh;
+    margin-left: 15vw;
+    margin-bottom: 5vh;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    border: none;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+#sub:hover{
+    background-color: #313131;
+    color: white;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}

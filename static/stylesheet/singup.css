@@ -1,0 +1,96 @@
+*{
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+body{
+    margin: 0;
+}
+#myVideo{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+}
+.back{
+    left: 5vw;
+    top: 5vh;
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    border-top: 0.6rem solid white;
+    border-left: 0.6rem solid white;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+}
+.back:hover{
+    left: 4.5vw;
+    border-top: 0.6 solid black;
+    border-left: 0.6 solid black;
+    transition: 0.5s;
+}
+#title{
+    margin-top: 10vh;
+    margin-left: 5vw;
+    font-size: 2rem;
+}
+.container{
+    position: fixed;
+    background-color: white;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    margin-top: 10vh;
+    width: 40vw;
+    border-radius: 1rem;
+}
+#fullname,#email,#password{
+    width: 25vw;
+    height: 5vh;
+    margin-left: 7.5vw;
+    margin-top: 5vh;
+    display: grid;
+    border-radius: 1rem;
+    transition: 0.5s;
+}
+#fullname:focus,#date-ness:focus,#email:focus,#password:focus{
+    background-color: #313131;
+    color: white;
+    transition: 0.5s;
+}
+#gender,#bday{
+    margin-left: 7.5vw;
+    margin-top: 5vh;
+    display: inline-block;
+}
+#check{
+    display: inline-block;
+    margin-left: 5vw;
+    margin-top: 5vh;
+}
+#date-ness{
+    margin-left: 5vw;
+    width: 16vw;
+    margin-top: 5vh;
+}
+#log{
+    margin-left: 7.5vw;
+    width: 25vw;
+    height: 5vh;
+    margin-top: 5vh;
+    border-radius: 1rem;
+    border: none;
+    background-color: #313131;
+    margin-bottom: 10vh;
+    color: white;
+    display: grid;
+}
+hr{
+    width: 30vw;
+    height: 0.4vh;
+    background-color: black;
+}
+#be_teach{
+    margin-left: 17vw;
+    margin-top: 5vh;
+    padding-bottom: 10vh;
+    color: black;
+}

@@ -1,0 +1,27 @@
+<div class="add-cours">
+    <p id="Title"><b>add cours</b></p>
+    <form method=post enctype="multipart/form-data">
+        <p id="lable">Title:</p>
+        <input type="text" id="title" name="title">
+        <p id="lable">type:</p>
+        <input type="text" id="type" name="type">
+        <p id="lable">Media:</p>
+        <input type="file" id="file" name="file">
+        <input type="submit" id="sub" value="Submit">
+    </form>
+</div>
+<div class="playlist">
+    <p id="Title"><b>cours</b></p>
+    <table>
+        {% for row in data %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td><img src="{{row[5]}}"></td>
+            </tr>
+        {% endfor %}
+        </table>
+</div>

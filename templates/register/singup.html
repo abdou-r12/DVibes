@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/singup.css')}}">
+    </head>
+    <body>
+        <video autoplay muted loop id="myVideo">
+            <source src="{{ url_for('static',filename='assets/Untitleddesign1.mp4')}}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <a href="/"><div class="back"></div></a>
+        <div class="container">
+            <p id="title">Sing Up</p>
+            <form method="post">
+                <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+                <p id="gender">Gender:</p>
+                <input type="Radio" name="check" value="male" id="check">Male
+                <input type="Radio" name="check" value="female" id="check">Female
+                <p id="bday">Birthday </p>
+                <input type="date" id="date-ness" name="bday" required>
+                <input type="text" id="email" name="email" placeholder="Email" required>
+                <input type="text" id="password" name="password" vplaceholder="Password" required>
+                <input type="submit" id="log" value="Sing up">
+                </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/user.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+    </head>
+    <body>
+        <div class="sidebar">
+            <a href="/">Home</a>
+            <a href="/evnew">News and Events</a>
+            <a class="active" href="/user/profile">Profile</a>
+            <a href="#cours">Cours</a>
+            <a href="/logout" id="logout">Log out</a>
+        </div>
+        <div class="container">
+            <p id="title"><b>Personal Information</b></p>
+            <div class="info">
+                <p>User name: {{data[2]}}</p>
+                <p>Gender: {{data[5]}}</p>
+                <p>Birthday: {{data[6]}}</p>
+                <p>Email: {{email}}<p>
+            </div>
+            <div class="pfp">
+                <img src="{{url_for('static',filename='assets/account-bold.svg')}}" id="acclogo">
+                <a href="#">Change profile picture</a>
+            </div>
+        </div>
+        <div class="container">
+            <p id="title"><b>Cours & Coach Information</b></p>
+            <p>Cours list:</p>
+            <p>Coach list:</p>
+        </div>
+        <div class="container">
+            <p id="title"><b>Privacy & Policy terms</b></p>
+            <a href="#">Change password</a>
+            <a href="#">Change email</a>
+            <a href="#">Change user name</a>
+        </div>
+    </body>
+</html>

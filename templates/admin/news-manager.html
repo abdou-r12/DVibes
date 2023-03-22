@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/news-manager.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+    </head>
+    <body>
+        <div class="sidebar">
+            <a href="/admin">Home</a>
+            <a href="#">Cours manager</a>
+            <a href="/admin/events-manager">Event manager</a>
+            <a href="/admin/news-manager" class="active">News manager</a>
+            <a href="/admin/coach-manager">Coach manager</a>
+            <a href="/logout" id="logout">Log out</a>
+        </div>
+        <div class="add-news">
+            <p id="Title"><b>Add news</b></p>
+            <form method=post enctype="multipart/form-data">
+                <p id="lable">Title:</p>
+                <input type="text" id="title" name="title">
+                <p id="lable">Discription:</p>
+                <input type="text" id="discription" name="discription">
+                <p id="lable">Content:</p>
+                <textarea rows="10" id="text" name="text"></textarea>
+                <p id="lable">Media:</p>
+                <input type="file" id="file" name="file">
+                <input type="submit" id="sub" value="Submit">
+            </form>
+        </div>
+        <div class="news-list">
+            <p id="Title"><b>News list</b></p>
+            <table>
+                {% for header in heading %}
+                    <th>{{  header  }}</th>
+                {% endfor %}
+                {% for row in data %}
+                    <tr>
+                        {% for cell in row %} 
+                            <td>{{  cell  }}</td>
+                        {% endfor %}
+                        <td id="func_remove"><a href="/admin/news-manager/remove:{{row[0]}}">remove</a></td>
+                        <td id="func_edit"><a href="/admin/news-manager/edit:{{row[0]}}">edit</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+</html>

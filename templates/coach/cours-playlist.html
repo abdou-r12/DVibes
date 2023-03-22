@@ -1,0 +1,18 @@
+<div class="playlist">
+    <form method=post enctype="multipart/form-data">
+        <table>
+            {% for row in data %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td><img src="{{row[5]}}"></td>
+                    <td><input type="checkbox" id="vehicle1" name="id-cour" value="{{row[0]}}"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" id="sub" value="Submit">
+    </form>
+</div>

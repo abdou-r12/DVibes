@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/coach-manager.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+    </head>
+    <body>
+        <div class="sidebar">
+            <a href="/admin">Home</a>
+            <a href="#">Cours manager</a>
+            <a href="/admin/events-manager">Event manager</a>
+            <a href="/admin/news-manager">News manager</a>
+            <a href="/admin/coach-manager" class="active">Coach manager</a>
+            <a href="/logout" id="logout">Log out</a>
+        </div>
+        <div class="req_list">
+            <p id="Title"><b>Requests list</b></p>
+            <table>
+                <form method=post>
+                    <tbody>
+                    {% for header in heading_req %}
+                        <th>{{  header  }}</th>
+                    {% endfor %}
+                    {% for row_req in requests %}
+                        <tr>
+                            {% for cell in row_req %}
+                                <td>{{  cell  }}</td>
+                            {% endfor %}
+                            <td><a href="/admin/coach-manager/remove:{{row_req[0]}}" id="func">remove</a></td>
+                            <td><a href="/admin/coach-manager/accept:{{row_req[0]}}" id="func">accept</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </form>
+            </table>
+        </div>
+        <div class="coach_list">
+            <p id="Title"><b>Coachs list</b></p>
+            <table>
+                <form method=post>
+                    <tbody>
+                        {% for header in heading_coach %}
+                            <th>{{  header  }}</th>
+                        {% endfor %}
+                        {% for row_co in coach %}
+                            <tr>
+                                {% for cell in row_co %} 
+                                    <td>{{  cell  }}</td>
+                                {% endfor %}
+                                <td><a href="#remove:{{row_co[0]}}" id="func">remove</a></td>
+                                <td><a href="#edit:{{row_co[0]}}" id="func">edit</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </form>
+            </table>
+        </div>
+    </body>
+</html>

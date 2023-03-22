@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/index.css')}}">
+    </head>
+    <body>
+        <div class="first_label">
+            <div class="menu_bar">
+                <div class="logo">
+                    <a href="/"><img src="../../static/assets/The_Westmire_A56_Headset-removebg-preview-removebg-preview.png" id="logo"></a>
+                </div>
+                <div class="logins">
+                    {% if log == False %}
+                        <a href="/singup" id="singup">Sing up</a>
+                        <a href="/login" id="login">Log in</a>
+                        <a href="/login-coach" id="login">Log in coach</a>
+                        <a href="/becoach" id="be_teach">Become a coach</a>
+                    {% else %}
+                        {% if usertype == "user" %}
+                        <a href="/logout" id="logout">Logout</a>
+                        <a href="/user">
+                            <div class="profile">
+                                <img src="{{url_for('static',filename="assets/account-bold.svg")}}" id="acpic">
+                                <p>{{user}}</p>
+                                <div id="back"></div>
+                            </div>
+                        </a>
+                        {% elif usertype == "coach" %}
+                        <a href="/logout-coach" id="logout">Logout</a>
+                        <a href="/user">
+                            <div class="profile">
+                                <img src="{{url_for('static',filename="assets/account-bold.svg")}}" id="acpic">
+                                <p>{{user}}</p>
+                                <div id="back"></div>
+                            </div>
+                        </a>
+                        {% endif %}
+
+                    {% endif %}
+                </div>
+            </div>
+            
+        <div class="text">
+            <div class="slogan">
+                <p id="first"><b>The first educational electronic space for<br> musicians in Algeria</p>
+                <p id="second"><b>Let the music Speak!</p>
+            </div>
+            <div class="arrows">
+                <a href="#pic"><div class="arrow1"></div></a>
+                <a href="#pic"><div class="arrow2"></div></a>
+                <a href="#pic"><div class="arrow3"></div></a>
+            </div>
+        </div>
+        <div class="next_label">
+            <a href="/evnew"><div class="ne">
+                <img id="pic" src="{{url_for('static',filename="assets/Untitleddesignqsd.png")}}">
+                <p id="title">News & Event</p>
+                <p id="desciption">Welcome to the latest news and event dates</p>
+            </div></a>
+            <a href="/events"><div class="coach">
+                <img id="pic" src="{{url_for('static',filename="assets/qdffqd.png")}}">
+                <p id="title">Coach</p>
+                <p id="desciption">The best music coaches can teach you</p>
+            </div></a>
+            <a href="#"><div class="cours">
+                <img id="pic" src="{{url_for('static',filename="assets/qsdqsdqsd.png")}}">
+                <p id="title">Courses</p>
+                <p id="desciption">The latest and most popular courses</p>
+            </div></a>
+        <div>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/news.css')}}">
+    </head>
+    <body>
+        <div class="menu_bar">
+            {% if log == False %}
+                <a href="/singup" id="singup">singup</a>
+                <a href="/login" id="login">Log in</a>
+            {% else %}
+                <h1>{{test}}</h1>
+                <a href="/logout">logout</a>
+            {% endif %}
+            <a href="/becoach" id="be_teach">Become a coach</a>
+            <a href="/">home</a>
+            <a href="/events" id="events">events</a>
+        </div>
+        <h1>NEWS</h1>
+        <div class="news">
+            {% for element in data %}
+                <div class="el">
+                    <p>title: {{element[1]}}</p>
+                    <p>text: {{element[2]}}</p>
+                    <img src="{{element[3]}}" style="width: 10vw">
+                    <p>date: {{element[4]}}</p>
+                <div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

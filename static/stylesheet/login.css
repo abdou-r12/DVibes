@@ -1,0 +1,94 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+#myVideo{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100vw;
+}
+.back{
+    left: 5vw;
+    top: 5vh;
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    border-top: 0.6rem solid white;
+    border-left: 0.6rem solid white;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+}
+.back:hover{
+    left: 4.5vw;
+    border-top: 0.6 solid black;
+    border-left: 0.6 solid black;
+    transition: 0.5s;
+}
+.container{
+    position: fixed;
+    background-color: white;
+    margin-left: 32.5vw;
+    margin-top: 10vh;
+    width: 35vw;
+    border-radius: 1rem;
+}
+#acclogo{
+    width: 8vw;
+    margin-left: 13.5vw;
+    margin-top: 5vh;
+    display: grid;
+}
+#username,#password{
+    width: 25vw;
+    height: 6vh;
+    display: grid;
+    margin-left: 5vw;
+    margin-top: 5vh;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+}
+input::placeholder{
+    margin-left: 2vw;
+}
+#log{
+    width: 10vw;
+    height: 8vh;
+    float: right;
+    margin-right: 5vw;
+    margin-top: 5vh;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    background-color: #313131;
+    color: white;
+    display: grid;
+    transition: 0.5s;
+}
+#log:hover{
+    background-color: white;
+    color: black;
+    transition: 0.5s;
+}
+#forget{
+    display: inline-grid;
+    color: black;
+    margin-top: 7vh;
+    margin-left: 5vw;
+    font-size: 1.2rem;
+}
+hr{
+    margin-top: 5vh;
+    width: 30vw;
+    height: 0.4vh;
+    background-color: black;
+}
+#singup{
+    display: grid;
+    margin-top: 10vh;
+    margin-left: 10vw;
+    margin-bottom: 10vh;
+    font-size: 1.2rem;
+    color: black;
+}

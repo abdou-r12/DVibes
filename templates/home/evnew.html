@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/evnew.css')}}">
+    </head>
+    <body>
+        <video autoplay muted loop id="myVideo">
+            <source src="{{ url_for('static',filename='assets/video.mp4')}}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <a href="/"><div class="back"></div></a>
+        <div class="news">
+            <h1 id="newstitle">news</h1>
+            <div class="newscontent">
+                {% for element in news %}
+                <a href="/new{{element[0]}}"><div class="el">
+                    <p id="title">{{element[1]}}</p>
+                    <p id="text">{{element[2]}}</p>
+                    <img src="{{element[4]}}" id="img">
+                </div></a>
+                {% endfor %}
+                <a href="/news"><div class="more">
+                    <p>More</p>
+                </div></a>
+            </div>
+        </div>
+        <div class="events">
+            <h1 id="eventstitle">events</h1>
+            <div class="eventscontent">
+                {% for element in events %}
+                <a href="/event{{element[0]}}"><div class="el">
+                    <p id="title">{{element[1]}}</p>
+                    <p id="text">{{element[2]}}</p>
+                    <img src="{{element[4]}}" id="img">
+                </div></a>
+                {% endfor %}
+            </div>
+            <a href="/events"><div class="more1">
+                <p>More</p>
+            </div></a>
+        </div>
+    </body>
+</html>

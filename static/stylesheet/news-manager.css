@@ -1,0 +1,73 @@
+.add-news,.news-list{
+    margin-left: 25vw;
+    border: 3px #f1f1f1 solid;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    width: 70vw;
+    box-shadow: 0.5rem 0.5rem #f1f1f1;
+}
+#Title{
+    font-size: 2rem;
+    margin-left: 5vw;
+}
+#lable{
+    margin-left: 5vw;
+    font-size: 1.2rem;
+}
+#title,#discription,#text,#file{
+    margin-left: 10vw;
+    width: 45vw;
+    height: 5vh;
+}
+#text{
+    height: fit-content;
+    min-height: 10vh;
+    resize: none;
+}
+#file{
+    display: block;
+    padding: 2rem 1.5rem;
+    color: #5a5a5a;
+}
+#sub{
+    margin-left: 35vw;
+    margin-bottom: 10vh;
+    width: 20vw;
+    height: 5vh;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    border: none;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    font-size: 1rem;
+}
+#sub:hover{
+    background-color: greenyellow;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.news-list table{
+    width: 60vw;
+    margin-left: 3vw;
+    margin-bottom: 10vh;
+}
+.news-list th,.news-list td{
+    border: 1px black solid;
+}
+.news-list th{
+    background-color: #74DEED;
+}
+#func_remove a,#func_edit a{
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+}

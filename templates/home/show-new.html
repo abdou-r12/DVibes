@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/show-news.css')}}">
+    </head>
+    <body>
+        <div class="menu_bar">
+            <div class="logo">
+                <a href="/"><img src="../../static/assets/The_Westmire_A56_Headset-removebg-preview-removebg-preview.png" id="logo"></a>
+            </div>
+            <div class="links">
+                <a href="#">News</a>
+                <a href="#">Events</a>
+                <a href="#">Cours</a>
+                <a href="#">Coach</a>
+            </div>
+            <div class="logins">
+                {% if log == False %}
+                    <a href="/singup" id="singup">Sing up</a>
+                    <a href="/login" id="login">Log in</a>
+                    <a href="/becoach" id="be_teach">Become a coach</a>
+                {% else %}
+                    <a href="/logout" id="logout">Logout</a>
+                    <a href="/user">
+                        <div class="profile">
+                            <img src="{{url_for('static',filename="assets/account-bold.svg")}}" id="acpic">
+                            <p>{{user}}</p>
+                            <div id="back"></div>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="container" style="background-image: url('{{data[4]}}');">
+            <div class="content">
+                <p id="title"><b>{{data[1]}}</b></p>
+                <p id="desc">{{data[2]}}</p>
+                <p id="date">{{data[5]}}</p>
+                <p id="content">{{data[3]}}</p>
+                <img id="media"src="{{data[4]}}"/>
+            </div>
+        </div>
+    </body>
+</html>
