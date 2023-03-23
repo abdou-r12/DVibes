@@ -109,15 +109,29 @@ def Create_tables(cursor):
         IdCoach INTEGER,
         Title TEXT,
         Type TEXT,
-        Playlist INTEGER,
+        Price INTEGER,
         Pwd TEXT,
         CONSTRAINT fk_IdCoach
             FOREIGN KEY (IdCoach)
             REFERENCES  Coach(IdCoach)
     )
     '''
-    print('Cours table created successfully')
     cursor.execute(Cours)
+    print('Cours table created successfully')
+    Attachment = '''
+    CREATE TABLE IF NOT EXISTS Attachment(
+        IdAtt INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdCour INTEGER,
+        Title TEXT,
+        Type TEXT,
+        Pwd TEXT,
+        CONSTRAINT fk_IdCour
+            FOREIGN KEY (IdCour)
+            REFERENCES Cours(IdCour)
+    )
+    '''
+    cursor.execute(Attachment)
+    print('Attachment table created successfully')
 
 def Update_News(id,title,description,text,dir):
     last_date=date.today()
