@@ -1,18 +1,22 @@
-<div class="playlist">
-    <form method=post enctype="multipart/form-data">
-        <table>
-            {% for row in data %}
-                <tr>
-                    <td>{{row[0]}}</td>
-                    <td>{{row[1]}}</td>
-                    <td>{{row[2]}}</td>
-                    <td>{{row[3]}}</td>
-                    <td>{{row[4]}}</td>
-                    <td><img src="{{row[5]}}"></td>
-                    <td><input type="checkbox" id="vehicle1" name="id-cour" value="{{row[0]}}"></td>
-                </tr>
-            {% endfor %}
-        </table>
-        <input type="submit" id="sub" value="Submit">
-    </form>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cours-list.css')}}">
+    </head>
+    <body>
+        <div class="playlist">
+                {% for row in data %}
+                    <a href="/coach/cours-list/{{row[0]}}">
+                        <div class="cours">
+                            <img src="../{{row[5]}}" id="cover">
+                            <p id="title">{{row[2]}}</p>
+                            <p id="type">{{row[3]}}</p>
+                            <p id="price">{{row[4]}}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+        </div>
+    </body>
+</html>
