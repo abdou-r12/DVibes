@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cour.css')}}">
+    </head>
+    <body>
+        <div class="sidebar">
+            <a href="/admin" class="active">Home</a>
+            <a href="/coach/cours-manager">Add Cours</a>
+            <a href="/coach/cours-list">Cours list</a>
+            <a href="/logout-coach" id="logout">Log out</a>
+        </div>
+        <div class="info">
+            <img src="/{{info[5]}}" id="cover">
+            <p>{{info[2]}}</p>
+            <p>{{info[3]}}</p>
+            <p>{{info[4]}} DA</p>
+        </div>
+        <div class="add-attachement">
+            <form method=post enctype="multipart/form-data">
+                <h1>add attachement</h1>
+                <p id="lable">Title:</p>
+                <input type="text" id="title" name="title">
+                <p id="lable">media:</p>
+                <input type="file" id="file" name="file">
+                <p id="lable">type:</p>
+                <select name="type" id="type">
+                    <option value="video">video</option>
+                    <option value="document">document</option>
+                </select>
+                <input type="submit" id="sub" value="Submit">
+            </form>
+        </div>
+        <div class="show-cours">
+            <h1>videos</h1>
+            <div class="cour">
+                {% for video in cour_video %}
+                    <p>{{video[2]}}</p>
+                    <video width="400" controls>
+                        <source src="/{{video[4]}}">
+                    </video>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="show-doc">
+            <h1>document</h1>
+            <div class="cour">
+                {% for doc in cour_doc %}
+                    <a href="/{{doc[4]}}">{{doc[2]}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
