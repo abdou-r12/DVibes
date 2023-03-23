@@ -17,8 +17,6 @@ app = Flask(__name__)
 app.secret_key = "secret key"
 connection = sqlite3.connect('DVibes.db', check_same_thread=False)
 cursor = connection.cursor()
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 # home page
 @app.route("/")
@@ -148,6 +146,8 @@ def be_coach():
             gender = request.form['check']
             bday = request.form['bday']
             resume = request.form['resume']
+            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+            ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filedir = app.config['UPLOAD_FOLDER']+"/"+filename
@@ -247,6 +247,8 @@ def news_manager():
         heading = ('ID','Title','Description','Content','Date','Picture')
         if request.method == "POST":
             UPLOAD_FOLDER = 'static/uploads/news'
+            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+            ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
             file = request.files['file']
             title = request.form['title']
@@ -278,6 +280,8 @@ def edit_news(id):
     else:
         data = cursor.execute("SELECT * FROM News WHERE IdNew=?",[id]).fetchone()
         if request.method == "POST":
+            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+            ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             UPLOAD_FOLDER = 'static/uploads/news'
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
             title = request.form['title']
@@ -303,6 +307,8 @@ def events_manager():
         data = cursor.execute('select * from Events').fetchall()
         heading = ('ID','Title','Description','Content','Picture','Date')
         if request.method == "POST":
+            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+            ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             UPLOAD_FOLDER = 'static/uploads/events'
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
             file = request.files['file']
@@ -335,6 +341,8 @@ def edit_events(id):
     else:
         data = cursor.execute("SELECT * FROM Events WHERE IdEvent=?",[id]).fetchone()
         if request.method == "POST":
+            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+            ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             UPLOAD_FOLDER = 'static/uploads/event'
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
             title = request.form['title']
@@ -404,30 +412,57 @@ def cours_manager():
         return redirect(url_for('login_coach'))
     data = cursor.execute('SELECT * FROM Cours WHERE IdCoach = ?',[Get_ID_Coach()]).fetchall()
     if request.method == "POST":
+        app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+        ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
         title = request.form['title']
         courstype =request.form['type']
         file = request.files['file']
-        UPLOAD_FOLDER = 'static/uploads/cours'
+        price = request.form['price']
+        UPLOAD_FOLDER = 'static/uploads/cours/cover'
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         filedir = UPLOAD_FOLDER+"/"+filename
-        cursor.execute('''INSERT INTO Cours(IdCoach, Title, Type, Playlist, Pwd)
-                            VALUES('{id}','{title}','{courstype}',"None",'{pwd}')
-                        '''.format(id=Get_ID_Coach(),title=title,courstype=courstype,pwd=filedir))
+        cursor.execute('''INSERT INTO Cours(IdCoach, Title, Type, Price, Pwd)
+                            VALUES('{id}','{title}','{courstype}','{price}','{pwd}')
+                        '''.format(id=Get_ID_Coach(),title=title,courstype=courstype,price=price,pwd=filedir))
         connection.commit()
     return render_template("coach/cours-manager.html",data=data)
 
-# Create playlist
-@app.route('/coach/playlist-manager',methods = ['POST','GET'])
+@app.route('/coach/cours-list')
 def cours_playlist():
     if Check_log()!=True or Get_ID_Coach()==None:
         return redirect(url_for('login_coach'))
-    data = cursor.execute('''SELECT * FROM Cours WHERE IdCoach = {id} AND Playlist = "None"'''.format(id=Get_ID_Coach()))
-    if request.method == "POST":
-        id = request.form['id-cour']
-        print(id)
+    data = cursor.execute('''SELECT * FROM Cours WHERE IdCoach = {id}'''.format(id=Get_ID_Coach()))
     return render_template("coach/cours-playlist.html",data=data)
+
+@app.route('/coach/cours-list/<id>',methods = ['POST','GET'])
+def cours(id):
+    if Check_log()!=True or Get_ID_Coach()==None:
+        return redirect(url_for('login_coach'))
+    info = cursor.execute("SELECT * FROM Cours WHERE IdCour={id_cour} AND IdCoach={id_coach}".format(id_cour=id,id_coach=Get_ID_Coach())).fetchone()
+    cour_video = cursor.execute("SELECT * FROM Attachment WHERE IdCour={id} AND Type='video'".format(id=id)).fetchall()
+    cour_doc = cursor.execute("SELECT * FROM Attachment WHERE IdCour={id} AND Type='document'".format(id=id)).fetchall()
+    if request.method == "POST":
+        title = request.form['title']
+        file = request.files['file']
+        att_type = request.form['type']
+        if att_type == 'video':
+            ALLOWED_EXTENSIONS = set(['mp4','webm','mkv','avi'])
+            UPLOAD_FOLDER = 'static/uploads/cours/video'
+        elif att_type == 'document':
+            ALLOWED_EXTENSIONS = set(['doc','ppt','pdf'])
+            UPLOAD_FOLDER = 'static/uploads/cours/document'
+        app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        filedir = UPLOAD_FOLDER+"/"+filename
+        cursor.execute('''INSERT INTO Attachment(IdCour, Title, type, Pwd)
+                            VALUES('{id}','{title}','{att_type}','{pwd}')
+                        '''.format(id=id,title=title,att_type=att_type,pwd=filedir))
+        connection.commit()
+    return render_template("coach/cours.html",info=info,cour_video=cour_video,cour_doc=cour_doc)
 
 @app.route('/logout')
 def logout():
@@ -463,5 +498,5 @@ def Get_ID_Coach():
     return coach
 
 if __name__ == '__main__':
-    app.run(debug=Flask,host='0.0.0.0')
+    app.run(debug=True)
     connection.close()
