@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cours-list.css')}}">
+    </head>
+    <body>
+        <img src="/{{cour_info[6]}}" id="cover" style="width:10vw">
+        <h1>{{cour_info[2]}}</h1>
+        <h2>{{cour_info[5]}}</h2>
+        <p>{{cour_info[3]}}</p>
+        <p>{{cour_info[4]}} DA</p>
+        <a href="/user/cours/{{id}}-purchase:{{cour_info[0]}}">purchase</a>
+    </body>
+</html>

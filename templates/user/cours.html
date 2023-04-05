@@ -7,13 +7,13 @@
     </head>
     <body>
         <div class="playlist">
-                {% for row in data %}
-                    <a href="/coach/cours-list/{{row[0]}}">
+                {% for cour in cours %}
+                    <a href="/user/cours/overview:{{cour[0]}}">
                         <div class="cours">
-                            <img src="../{{row[6]}}" id="cover">
-                            <p id="title">{{row[2]}}</p>
-                            <p id="type">{{row[3]}}</p>
-                            <p id="price">{{row[4]}}</p>
+                            <img src="../{{cour[6]}}" id="cover">
+                            <p id="title">{{cour[2]}}</p>
+                            <p id="type">{{cour[3]}}</p>
+                            <p id="price">{{cour[4]}}</p>
                         </div>
                     </a>
                 {% endfor %}

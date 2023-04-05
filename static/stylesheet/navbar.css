@@ -1,0 +1,165 @@
+@media screen and (max-width: 414px){
+    nav{
+        background-color: #1E1E32;
+        width: 100vw;
+        height: fit-content;
+        z-index: 100;
+        top: 0;
+    }
+    .menu{
+        display: block;
+        float: right;
+    }
+    .menu button{
+        padding: 1.5vh 2vw 1.5vh 2vw;
+        margin-top: 3vh;
+        margin-right: 5vw;
+        background-color: #FFDB15;
+        border: none;
+        border-radius: 1rem;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+}
+    .fa-bars{
+        color: #000000;
+        font-size: 2rem;
+    }
+    #logo{
+        width: 50vw;
+        margin-left: 15vw;
+        margin-top: 1vh;
+    }
+    #elements-links,#elements-logins{
+        display: none;
+        font-size: 1.2rem;
+        line-height: 5vh;
+        text-align: center;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+}
+    #elements-links a,#elements-logins a{
+        color: #FFFFFF
+    }
+    #elements-links li,#elements-logins li{
+        border-bottom: 1px solid #FFFFFF;
+    }
+    .logout{
+        padding: 1.2vh 40vw 1.2vh 42vw;
+        background-color: rgb(255, 62, 62);
+    }
+}
+@media screen and (min-width: 414px) {
+    nav{
+        background-color: #1E1E32;
+        width: 100vw;
+        height: 10vh;
+    }
+    .menu{
+        display: none;
+    }
+    #logo{
+        width: 10vw;
+        margin-left: 5vw;
+        float: left;
+        margin-top: 0.5vh;
+    }
+    .links ul{
+        float: left;
+    }
+    .links ul li{
+        display: inline-block;
+        line-height: 10vh;
+        font-size: 1.5vw;
+        margin-left: 2vw;
+    }
+    .links a{
+        color: #FFFFFF;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    .links a:hover{
+        color: #D9D9D9;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    .logins ul{
+        float: right;
+    }
+    .logins ul li{
+        display: inline-block;
+        line-height: 10vh;
+        font-size: 1.5vw;
+        margin-right: 5vw;
+    }
+    .account_icon,.logout{
+        background-color: #FFDB15;
+        color: #000000;
+        font-size: 1.5vw;
+        padding: 1.5vh 2vw 1.5vh 2vw;
+        line-height: 10vh;
+        margin-right: 5vw;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    .logout{
+        background-color: rgb(255, 62, 62);
+        color:#FFFFFF;
+    }
+    .logout:hover{
+        background-color: rgba(255, 0, 0, 0.59);
+    }
+    .account_icon:hover{
+        background-color: #ffdc159d;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+}
+    #login,#singup{
+        border: none;
+        border-radius: 0.5rem;
+        color: #000000;
+        padding: 1vh 1.5vw 1vh 1.5vw;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+}
+    #login{
+        background-color: #D9D9D9;
+        transition: 0.5s;
+    }
+    #singup{
+        background-color: #FFDB15;
+        transition: 0.5s;
+    }
+    #login:hover,#singup:hover{
+        background-color: #000000;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        color: #FFFFFF;
+    }
+}

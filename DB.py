@@ -110,6 +110,7 @@ def Create_tables(cursor):
         Title TEXT,
         Type TEXT,
         Price INTEGER,
+        Description TEXT,
         Pwd TEXT,
         CONSTRAINT fk_IdCoach
             FOREIGN KEY (IdCoach)
@@ -132,6 +133,15 @@ def Create_tables(cursor):
     '''
     cursor.execute(Attachment)
     print('Attachment table created successfully')
+    Purchase = '''
+    CREATE TABLE IF NOT EXISTS Purchase(
+        IdPur INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdUser INTEGER,
+        IdCour INTEGER
+    )
+    '''
+    cursor.execute(Purchase)
+    print('Purchase table created successfully')
 
 def Update_News(id,title,description,text,dir):
     last_date=date.today()

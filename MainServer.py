@@ -4,7 +4,8 @@ from flask import(
     request,
     redirect,
     url_for,
-    session
+    session,
+    flash
 )
 import sqlite3
 import os
@@ -17,23 +18,21 @@ app = Flask(__name__)
 app.secret_key = "secret key"
 connection = sqlite3.connect('DVibes.db', check_same_thread=False)
 cursor = connection.cursor()
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 # home page
 @app.route("/")
 def index():
-    if Get_ID()=="admin":
-        user = "admin"
-        usertype = "admin"
-    elif Get_ID()!=None:
-        user = cursor.execute('SELECT FullName FROM User WHERE IdUser = ?',[Get_ID()]).fetchone()[0]
-        usertype = "user"
-    elif Get_ID_Coach()!=None:
-        user = cursor.execute("SELECT FullName FROM Coach WHERE IdCoach = ?",[Get_ID_Coach()]).fetchone()[0]
-        usertype = "coach"
-    else:
-        user = None
-        usertype = None
-    return render_template("home/index.html",log=Check_log(),user=user,usertype=usertype)
+    global info
+    info = ""
+    if(session.get("user") != None):
+        if(session.get("user") == "admin"):
+            pass
+        else:
+            info = cursor.execute("SELECT FullName FROM User WHERE IdUser=?",[session.get("user")]).fetchone()[0]
+    if(session.get("coach") != None):
+        info = cursor.execute("SELECT FullName FROM Coach WHERE IdCoach=?",[session.get("coach")]).fetchone()[0]
+    return render_template("home/index.html",log=Check_log(),user=Get_Account_Type(),info=info)
 
 # Events and news page
 @app.route("/evnew")
@@ -85,11 +84,14 @@ def singup():
     if Check_log()==True:
         if Get_ID()=="admin":
             return redirect(url_for('admin'))
-        else:
+        elif Get_ID()!=None:
             return redirect(url_for('user'))
+        elif Get_ID_Coach()!=None:
+            return redirect(url_for("coach"))
     if request.method == 'POST':
         email = request.form['email']
         if(cursor.execute("SELECT EXISTS(SELECT UserName FROM Login WHERE UserName=?)",[email]).fetchone()[0]==1):
+            flash("Email already used try to login or use different email")
             return redirect(url_for('singup'))
         else:
             fullname = request.form['fullname']
@@ -112,28 +114,16 @@ def singup():
             return redirect(url_for('user_check'))
     return render_template("register/singup.html")
 
-# athautification page for user
-@app.route('/user-check',methods = ['GET' , 'POST'])
-def user_check():
-    id = cursor.execute('SELECT IdLog FROM User WHERE IdUser = ?',[session['user']]).fetchone()[0]
-    code = cursor.execute("SELECT Code FROM CheckUser WHERE IdLog = ?",[id]).fetchone()[0]
-    if request.method == "POST":
-        codeinput = request.form['code']
-        if code == codeinput:
-            cursor.execute("DELETE FROM CheckUser WHERE IdLog=?",[id])
-            connection.commit()
-            return redirect(url_for('user'))
-        else:
-            return redirect(url_for('user_check'))
-    return render_template("register/twostepcheck.html")
-
 # ask to be a coach
 @app.route('/becoach',methods = ['GET' , 'POST'])
 def be_coach():
     if Check_log()==True:
-        return redirect(url_for('login'))
-    if Get_ID() == 'admin':
-        return redirect(url_for('admin'))
+        if Get_ID()=="admin":
+            return redirect(url_for('admin'))
+        elif Get_ID()!=None:
+            return redirect(url_for('user'))
+        elif Get_ID_Coach()!=None:
+            return redirect(url_for("coach"))
     if request.method == "POST":
         email = request.form['email']
         if(cursor.execute("SELECT EXISTS(SELECT UserName FROM LoginCoach WHERE UserName=?)",[email]).fetchone()[0]==1):
@@ -146,8 +136,7 @@ def be_coach():
             gender = request.form['check']
             bday = request.form['bday']
             resume = request.form['resume']
-            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-            ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+            ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filedir = app.config['UPLOAD_FOLDER']+"/"+filename
@@ -157,63 +146,83 @@ def be_coach():
             connection.commit()
     return render_template('register/becoach.html')
 
-# login page for user
 @app.route('/login',methods = ['GET' , 'POST'])
 def login():
     if Check_log()==True:
         if Get_ID()=="admin":
             return redirect(url_for('admin'))
-        else:
+        elif Get_ID()!=None:
             return redirect(url_for('user'))
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if(username=="admin" and password=="admin"):
-            session["user"]="admin"
-            session["log"]=True
-            return redirect(url_for("admin"))
-        elif(cursor.execute("SELECT EXISTS(SELECT * FROM Login WHERE UserName = ?)",[username]).fetchone()[0]==0):
-            return redirect(url_for('login'))
-        else:
-            AccountInfo = cursor.execute("SELECT * FROM Login WHERE UserName = ?",[username]).fetchone()
-            if AccountInfo[2]==password:
-                session['user']=AccountInfo[0]
-                session['log']=True
-                return redirect(url_for('user'))
+        elif Get_ID_Coach()!=None:
+            return redirect(url_for("coach"))
+    if request.method == "POST":
+        user_username = request.form['user_username']
+        user_password = request.form["user_password"]
+        coach_username = request.form['coach_username']
+        coach_password = request.form["coach_password"]
+        if (coach_username == "" and coach_password == ""):
+            if(user_username=="admin" and user_password=="admin"):
+                session["user"]="admin"
+                session["log"]=True
+                return redirect(url_for("admin"))
+            elif(cursor.execute("SELECT EXISTS(SELECT * FROM Login WHERE UserName = ?)",[user_username]).fetchone()[0]==0):
+                flash("Username doesn't exist please check again")
+                return redirect(url_for('login'))
             else:
-                return redirect(url_for("login"))
-    return render_template("register/login.html")
-
-# login page for coach
-@app.route('/login-coach',methods = ['GET' , 'POST'])
-def login_coach():
-    if Check_log()==True:
-        return redirect(url_for('index'))
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if(cursor.execute("SELECT EXISTS(SELECT * FROM LoginCoach WHERE UserName = ?)",[username]).fetchone()[0]==0):
-            return redirect(url_for('login-coach'))
-        else:
-            AccountInfo = cursor.execute("SELECT * FROM LoginCoach WHERE UserName = ?",[username]).fetchone()
-            if AccountInfo[2]==password:
-                session['coach']=AccountInfo[0]
-                session['log']=True
-                return redirect(url_for('coach'))
+                AccountInfo = cursor.execute("SELECT * FROM Login WHERE UserName = ?",[user_username]).fetchone()
+                if AccountInfo[2]==user_password:
+                    session['user']=AccountInfo[0]
+                    session['log']=True
+                    return redirect(url_for('user'))
+                else:
+                    flash('Incorrect password please check again')
+                    return redirect(url_for("login"))
+        elif(user_username == "" and user_password == ""):
+            if(coach_username=="admin" and coach_password=="admin"):
+                session["user"]="admin"
+                session["log"]=True
+                return redirect(url_for("admin"))
+            elif(cursor.execute("SELECT EXISTS(SELECT * FROM LoginCoach WHERE UserName = ?)",[coach_username]).fetchone()[0]==0):
+                flash("Username doesn't exist please check again")
+                return redirect(url_for('login'))
             else:
-                return redirect(url_for("login_coach"))
-    return render_template("register/login-coach.html")
+                AccountInfo = cursor.execute("SELECT * FROM LoginCoach WHERE UserName = ?",[coach_username]).fetchone()
+                if AccountInfo[2]==coach_password:
+                    session['coach']=AccountInfo[0]
+                    session['log']=True
+                    return redirect(url_for('coach'))
+                else:
+                    flash('Incorrect password please check again')
+                    return redirect(url_for("login"))
+    return render_template('register/log.html')
 
 # user main
 @app.route('/user')
 def user():
-    if Check_log()!=True or Get_ID() == None:
+    if Check_log()!=True or session.get("user")==None:
         return redirect(url_for("login"))
-    elif session["user"]=="admin":
-        return redirect(url_for("admin"))
-    elif (cursor.execute("SELECT EXISTS(SELECT * FROM CheckUser WHERE IdLog=?)",[cursor.execute("SELECT IdLog FROM User WHERE IdUser=?",[session["user"]]).fetchone()[0]]).fetchone()[0]==1):
+    elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
     return render_template("user/usermain.html")
+
+# athautification page for user
+@app.route('/user-check',methods = ['GET' , 'POST'])
+def user_check():
+    if Check_log()!=True:
+        return redirect(url_for("login"))
+    id = cursor.execute('SELECT IdLog FROM User WHERE IdUser = ?',[session['user']]).fetchone()[0]
+    email = cursor.execute('SELECT UserName FROM Login WHERE IdLog = ?',[session['user']]).fetchone()[0]
+    code = cursor.execute("SELECT Code FROM CheckUser WHERE IdLog = ?",[id]).fetchone()[0]
+    if request.method == "POST":
+        codeinput = request.form['code']
+        if code == codeinput:
+            cursor.execute("DELETE FROM CheckUser WHERE IdLog=?",[id])
+            connection.commit()
+            return redirect(url_for('user'))
+        else:
+            flash("Incorrect code entered. Please try again")
+            return redirect(url_for('user_check'))
+    return render_template("register/twostepcheck.html",email=email)
 
 # user profile
 @app.route('/user/profile')
@@ -222,11 +231,59 @@ def userprofile():
         return redirect(url_for('login'))
     elif session["user"]=="admin":
         return redirect(url_for('admin'))
-    elif (cursor.execute("SELECT EXISTS(SELECT * FROM CheckUser WHERE IdLog=?)",[cursor.execute("SELECT IdLog FROM User WHERE IdUser=?",[session["user"]]).fetchone()[0]]).fetchone()[0]==1):
+    elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
     data = cursor.execute("SELECT * FROM User WHERE IdUser=?",[session["user"]]).fetchone()
     email = cursor.execute("SELECT UserName FROM Login WHERE IdLog=?",[data[1]]).fetchone()[0]
-    return render_template("user/profile.html",data=data,email=email)
+    course_id = cursor.execute("SELECT Idcour FROM Purchase WHERE IdUser=?",[session["user"]]).fetchall()
+    course_liste = []
+    for id in course_id:
+        course_liste.append(cursor.execute("SELECT * FROM Cours WHERE IdCour=?",[id[0]]).fetchone())
+    return render_template("user/profile.html",data=data,email=email,course_liste=course_liste)
+
+# show all course available for user
+@app.route('/user/cours')
+def check_courses():
+    if Check_log()!=True or Get_ID() == None:
+        return redirect(url_for('login'))
+    elif session["user"]=="admin":
+        return redirect(url_for('admin'))
+    elif (Check_authentification()==1):
+        return redirect(url_for('user_check'))
+    cours = cursor.execute("SELECT * FROM Cours").fetchall()
+    return render_template("user/cours.html",cours=cours)
+
+# show detail of one course
+@app.route('/user/cours/overview:<id>')
+def over_view_course(id):
+    if Check_log()!=True or Get_ID() == None:
+        return redirect(url_for('login'))
+    elif session["user"]=="admin":
+        return redirect(url_for('admin'))
+    elif (Check_authentification()==1):
+        return redirect(url_for('user_check'))
+    cour_info = cursor.execute("SELECT * FROM Cours WHERE IdCour=?",[id]).fetchone()
+    return render_template("user/over-view.html",cour_info=cour_info,id=Get_ID())
+
+# purchase function
+@app.route('/user/cours/<id_user>-purchase:<id_course>')
+def purchase(id_user,id_course):
+    if Check_log()!=True or Get_ID() == None:
+        return redirect(url_for('login'))
+    elif session["user"]=="admin":
+        return redirect(url_for('admin'))
+    elif (Check_authentification()==1):
+        return redirect(url_for('user_check'))
+    user_balance = cursor.execute("SELECT Balance FROM User WHERE IdUser=?",[id_user]).fetchone()[0]
+    course_balance = cursor.execute("SELECT Price FROM Cours WHERE IdCour=?",[id_course]).fetchone()[0]
+    if(user_balance >= course_balance):
+        cursor.execute("INSERT INTO Purchase(IdUser, IdCour) VALUES('{id_user}','{id_course}')".format(id_user=id_user,id_course=id_course))
+        cursor.execute("UPDATE User SET Balance=? WHERE IdUser=?",[user_balance-course_balance,id_user])
+        connection.commit()
+        return redirect(url_for('user'))
+    else:
+        # refill
+        pass
 
 # admin main
 @app.route('/admin')
@@ -247,7 +304,6 @@ def news_manager():
         heading = ('ID','Title','Description','Content','Date','Picture')
         if request.method == "POST":
             UPLOAD_FOLDER = 'static/uploads/news'
-            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
             ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
             file = request.files['file']
@@ -280,7 +336,6 @@ def edit_news(id):
     else:
         data = cursor.execute("SELECT * FROM News WHERE IdNew=?",[id]).fetchone()
         if request.method == "POST":
-            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
             ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             UPLOAD_FOLDER = 'static/uploads/news'
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -307,7 +362,6 @@ def events_manager():
         data = cursor.execute('select * from Events').fetchall()
         heading = ('ID','Title','Description','Content','Picture','Date')
         if request.method == "POST":
-            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
             ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             UPLOAD_FOLDER = 'static/uploads/events'
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -341,7 +395,6 @@ def edit_events(id):
     else:
         data = cursor.execute("SELECT * FROM Events WHERE IdEvent=?",[id]).fetchone()
         if request.method == "POST":
-            app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
             ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
             UPLOAD_FOLDER = 'static/uploads/event'
             app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -412,20 +465,20 @@ def cours_manager():
         return redirect(url_for('login_coach'))
     data = cursor.execute('SELECT * FROM Cours WHERE IdCoach = ?',[Get_ID_Coach()]).fetchall()
     if request.method == "POST":
-        app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
         ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
         title = request.form['title']
         courstype =request.form['type']
         file = request.files['file']
         price = request.form['price']
+        Description = request.form['description']
         UPLOAD_FOLDER = 'static/uploads/cours/cover'
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         filedir = UPLOAD_FOLDER+"/"+filename
-        cursor.execute('''INSERT INTO Cours(IdCoach, Title, Type, Price, Pwd)
-                            VALUES('{id}','{title}','{courstype}','{price}','{pwd}')
-                        '''.format(id=Get_ID_Coach(),title=title,courstype=courstype,price=price,pwd=filedir))
+        cursor.execute('''INSERT INTO Cours(IdCoach, Title, Type, Price, Description,Pwd)
+                            VALUES('{id}','{title}','{courstype}','{price}','{Description}','{pwd}')
+                        '''.format(id=Get_ID_Coach(),title=title,courstype=courstype,price=price,Description=Description,pwd=filedir))
         connection.commit()
     return render_template("coach/cours-manager.html",data=data)
 
@@ -451,7 +504,7 @@ def cours(id):
             ALLOWED_EXTENSIONS = set(['mp4','webm','mkv','avi'])
             UPLOAD_FOLDER = 'static/uploads/cours/video'
         elif att_type == 'document':
-            ALLOWED_EXTENSIONS = set(['doc','ppt','pdf'])
+            ALLOWED_EXTENSIONS = set(['doc','ppt','pdf','zip','rar'])
             UPLOAD_FOLDER = 'static/uploads/cours/document'
         app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -474,7 +527,7 @@ def logout():
 def logout_coach():
     session.pop("coach",None)
     session.pop("log",False)
-    return redirect('login-coach')
+    return redirect('login')
 
 def Check_log():
     global log
@@ -482,6 +535,10 @@ def Check_log():
     if "log" in session:
         log = session["log"]
     return log
+
+def Check_authentification():
+    return cursor.execute('''SELECT EXISTS(SELECT * FROM CheckUser WHERE IdLog=?)''',[cursor.execute("SELECT IdLog FROM User WHERE IdUser=?",[session["user"]]).fetchone()[0]]).fetchone()[0]
+
 
 def Get_ID():
     global user
@@ -496,6 +553,18 @@ def Get_ID_Coach():
     if "coach" in session:
         coach = cursor.execute("SELECT IdCoach FROM Coach WHERE IdLog = ?",[session["coach"]]).fetchone()[0]
     return coach
+
+def Get_Account_Type():
+    coach = session.get("coach")
+    user = session.get("user")
+    if(coach == "admin" or user == "admin"):
+        return "admin"
+    elif coach is not None:
+        return "coach"
+    elif user is not None:
+        return "user"
+    else:
+        return None
 
 if __name__ == '__main__':
     app.run(debug=True)

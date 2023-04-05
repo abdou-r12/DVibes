@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+@media screen and (max-width: 414px){
+    .error{
+        width: 100vw;
+        color: #721c24;
+        background-color: #f8d7da;
+        font-size: 5vw;
+    }
+    .error p{
+        padding: 1.5vh 0vw 1.5vh 2vw;
+    }
+    .container{
+        margin: 5vh 10vw 0 10vw;
+        width: 80vw;
+        background-color: #F3F5F9;
+        border-radius: 1rem;
+    }
+    #title{
+        padding: 2vh 2vw 2vh 2vw;
+        font-size: 10vw;
+    }
+    #text{
+        padding: 0 2vw 2vh 2vw;
+        font-size: 5vw;
+    }
+    .code,.sub{
+        width: 70vw;
+        height: 5vh;
+        margin: 2ch 5vw 2vh 5vw;
+        border-radius: 1rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+    }
+    .sub{
+        background-color: #FFDB15;
+    }
+}
+@media screen and (min-width: 414px){
+    .error{
+        width: 100vw;
+        color: #721c24;
+        background-color: #f8d7da;
+        font-size: 1.2vw;
+    }
+    .error p{
+        padding: 1.5vh 0vw 1.5vh 2vw;
+    }
+    .container{
+        margin: 20vh 25vw 10vh 25vw;
+        width: 50vw;
+        background-color: #F3F5F9;
+        border-radius: 1rem;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+    }
+    #title{
+        font-size: 2vw;
+        padding: 5vh 0 5vh 5vw;
+    }
+    #text{
+        font-size: 1.3vw;
+        padding: 0 5vw 5vh 5vw;
+    }
+    .code{
+        width: 30vw;
+        height: 5vh;
+        margin: 0 10vw 5vh 10vw;
+        display: block;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+    }
+    .code:hover{
+        background-color: #d4d4d4;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+    .sub{
+        width: 20vw;
+        height: 5vh;
+        margin: 0 15vw 5vh 15vw;
+        background-color: #FFDB15;
+        font-size: 1.3vw;
+        border: #000000 solid 1px;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+    }
+    .sub:hover{
+        background-color: #daba06;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+    }
+}

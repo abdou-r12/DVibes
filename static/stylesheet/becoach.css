@@ -11,6 +11,9 @@
     font-family: sans-serif;
 }
 @media screen and (min-width: 414px){
+    ::placeholder{
+        padding-left: 1vw;
+    }
     .links a{
         text-decoration: none;
         color: #000000;
@@ -104,7 +107,7 @@
     }
     .next{
         margin-top: 5vh;
-        background-color: #FFDB15;
+        background-color: #9CC3A1;
     }
     .next:hover{
         background-color: #000000;
@@ -118,8 +121,12 @@
     .tab-2{
         display: none;
     }
+    .fullname,.bday,.resume{
+        margin-top: 2vh;
+        height: 4vh;
+    }
     .lable{
-        font-size: 1.5vw;
+        font-size: 1.2vw;
         margin-left: 4vw;
         margin-top: 3vh;
     }
@@ -130,14 +137,17 @@
         display: inline-block;
         margin-left: 4vw;
     }
-    .tab-2 lable{
-        display: none;
+    .cv{
+        display: inline-block;
+    }
+    .file{
+        margin-left: 4vw;
     }
     .previous,.submit{
         margin-left: 2vw;
         width: 10vw;
         display: inline-block;
-        background-color: #FFDB15;
+        background-color: #9CC3A1;
         transition: 0.5s;
         -webkit-transition: 0.5s;
         -moz-transition: 0.5s;
@@ -157,69 +167,4 @@
         -ms-transition: 0.5s;
         -o-transition: 0.5s;
     }
-}
-@media screen and (max-width: 414px){
-    .logo{
-        width: 80vw;
-    }
-    .links{
-        display: none;
-    }
-    hr{
-        width: 80vw;
-    }
-    .container{
-        width: 50vw;
-        height: 75vh;
-        margin-top: 5vh;
-    }
-    .tab-1{
-        opacity: 1;
-    }
-    #title{
-        font-size: 8vw;
-    }
-    .input{
-        width: 70vw;
-        height: 10vh;
-        font-size: 8vw;
-        border-radius: 1rem;
-        -webkit-border-radius: 1rem;
-        -moz-border-radius: 1rem;
-        -ms-border-radius: 1rem;
-        -o-border-radius: 1rem;
-    }
-    .error{
-        color: #721c24;
-        background-color: #f8d7da;
-        margin-left: 4vw;
-        margin-right: 4vw;
-        margin-top: 5vh;
-    }
-    .error p{
-        font-size: 5vw;
-        padding: 2vh 2vw 2vh 2vw;
-    }
-    .tab-2 .input{
-        height: 8vh;
-        margin-top: 2vh;
-        margin-bottom: 1vh;
-    }
-    .lable{
-        font-size: 8vw;
-        display: block;
-    }
-    input[type="radio"]{
-        width: 5vw;
-        height: 5vh;
-    }
-    .tab-2 lable{
-        display: inline;
-        font-size: 8vw;
-        margin-left: 5vw;
-    }
-    ::placeholder{
-        padding-left: 5vw;
-    }
-
 }
