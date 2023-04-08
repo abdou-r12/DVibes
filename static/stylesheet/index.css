@@ -24,54 +24,14 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+#title-icon{
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
 @media screen and (min-width: 414px){
-    .preloader{
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        background-color: #000000;
-        z-index: 100;
-    }
-    .middle {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        position: absolute;
-      }
-      .bar {
-        width: 1vw;
-        height: 7vh;
-        background: #fff;
-        display: inline-block;
-        transform-origin: bottom center;
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
-        animation: loader 1.2s linear infinite;
-      }
-      .bar1 {
-        animation-delay: 0.1s;
-      }
-      .bar2 {
-        animation-delay: 0.2s;
-      }
-      .bar3 {
-        animation-delay: 0.3s;
-      }
-      .bar4 {
-        animation-delay: 0.4s;
-      }
-      .bar5 {
-        animation-delay: 0.5s;
-      }
-      .bar6 {
-        animation-delay: 0.6s;
-      }
-      .bar7 {
-        animation-delay: 0.7s;
-      }
-      .bar8 {
-        animation-delay: 0.8s;
-      }
     .container-1,.container-2{
         margin-top: 10vh;
         display: block;
@@ -254,6 +214,10 @@
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
+    -webkit-transition: 0.6s ease;
+    -moz-transition: 0.6s ease;
+    -ms-transition: 0.6s ease;
+    -o-transition: 0.6s ease;
 }
 .next {
     right: 0;

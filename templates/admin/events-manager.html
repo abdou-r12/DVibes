@@ -3,48 +3,81 @@
     <head>
         <meta charset="UTF-8">
         <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/events-manager.css')}}">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
     </head>
     <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
         <div class="sidebar">
-            <a href="/admin">Home</a>
-            <a href="#">Cours manager</a>
-            <a href="/events-manager" class="active">Event manager</a>
-            <a href="/admin/news-manager">News manager</a>
-            <a href="/admin/coach-manager">Coach manager</a>
-            <a href="/logout" id="logout">Log out</a>
+            <div class="main">
+                <ul>
+                    <li><a href="/admin/events-manager" class="active">Event<br>manager</a></li>
+                    <hr>
+                    <li><a href="#">Coach Manager</a></li>
+                    <hr>
+                    <li><a href="#">Course Manager</a></li>
+                    <hr>
+                    <li><a href="#">Payment manager</a></li>
+                    <hr>
+                    <li><a href="/admin/news-manager">News Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/coach-manager">Coach Request</a></li>
+                </ul>
+            </div>
+            <div class="logout_con">
+                <a href="/logout" id="logout"><b>Log out</b></a>
+            </div>
         </div>
-        <div class="add-news">
-            <p id="Title"><b>Add event</b></p>
-            <form method=post enctype="multipart/form-data">
-                <p id="lable">Title:</p>
-                <input type="text" id="title" name="title">
-                <p id="lable">Discription:</p>
-                <input type="text" id="discription" name="discription">
-                <p id="lable">Content:</p>
-                <textarea rows="10" id="text" name="text"></textarea>
-                <p id="lable">Media:</p>
-                <input type="file" id="file" name="file">
-                <input type="submit" id="sub" value="Submit">
-            </form>
-        </div>
-        <div class="news-list">
-            <p id="Title"><b>Events list</b></p>
-            <table>
-                {% for header in heading %}
-                    <th>{{  header  }}</th>
-                {% endfor %}
-                {% for row in data %}
-                    <tr>
-                        {% for cell in row %} 
-                            <td>{{  cell  }}</td>
-                        {% endfor %}
-                        <td id="func_remove"><a href="/admin/events-manager/remove:{{row[0]}}">remove</a></td>
-                        <td id="func_edit"><a href="/admin/events-manager/edit:{{row[0]}}">edit</a></td>
-                    </tr>
-                {% endfor %}
-            </table>
+        <div class="container">
+            <p id="main_title"><b>Events Manager</b></p>
+            <div class="add-event">
+                <p id="sec_title"><b>Add Event</b></p>
+                <form method=post enctype="multipart/form-data">
+                    <input type="text" class="input title" name="title" placeholder="Title" required>
+                    <input type="text" class="input discription" name="discription" placeholder="Description" required>
+                    <textarea class="input text" name="text" placeholder="Event content" required></textarea>
+                    <input type="file" id="file" name="file" required>
+                    <input type="submit" id="sub" value="Submit">
+                </form>
+            </div>
+            <div class="events-list">
+                <p id="sec_title"><b>Events list</b></p>
+                <table>
+                    {% for header in heading %}
+                        <th>{{  header  }}</th>
+                    {% endfor %}
+                    {% for row in data %}
+                        <tr>
+                            <td><p>{{row[0]}}</p></td>
+                            <td><p>{{row[1]}}</p></td>
+                            <td><p>{{row[2]}}</p></td>
+                            <td><p>{{row[3]}}</p></td>
+                            <td><img src="../../{{row[4]}}" id="media"></td>
+                            <td id="func_remove"><a href="/admin/news-manager/remove:{{row[0]}}">remove</a></td>
+                            <td id="func_edit"><a href="/admin/news-manager/edit:{{row[0]}}">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
 </html>

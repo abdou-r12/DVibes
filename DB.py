@@ -76,6 +76,7 @@ def Create_tables(cursor):
         Pfp TEXT,
         Gender TEXT,
         BirthDay TEXT,
+        Balance INTEGER,
         CONSTRAINT fk_IdLog
             FOREIGN KEY (IdLog)
             REFERENCES  Login(IdLog)

@@ -25,14 +25,13 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 def index():
     global info
     info = ""
-    if(session.get("user") != None):
-        if(session.get("user") == "admin"):
-            pass
-        else:
-            info = cursor.execute("SELECT FullName FROM User WHERE IdUser=?",[session.get("user")]).fetchone()[0]
-    if(session.get("coach") != None):
+    if Get_Account_Type() == "admin":
+        info = "admin"
+    elif Get_Account_Type() == "user":
+        info = cursor.execute("SELECT FullName FROM User WHERE IdUser=?",[session.get("user")]).fetchone()[0]
+    elif Get_Account_Type() == "coach":
         info = cursor.execute("SELECT FullName FROM Coach WHERE IdCoach=?",[session.get("coach")]).fetchone()[0]
-    return render_template("home/index.html",log=Check_log(),user=Get_Account_Type(),info=info)
+    return render_template("home/index.html",log=session.get("log"),user=Get_Account_Type(),info=info)
 
 # Events and news page
 @app.route("/evnew")
@@ -45,49 +44,44 @@ def evnew():
 @app.route("/events")
 def events():
     data = cursor.execute('SELECT * FROM Events').fetchall()
-    return render_template("home/events.html",data=data,log=Check_log())
+    return render_template("home/events.html",data=data,log=session.get("log"))
 
 # show one detailed event
 @app.route("/event<id>")
 def show_event(id):
-    if Get_ID()=="admin":
+    if session.get("user") == "admin":
         user = "admin"
-    elif Get_ID()!=None:
-        user = cursor.execute('SELECT FullName FROM User WHERE IdUser = ?',[Get_ID()]).fetchone()[0]
+    elif session.get("user") != None:
+        user = cursor.execute('SELECT FullName FROM User WHERE IdUser = ?',[session.get("user")]).fetchone()[0]
     else:
         user = None
     data = cursor.execute("SELECT * FROM Events WHERE IdEvent=?",[id]).fetchone()
-    return render_template("home/show-event.html",id=id,data=data,user=user,log=Check_log())
+    return render_template("home/show-event.html",id=id,data=data,user=user,log=session.get("log"))
 
 # show all the news
 @app.route("/news")
 def news():
-    log = Check_log()
+    log = session.get("log")
     data = cursor.execute('SELECT * FROM News').fetchall()
     return render_template("home/news.html",data=data,log=log)
 
 # show one detailed news
 @app.route("/new<id>")
 def show_new(id):
-    if Get_ID()=="admin":
+    if session.get("user") == "admin":
         user = "admin"
-    elif Get_ID()!=None:
-        user = cursor.execute('SELECT FullName FROM User WHERE IdUser = ?',[Get_ID()]).fetchone()[0]
+    elif session.get("user") != None:
+        user = cursor.execute('SELECT FullName FROM User WHERE IdUser = ?',[session.get("user")]).fetchone()[0]
     else:
         user = None
     data = cursor.execute("SELECT * FROM News WHERE IdNew=?",[id]).fetchone()
-    return render_template("home/show-New.html",id=id,data=data,user=user,log=Check_log())
+    return render_template("home/show-New.html",id=id,data=data,user=user,log=session.get("log"))
 
 # sing up page
 @app.route("/singup",methods = ['GET' , 'POST'])
 def singup():
-    if Check_log()==True:
-        if Get_ID()=="admin":
-            return redirect(url_for('admin'))
-        elif Get_ID()!=None:
-            return redirect(url_for('user'))
-        elif Get_ID_Coach()!=None:
-            return redirect(url_for("coach"))
+    if session.get("log")==True:
+        return redirect(url_for("login"))
     if request.method == 'POST':
         email = request.form['email']
         if(cursor.execute("SELECT EXISTS(SELECT UserName FROM Login WHERE UserName=?)",[email]).fetchone()[0]==1):
@@ -117,13 +111,8 @@ def singup():
 # ask to be a coach
 @app.route('/becoach',methods = ['GET' , 'POST'])
 def be_coach():
-    if Check_log()==True:
-        if Get_ID()=="admin":
-            return redirect(url_for('admin'))
-        elif Get_ID()!=None:
-            return redirect(url_for('user'))
-        elif Get_ID_Coach()!=None:
-            return redirect(url_for("coach"))
+    if session.get("log")==True:
+        return redirect(url_for("login"))
     if request.method == "POST":
         email = request.form['email']
         if(cursor.execute("SELECT EXISTS(SELECT UserName FROM LoginCoach WHERE UserName=?)",[email]).fetchone()[0]==1):
@@ -146,14 +135,15 @@ def be_coach():
             connection.commit()
     return render_template('register/becoach.html')
 
+# user and coach login
 @app.route('/login',methods = ['GET' , 'POST'])
 def login():
-    if Check_log()==True:
-        if Get_ID()=="admin":
+    if session.get("log")==True:
+        if session.get("user") == "admin":
             return redirect(url_for('admin'))
-        elif Get_ID()!=None:
+        elif session.get("user") != None:
             return redirect(url_for('user'))
-        elif Get_ID_Coach()!=None:
+        elif session.get("coach") != None:
             return redirect(url_for("coach"))
     if request.method == "POST":
         user_username = request.form['user_username']
@@ -199,7 +189,7 @@ def login():
 # user main
 @app.route('/user')
 def user():
-    if Check_log()!=True or session.get("user")==None:
+    if session.get("log")!=True or session.get("user")==None:
         return redirect(url_for("login"))
     elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
@@ -208,7 +198,7 @@ def user():
 # athautification page for user
 @app.route('/user-check',methods = ['GET' , 'POST'])
 def user_check():
-    if Check_log()!=True:
+    if session.get("log") != True and Check_authentification() != True:
         return redirect(url_for("login"))
     id = cursor.execute('SELECT IdLog FROM User WHERE IdUser = ?',[session['user']]).fetchone()[0]
     email = cursor.execute('SELECT UserName FROM Login WHERE IdLog = ?',[session['user']]).fetchone()[0]
@@ -227,7 +217,7 @@ def user_check():
 # user profile
 @app.route('/user/profile')
 def userprofile():
-    if Check_log()!=True or Get_ID() == None:
+    if session.get("log")!=True or session.get("user") == None:
         return redirect(url_for('login'))
     elif session["user"]=="admin":
         return redirect(url_for('admin'))
@@ -244,7 +234,7 @@ def userprofile():
 # show all course available for user
 @app.route('/user/cours')
 def check_courses():
-    if Check_log()!=True or Get_ID() == None:
+    if session.get("log") != True or session.get("user") == None:
         return redirect(url_for('login'))
     elif session["user"]=="admin":
         return redirect(url_for('admin'))
@@ -256,29 +246,30 @@ def check_courses():
 # show detail of one course
 @app.route('/user/cours/overview:<id>')
 def over_view_course(id):
-    if Check_log()!=True or Get_ID() == None:
+    if session.get("log")!=True or session.get("user") == None:
         return redirect(url_for('login'))
     elif session["user"]=="admin":
         return redirect(url_for('admin'))
     elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
     cour_info = cursor.execute("SELECT * FROM Cours WHERE IdCour=?",[id]).fetchone()
-    return render_template("user/over-view.html",cour_info=cour_info,id=Get_ID())
+    return render_template("user/over-view.html",cour_info=cour_info,id=session.get("user"))
 
 # purchase function
 @app.route('/user/cours/<id_user>-purchase:<id_course>')
 def purchase(id_user,id_course):
-    if Check_log()!=True or Get_ID() == None:
+    if session.get("log") != True or session.get("user") == None:
         return redirect(url_for('login'))
     elif session["user"]=="admin":
         return redirect(url_for('admin'))
     elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
     user_balance = cursor.execute("SELECT Balance FROM User WHERE IdUser=?",[id_user]).fetchone()[0]
-    course_balance = cursor.execute("SELECT Price FROM Cours WHERE IdCour=?",[id_course]).fetchone()[0]
-    if(user_balance >= course_balance):
+    course_info = cursor.execute("SELECT IdCoach,Price FROM Cours WHERE IdCour=?",[id_course]).fetchall()[0]
+    if(user_balance >= course_info[1]):
         cursor.execute("INSERT INTO Purchase(IdUser, IdCour) VALUES('{id_user}','{id_course}')".format(id_user=id_user,id_course=id_course))
-        cursor.execute("UPDATE User SET Balance=? WHERE IdUser=?",[user_balance-course_balance,id_user])
+        cursor.execute("UPDATE User SET Balance=? WHERE IdUser=?",[user_balance-course_info[1],id_user])
+        cursor.execute("UPDATE Coach SET Balance = {balance} WHERE id = {id}".format(balance=course_info[1],id=course_info[0]))
         connection.commit()
         return redirect(url_for('user'))
     else:
@@ -288,20 +279,18 @@ def purchase(id_user,id_course):
 # admin main
 @app.route('/admin')
 def admin():
-    if Check_log()==False:
+    if session.get("log") == False or session.get("user") != "admin":
         return redirect(url_for('login'))
-    elif session["user"] != "admin":
-        return redirect(url_for("login"))
     return render_template("admin/adminmain.html")
 
 # news manager page
 @app.route('/admin/news-manager',methods = ['POST','GET'])
 def news_manager():
-    if Check_log()!=True or session['user']!="admin":
+    if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
         data = cursor.execute('select * from News').fetchall()
-        heading = ('ID','Title','Description','Content','Date','Picture')
+        heading = ('ID','Title','Description','Content','Picture','Date')
         if request.method == "POST":
             UPLOAD_FOLDER = 'static/uploads/news'
             ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
@@ -314,7 +303,7 @@ def news_manager():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filedir = app.config['UPLOAD_FOLDER']+"/"+filename
             cursor.execute('''INSERT INTO News(Title, Discription,Text, Img, Date)
-                            VALUES('{title}','{disc}','{text}','{img}','{date}')
+                            VALUES("{title}","{disc}","{text}","{img}","{date}")
                         '''.format(title=title,disc=disc,text=text,img=filedir,date=date.today()))
             connection.commit()
     return render_template("admin/news-manager.html",heading=heading,data=data)
@@ -322,7 +311,7 @@ def news_manager():
 # remove news function
 @app.route('/admin/news-manager/remove:<id>')
 def remove_news(id):
-    if Check_log()==True and session['user']=="admin":
+    if session.get("log") == True and session.get("user") == "admin":
         Remove_News(id)
     else:
         return redirect(url_for('login'))
@@ -331,7 +320,7 @@ def remove_news(id):
 # edit news function
 @app.route('/admin/news-manager/edit:<id>',methods = ['POST','GET'])
 def edit_news(id):
-    if Check_log()!=True and session['user']!="admin":
+    if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
         data = cursor.execute("SELECT * FROM News WHERE IdNew=?",[id]).fetchone()
@@ -356,7 +345,7 @@ def edit_news(id):
 # events manager page
 @app.route('/admin/events-manager',methods = ['POST','GET'])
 def events_manager():
-    if Check_log()!=True and session['user']!="admin":
+    if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
         data = cursor.execute('select * from Events').fetchall()
@@ -381,7 +370,7 @@ def events_manager():
 # remove event function
 @app.route('/admin/event-manager/remove:<id>')
 def remove_event(id):
-    if Check_log()==True and session['user']=="admin":
+    if session.get("log") == True and session.get("user") == "admin":
         Remove_Events(id)
     else:
         return redirect(url_for('login'))
@@ -390,7 +379,7 @@ def remove_event(id):
 # edit event function
 @app.route('/admin/events-manager/edit:<id>',methods = ['POST','GET'])
 def edit_events(id):
-    if Check_log()!=True and session['user']!="admin":
+    if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
         data = cursor.execute("SELECT * FROM Events WHERE IdEvent=?",[id]).fetchone()
@@ -415,7 +404,7 @@ def edit_events(id):
 # coach manager page
 @app.route('/admin/coach-manager',methods = ['POST','GET'])
 def add_coach():
-    if Check_log()!=True and session['user']!="admin":
+    if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
         coach = cursor.execute('SELECT * FROM Coach').fetchall()
@@ -427,7 +416,7 @@ def add_coach():
 # accept request to be coach page
 @app.route("/admin/coach-manager/remove:<id>")
 def Remove_coach(id):
-    if Check_log()==True and session['user']=="admin":
+    if session.get("log") == True and session.get("user") == "admin":
         Remove_Coach(id)
     else:
         return redirect(url_for('login'))
@@ -436,7 +425,7 @@ def Remove_coach(id):
 # remove request to be coach page
 @app.route("/admin/coach-manager/accept:<id>")
 def accept_coach(id):
-    if Check_log()!=True and session['user']!="admin":
+    if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
         info = cursor.execute("SELECT * FROM Request WHERE IdReq=?",[id]).fetchone()
@@ -451,19 +440,43 @@ def accept_coach(id):
         connection.commit()
         return redirect(url_for('add_coach'))
 
+# balances and statics
+@app.route('/admin/payment-manager')
+def payment_manager():
+    if session.get("log") == False or session.get("user") != "admin" :
+        return redirect(url_for('login'))
+    else:
+        return "<h1>Payment manager</h1>"
+
+# courses reports
+@app.route('/admin/course-manager')
+def course_manager():
+    if session.get("log") == False or session.get("user") != "admin" :
+        return redirect(url_for('login'))
+    else:
+        return "<h1>Course manager</h1>"
+
+# coach list
+@app.route('/admin/coachs')
+def coachs():
+    if session.get("log") == False or session.get("user") != "admin" :
+        return redirect(url_for('login'))
+    else:
+        return "<h1>Coach manager</h1>"
+
 # coach page
 @app.route("/coach")
 def coach():
-    if Check_log()!=True or Get_ID_Coach()==None:
+    if session.get("log") == False or session.get("coach") == None:
         return redirect(url_for('login_coach'))
     return render_template("coach/coachmain.html")
 
 # cours manager page
 @app.route("/coach/cours-manager",methods = ['POST','GET'])
 def cours_manager():
-    if Check_log()!=True or Get_ID_Coach()==None:
+    if session.get("log") == False or session.get("coach") == None:
         return redirect(url_for('login_coach'))
-    data = cursor.execute('SELECT * FROM Cours WHERE IdCoach = ?',[Get_ID_Coach()]).fetchall()
+    data = cursor.execute('SELECT * FROM Cours WHERE IdCoach = ?',[session.get("coach")]).fetchall()
     if request.method == "POST":
         ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
         title = request.form['title']
@@ -478,22 +491,22 @@ def cours_manager():
         filedir = UPLOAD_FOLDER+"/"+filename
         cursor.execute('''INSERT INTO Cours(IdCoach, Title, Type, Price, Description,Pwd)
                             VALUES('{id}','{title}','{courstype}','{price}','{Description}','{pwd}')
-                        '''.format(id=Get_ID_Coach(),title=title,courstype=courstype,price=price,Description=Description,pwd=filedir))
+                        '''.format(id=session.get("coach"),title=title,courstype=courstype,price=price,Description=Description,pwd=filedir))
         connection.commit()
     return render_template("coach/cours-manager.html",data=data)
 
 @app.route('/coach/cours-list')
 def cours_playlist():
-    if Check_log()!=True or Get_ID_Coach()==None:
+    if session.get("log") == False or session.get("coach") == None:
         return redirect(url_for('login_coach'))
-    data = cursor.execute('''SELECT * FROM Cours WHERE IdCoach = {id}'''.format(id=Get_ID_Coach()))
+    data = cursor.execute('''SELECT * FROM Cours WHERE IdCoach = {id}'''.format(id=session.get("coach")))
     return render_template("coach/cours-playlist.html",data=data)
 
 @app.route('/coach/cours-list/<id>',methods = ['POST','GET'])
 def cours(id):
-    if Check_log()!=True or Get_ID_Coach()==None:
+    if session.get("log") == False or session.get("coach") == None:
         return redirect(url_for('login_coach'))
-    info = cursor.execute("SELECT * FROM Cours WHERE IdCour={id_cour} AND IdCoach={id_coach}".format(id_cour=id,id_coach=Get_ID_Coach())).fetchone()
+    info = cursor.execute("SELECT * FROM Cours WHERE IdCour={id_cour} AND IdCoach={id_coach}".format(id_cour=id,id_coach=session.get("coach"))).fetchone()
     cour_video = cursor.execute("SELECT * FROM Attachment WHERE IdCour={id} AND Type='video'".format(id=id)).fetchall()
     cour_doc = cursor.execute("SELECT * FROM Attachment WHERE IdCour={id} AND Type='document'".format(id=id)).fetchall()
     if request.method == "POST":
@@ -529,30 +542,8 @@ def logout_coach():
     session.pop("log",False)
     return redirect('login')
 
-def Check_log():
-    global log
-    log = False
-    if "log" in session:
-        log = session["log"]
-    return log
-
 def Check_authentification():
-    return cursor.execute('''SELECT EXISTS(SELECT * FROM CheckUser WHERE IdLog=?)''',[cursor.execute("SELECT IdLog FROM User WHERE IdUser=?",[session["user"]]).fetchone()[0]]).fetchone()[0]
-
-
-def Get_ID():
-    global user
-    user = None
-    if "user" in session:
-        user = cursor.execute("SELECT IdUser FROM User WHERE IdLog = ?",[session["user"]]).fetchone()[0]
-    return user
-
-def Get_ID_Coach():
-    global coach
-    coach = None
-    if "coach" in session:
-        coach = cursor.execute("SELECT IdCoach FROM Coach WHERE IdLog = ?",[session["coach"]]).fetchone()[0]
-    return coach
+    return cursor.execute('''SELECT EXISTS(SELECT * FROM CheckUser WHERE IdLog=?)''',[cursor.execute("SELECT IdLog FROM User WHERE IdUser=?",[session.get("user")]).fetchone()[0]]).fetchone()[0]
 
 def Get_Account_Type():
     coach = session.get("coach")
