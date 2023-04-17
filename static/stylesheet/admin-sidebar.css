@@ -1,0 +1,75 @@
+@media screen and (min-width: 414px){
+    .sidebar{
+        margin: 8vh 5vw 10vh 2vw;
+        position: fixed;
+        border-radius: 1rem;
+        height: 80vh;
+        display: inline-block;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+    }
+    .main{
+        background-color: #1E1E32;
+        border-radius: 2rem;
+        -webkit-border-radius: 2rem;
+        -moz-border-radius: 2rem;
+        -ms-border-radius: 2rem;
+        -o-border-radius: 2rem;
+    }
+    ul{
+        padding: 2vh 2vw 2vh 2vw;
+    }
+    li{
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+    }
+    li:hover{
+        background-color:#46465b;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+    }
+    .active{
+        font-size: 3vw;
+        color: #F3F5F9;
+    }
+    ul a{
+        font-size: 1.5vw;
+        color: #FFDB15;
+    }
+    hr{
+        border: #FFDB15 solid 1px;
+    }
+    .logout_con{
+        background-image: linear-gradient(to right, #1E1E32, #FFDB15 );
+        padding: 3vh 5vw 3vh 5vw;
+        margin-top: 1vh;
+        border-radius: 2rem;
+        -webkit-border-radius: 2rem;
+        -moz-border-radius: 2rem;
+        -ms-border-radius: 2rem;
+        -o-border-radius: 2rem;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+}
+    .logout_con a{
+        color: #FFDB15;
+        font-size: 1.5vw;
+    }
+    .logout_con:hover{
+        background-image: none;
+        background-color: rgb(250, 39, 39);
+    }
+}

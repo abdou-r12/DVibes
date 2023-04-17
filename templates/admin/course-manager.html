@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/course-manager.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="main">
+                <ul>
+                    <li><a href="/admin/events-manager">Event manager</a></li>
+                    <hr>
+                    <li><a href="/admin/coach-manager">Coach Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/course-manager" class="active">Course<br>Manager</a></li>
+                    <hr>
+                    <li><a href="#">Payment manager</a></li>
+                    <hr>
+                    <li><a href="/admin/news-manager">News Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/coach-requests">Coach Request</a></li>
+                </ul>
+            </div>
+            <div class="logout_con">
+                <a href="/logout" id="logout"><b>Log out</b></a>
+            </div>
+        </div>
+        <div class="container">
+            <p id="main_title"><b>Course Manager</b></p>
+            <div class="Course_list">
+                <table>
+                    <form method="post">
+                        <tbody>
+                            {% for header in heading %}
+                                <th>{{header}}</th>
+                            {% endfor %}
+                            {% for row in course %}
+                                <tr>
+                                    <td>{{row[0]}}</td>
+                                    <td>{{row[1]}}</td>
+                                    <td>{{row[2]}}</td>
+                                    <td>{{row[3]}}</td>
+                                    <td>{{row[4]}} DA</td>
+                                    <td>{{row[5]}}</td>
+                                    <td><img src="../{{row[6]}}" class="cover"></td>
+                                    <td class="func_remove"><a href="#" onclick="confirmAndRedirect('{{row[2]}}')">remove</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        function confirmAndRedirect(title) {
+            var confirmed = confirm('Are you sure you want to remove ' + title + '?','Removing Course');
+            if (confirmed) {
+                window.location.href = '/';
+            }
+        }
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

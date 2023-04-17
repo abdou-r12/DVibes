@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #F3F5F9;
+}
+@media screen and (min-width: 414px){
+    .container{
+        margin-top: 8vh;
+        margin-left: 20vw;
+        display: inline-block;
+    }
+    #main_title{
+        font-size: 2vw;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 1vw;
+        margin-bottom: 4vh;
+    }
+    table{
+        width: 75vw;
+        margin-bottom: 5vh;
+    }
+    th{
+        border: #000000 solid 1px;
+        background-color: #FFDB15;
+        font-size: 1.2vw;
+        overflow: hidden;
+    }
+    td{
+        background-color: #FFFFFF;
+        border: #000000 1px solid;
+        text-align: center;
+    }
+    .cover{
+        width: 10vw;
+        margin: auto;
+    }
+    .func_remove{
+        text-align: center;
+        background-color: #FF6969;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+    }
+    .func_remove:hover{
+        background-color: #ff0000;
+    }
+    .func_remove a{
+        color: #000000;
+    }
+}

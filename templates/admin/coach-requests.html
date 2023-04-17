@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/coach-requests.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="main">
+                <ul>
+                    <li><a href="/admin/events-manager">Event manager</a></li>
+                    <hr>
+                    <li><a href="/admin/coach-manager">Coach Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/course-manager">Course Manager</a></li>
+                    <hr>
+                    <li><a href="#">Payment manager</a></li>
+                    <hr>
+                    <li><a href="/admin/news-manager">News Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/coach-requests" class="active">Coach<br>Request</a></li>
+                </ul>
+            </div>
+            <div class="logout_con">
+                <a href="/logout" id="logout"><b>Log out</b></a>
+            </div>
+        </div>
+        <div class="container">
+            <p id="main_title"><b>Coach Requests</b></p>
+            <div class="req_list">
+                <table>
+                    <form method=post>
+                        <tbody>
+                        {% for header in heading_req %}
+                            <th>{{header}}</th>
+                        {% endfor %}
+                        {% for row_req in requests %}
+                            <tr>
+                                <td>{{row_req[0]}}</td>
+                                <td>{{row_req[1]}}</td>
+                                <td>{{row_req[2]}}</td>
+                                <td>{{row_req[3]}}</td>
+                                <td>{{row_req[4]}}</td>
+                                <td>{{row_req[5]}}</td>
+                                <td><img class="media" src="../{{row_req[6]}}"></td>
+                                <td id="func_remove"><a href="/admin/coach-requests/remove:{{row_req[0]}}">Decline</a></td>
+                                <td id="func_accept"><a href="/admin/coach-requests/accept:{{row_req[0]}}">Accept</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </form>
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>
