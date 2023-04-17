@@ -3,14 +3,59 @@
     <head>
         <meta charset="UTF-8">
         <title> DVibes</title>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cours-list.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/overview.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}">
     </head>
+    <div class="preloader" id="preloader">
+        <div class="middle">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+            <div class="bar bar4"></div>
+            <div class="bar bar5"></div>
+            <div class="bar bar6"></div>
+            <div class="bar bar7"></div>
+            <div class="bar bar8"></div>
+        </div>
+    </div>
+    <nav>
+        <div class="menu">
+            <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="logo">
+            <a href="/"><img src="../../static/assets/2x-removebg-preview.png" id="logo"></a>
+        </div>
+        <div class="links">
+            <ul id="elements-links">
+                <li><a href="#">News</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="/user/cours">Courses</a></li>
+            </ul>
+        </div>
+        <div class="logins">
+            <ul id="elements-logins">
+                <li><a href="/user" class="account_icon">{{user}}</a></li>
+                <li><a href="/logout" class="logout">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
     <body>
-        <img src="/{{cour_info[6]}}" id="cover" style="width:10vw">
-        <h1>{{cour_info[2]}}</h1>
-        <h2>{{cour_info[5]}}</h2>
-        <p>{{cour_info[3]}}</p>
-        <p>{{cour_info[4]}} DA</p>
-        <a href="/user/cours/{{id}}-purchase:{{cour_info[0]}}">purchase</a>
+        <div class="image">
+            <img src="/{{cour_info[6]}}" id="cover">
+        </div>
+        <div class="info">
+            <h1>{{cour_info[2]}}</h1>
+            <h2>{{cour_info[5]}}</h2>
+            <p>{{cour_info[3]}}</p>
+            <p id="price">{{cour_info[4]}} DA</p>
+            <a href="/user/cours/{{id}}-purchase:{{cour_info[0]}}">purchase</a>
+        </div>
     </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
 </html>

@@ -23,7 +23,12 @@ def Create_tables(cursor):
         Pfp TEXT,
         Gender TEXT,
         BirthDay TEXT,
+        Location TEXT,
+        Experience TEXT,
+        Phone INTEGER,
+        SocialMedia TEXT,
         Balance INTEGER,
+        Interests TEXT,
         CONSTRAINT fk_IdLog
             FOREIGN KEY (IdLog)
             REFERENCES  Login(IdLog)
@@ -143,6 +148,20 @@ def Create_tables(cursor):
     '''
     cursor.execute(Purchase)
     print('Purchase table created successfully')
+    rapport = '''
+    CREATE TABLE IF NOT EXISTS Rapports(
+        IdRapport INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdUser INTEGER,
+        Title TEXT,
+        RapportText TEXT,
+        Date TEXT,
+        CONSTRAINT fk_IdUser
+            FOREIGN KEY (IdUser)
+            REFERENCES  User(IdUser)
+    );
+    '''
+    cursor.execute(rapport)
+    print('rapport table created successfully')
 
 def Update_News(id,title,description,text,dir):
     last_date=date.today()

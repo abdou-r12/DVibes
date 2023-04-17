@@ -9,6 +9,7 @@ from flask import(
 )
 import sqlite3
 import os
+import datetime
 from werkzeug.utils import secure_filename
 from datetime import date
 from Functions import *
@@ -96,9 +97,10 @@ def singup():
                             VALUES('{email}','{password}')
                         '''.format(email=email,password=password))
             iD = cursor.execute("SELECT IdLog FROM Login WHERE UserName = '{email}'".format(email=email)).fetchone()[0]
-            cursor.execute('''INSERT INTO User(IdLog, FullName, pfp, Gender, BirthDay, Balance)
-                            VALUES('{id}','{fullname}','{pfp}','{gender}','{bd}','{bal}')
-                        '''.format(id=iD,fullname=fullname,pfp=None,gender=gender,bd=bday,bal='0'))
+            cursor.execute('''INSERT INTO User(IdLog, FullName, pfp, Gender, BirthDay, Location, Experience, Interests, Phone, SocialMedia, Balance)
+                            VALUES('{id}','{fullname}','{pfp}','{gender}','{bd}','{extra}','{extra}','{extra}','{extra}','{extra}','{bal}')
+                        '''.format(id=iD,fullname=fullname,pfp='',gender=gender,bd=bday,extra='',bal='0'))
+
             cursor.execute('''INSERT INTO CheckUser(IdLog,Code)
                             VALUES('{id}','{tsc}')'''.format(id=iD,tsc=twostepcheck(email)))
             connection.commit()
@@ -193,7 +195,8 @@ def user():
         return redirect(url_for("login"))
     elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
-    return render_template("user/usermain.html")
+    user_name = cursor.execute("SELECT FullName FROM User WHERE IdLog=?",[session.get("user")]).fetchone()[0]
+    return render_template("user/usermain.html",user_name=user_name)
 
 # athautification page for user
 @app.route('/user-check',methods = ['GET' , 'POST'])
@@ -215,21 +218,47 @@ def user_check():
     return render_template("register/twostepcheck.html",email=email)
 
 # user profile
-@app.route('/user/profile')
+@app.route('/user/profile', methods=['GET', 'POST'])
 def userprofile():
-    if session.get("log")!=True or session.get("user") == None:
+    if session.get("log") != True or session.get("user") == None:
         return redirect(url_for('login'))
-    elif session["user"]=="admin":
+    elif session.get("user") == "admin":
         return redirect(url_for('admin'))
-    elif (Check_authentification()==1):
+    elif Check_authentification() == 1:
         return redirect(url_for('user_check'))
-    data = cursor.execute("SELECT * FROM User WHERE IdUser=?",[session["user"]]).fetchone()
-    email = cursor.execute("SELECT UserName FROM Login WHERE IdLog=?",[data[1]]).fetchone()[0]
-    course_id = cursor.execute("SELECT Idcour FROM Purchase WHERE IdUser=?",[session["user"]]).fetchall()
-    course_liste = []
-    for id in course_id:
-        course_liste.append(cursor.execute("SELECT * FROM Cours WHERE IdCour=?",[id[0]]).fetchone())
-    return render_template("user/profile.html",data=data,email=email,course_liste=course_liste)
+    data = cursor.execute("SELECT * FROM User WHERE IdUser=?", [session.get("user")]).fetchone()
+    email = cursor.execute("SELECT UserName FROM Login WHERE IdLog=?", [data[1]]).fetchone()[0]
+    if request.method == "POST":
+        location = request.form.get("location")
+        experience = request.form.get("experience")
+        interests = request.form.get("interests")
+        username = request.form.get("username")
+        new_email = request.form.get("email")
+        old_password = request.form.get("old_password")
+        new_password = request.form.get("new_password")
+        title = request.form.get("title")
+        rapport_text = request.form.get("raport_text")
+        if username is not None and username.strip():
+            cursor.execute("UPDATE User SET FullName=? WHERE IdUser=?", [username.strip(), session.get("user")])
+        if location is not None and location.strip():
+            cursor.execute("UPDATE User SET Location=? WHERE IdUser=?", [location, session.get("user")])
+        if experience is not None and experience.strip():
+            cursor.execute("UPDATE User SET Experience=? WHERE IdUser=?", [experience, session.get("user")])
+        if interests is not None and interests.strip():
+            cursor.execute("UPDATE User SET Interests=? WHERE IdUser=?", [interests, session.get("user")])
+        if (title is not None and title.strip() ) and (rapport_text is not None and rapport_text.strip()):
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cursor.execute("INSERT INTO Rapports (IdUser, Title, RapportText, Date) VALUES (?, ?, ?, ?)", [session.get("user"), title, rapport_text, current_time])
+        if (old_password is not None and old_password.strip() ) and (new_password is not None and new_password.strip()):
+            user_data = cursor.execute("SELECT * FROM Login WHERE IdLog=?", [data[1]]).fetchone()
+            if user_data[2] == old_password:
+                cursor.execute("UPDATE Login SET PassCode=? WHERE IdLog=?", [new_password, data[1]])
+                flash("Password updated successfully","success")
+            else:
+                flash("Invalid old password","error")
+        connection.commit()
+
+    return render_template("user/profile.html", data=data, email=email)
 
 # show all course available for user
 @app.route('/user/cours')
@@ -240,8 +269,26 @@ def check_courses():
         return redirect(url_for('admin'))
     elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
-    cours = cursor.execute("SELECT * FROM Cours").fetchall()
-    return render_template("user/cours.html",cours=cours)
+    cours = cursor.execute("SELECT Cours.* , Coach.FullName As CoachName From Cours JOIN Coach ON Cours.IdCoach = Coach.IdCoach").fetchall()
+    user = cursor.execute("SELECT FullName FROM User Where IdLog=?",[session.get("user")]).fetchone()[0]
+    return render_template("user/cours.html",cours=cours,user=user)
+
+# search course
+@app.route('/user/cours/search:<title>')
+def search_course(title):
+    if session.get("log") != True or session.get("user") == None:
+        return redirect(url_for('login'))
+    elif session["user"]=="admin":
+        return redirect(url_for('admin'))
+    elif (Check_authentification()==1):
+        return redirect(url_for('user_check'))
+    user = cursor.execute("SELECT FullName FROM User Where IdLog=?",[session.get("user")]).fetchone()[0]
+    query = "SELECT Cours.*, Coach.FullName FROM Cours JOIN Coach ON Cours.IdCoach = Coach.IdCoach WHERE Cours.Title LIKE '%" + title + "%'"
+    if cursor.execute("SELECT EXISTS({query})".format(query=query)).fetchone()[0] == True:
+        courses = cursor.execute(query).fetchall()
+    else:
+        courses = []
+    return  render_template("/user/course-search.html",courses=courses,user=user)
 
 # show detail of one course
 @app.route('/user/cours/overview:<id>')
@@ -253,7 +300,8 @@ def over_view_course(id):
     elif (Check_authentification()==1):
         return redirect(url_for('user_check'))
     cour_info = cursor.execute("SELECT * FROM Cours WHERE IdCour=?",[id]).fetchone()
-    return render_template("user/over-view.html",cour_info=cour_info,id=session.get("user"))
+    user = cursor.execute("SELECT FullName FROM User Where IdLog=?",[session.get("user")]).fetchone()[0]
+    return render_template("user/over-view.html",cour_info=cour_info,user=user)
 
 # purchase function
 @app.route('/user/cours/<id_user>-purchase:<id_course>')
@@ -368,7 +416,7 @@ def events_manager():
     return render_template("admin/events-manager.html",data=data,heading=heading)
 
 # remove event function
-@app.route('/admin/event-manager/remove:<id>')
+@app.route('/admin/events-manager/remove:<id>')
 def remove_event(id):
     if session.get("log") == True and session.get("user") == "admin":
         Remove_Events(id)
@@ -402,7 +450,7 @@ def edit_events(id):
     return render_template("admin/edit-events.html",data=data)
 
 # coach manager page
-@app.route('/admin/coach-manager',methods = ['POST','GET'])
+@app.route('/admin/coach-requests',methods = ['POST','GET'])
 def add_coach():
     if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
@@ -411,10 +459,10 @@ def add_coach():
         requests = cursor.execute('select * from Request').fetchall()
         heading_coach = ('ID','Title','Description','Content','Picture','Date')
         heading_req = ('id','full name','gender','birthday','email','resume','cv')
-    return render_template('admin/coach-manager.html',heading_coach=heading_coach,heading_req=heading_req,coach=coach,requests=requests)
+    return render_template('admin/coach-requests.html',heading_coach=heading_coach,heading_req=heading_req,coach=coach,requests=requests)
 
 # accept request to be coach page
-@app.route("/admin/coach-manager/remove:<id>")
+@app.route("/admin/coach-requests/remove:<id>")
 def Remove_coach(id):
     if session.get("log") == True and session.get("user") == "admin":
         Remove_Coach(id)
@@ -423,7 +471,7 @@ def Remove_coach(id):
     return redirect(url_for('add_coach'))
 
 # remove request to be coach page
-@app.route("/admin/coach-manager/accept:<id>")
+@app.route("/admin/coach-requests/accept:<id>")
 def accept_coach(id):
     if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
@@ -454,15 +502,19 @@ def course_manager():
     if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
-        return "<h1>Course manager</h1>"
+        heading = ("ID","Coach ID","Title","Type","Description","Price","Cover")
+        course = cursor.execute("SELECT * FROM Cours").fetchall()
+    return render_template("admin/course-manager.html",course=course,heading=heading)
 
 # coach list
-@app.route('/admin/coachs')
+@app.route('/admin/coach-manager')
 def coachs():
     if session.get("log") == False or session.get("user") != "admin" :
         return redirect(url_for('login'))
     else:
-        return "<h1>Coach manager</h1>"
+        data = cursor.execute("SELECT * FROM Coach").fetchall()
+        heading_coach = ("ID","Full Name","Gender","BirthDay","Profile picture")
+    return render_template("admin/coach-manager.html",data=data,heading_coach=heading_coach)
 
 # coach page
 @app.route("/coach")

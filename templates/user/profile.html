@@ -3,44 +3,164 @@
     <head>
         <meta charset="UTF-8">
         <title> DVibes</title>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/user.css')}}">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/user-profile.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/user-sidebar.css')}}">
     </head>
     <body>
-        <div class="sidebar">
-            <a href="/user">Home</a>
-            <a href="/evnew">News and Events</a>
-            <a class="active" href="/user/profile">Profile</a>
-            <a href="/user/cours">Cours</a>
-            <a href="/logout" id="logout">Log out</a>
-        </div>
-        <div class="container">
-            <p id="title"><b>Personal Information</b></p>
-            <div class="info">
-                <p>User name: {{data[2]}}</p>
-                <p>Gender: {{data[4]}}</p>
-                <p>Birthday: {{data[5]}}</p>
-                <p>Email: {{email}}<p>
+        <form method="POST" action="/user/profile">
+            <div class="preloader" id="preloader">
+                <div class="middle">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                    <div class="bar bar5"></div>
+                    <div class="bar bar6"></div>
+                    <div class="bar bar7"></div>
+                    <div class="bar bar8"></div>
+                </div>
             </div>
-            <div class="pfp">
-                <img src="{{url_for('static',filename='assets/account-bold.svg')}}" id="acclogo">
-                <a href="#">Change profile picture</a>
-                <p>Balance: {{data[6]}}</p>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="sidebar">
+                <div class="main">
+                    <ul>
+                        <li><a href="/user">Main Menu</a></li>
+                        <hr>
+                        <li><a href="#section1">Personal information</a></li>
+                        <hr>
+                        <li><a href="#section2">Account settings</a></li>
+                        <hr>
+                        <li><a href="#section3">Report an Issue</a></li>
+                    </ul>
+                </div>
+                <div class="logout_con">
+                    <a href="/logout" id="logout"><b>Log out</b></a>
+                </div>
             </div>
-        </div>
-        <div class="container">
-            <p id="title"><b>Cours & Coach Information</b></p>
-            <p>Cours list:</p>
-            {% for cour in course_liste %}
-                <a href="#">{{cour[2]}}</a>
-            {% endfor %}
-            <p>Coach list:</p>
-        </div>
-        <div class="container">
-            <p id="title"><b>Privacy & Policy terms</b></p>
-            <a href="#">Change password</a>
-            <a href="#">Change email</a>
-            <a href="#">Change user name</a>
-        </div>
+            <div class="container">
+                <section id="section1">
+                    <div class="cont-1">
+                        <div class="info">
+                            <p class="main_title"><b>Personal Information</b></p>
+                            <p>User name:      {{data[2]}}</p>
+                            <p>Gender:         {{data[4]}}</p>
+                            <p>Birthday:       {{data[5]}}</p>
+                            <p style="display: inline;">Location:</p><input type="text" name="location" id="location" placeholder="{{data[6]}}" disabled>
+                        </div>
+                        <div class="pfp">
+                            {% if data[3] == None %}
+                                <img src="../static/assets/user.png" class="pic">
+                            {% else %}
+                                <img src="../{{data[3]}}" class="pic">
+                            {% endif %}
+                            <a href="#">Change profile picture</a>
+                        </div>
+                        <div class="music_car">
+                            <p class="text_title">music Experience</p>
+                            <p class="text_title">music Interests</p>
+                            <textarea name="experience" id="experience" placeholder="{{data[7]}}" disabled></textarea>
+                            <textarea name="interests" id="interests" placeholder="{{data[11]}}" disabled></textarea>
+                        </div>
+                        <button type="submit" class="btn sub" id="sub">Submit</button>
+                        <button onclick="enableInfoInput(event)" class="btn edit" id="edit_info">Edit Information</button>
+                    </div>
+                </section>
+                <section id="section2">
+                    <div class="cont-2">
+                        <p class="main_title"><b>Account settings</b></p>
+                        <label>Change User name</label>
+                        <button onclick="enableUserInput(event)" class="btn" id="edit_username">Change</button>
+                        <button type="submit" class="btn sub" id="usersub">Submit</button>
+                        <input type="text" name="username" id="username" class="input" placeholder="{{data[2]}}" disabled>
+                        <label>Change Email</label>
+                        <button onclick="enableEmailInput(event)" class="btn" id="edit_email">Change</button>
+                        <button type="submit" class="btn sub" id="emailsub">Submit</button>
+                        <input type="text" name="email" id="email" class="input" placeholder="{{email}}" disabled>
+                        <label>Change password</label>
+                        <button onclick="enablePasswordInput(event)" class="btn" id="edit_password">Change</button>
+                        <button type="submit" class="btn sub" id="passsub">Submit</button>
+                        <input type="password" name="old_password" id="old_password" class="input" placeholder="Enter your password" disabled>
+                        <input type="password" name="new_password" id="new_password" class="input" placeholder="Enter new password" disabled>
+                    </div>
+                </section>
+                <section id="section3">
+                    <div class="cont-3">
+                        <p class="main_title"><b>Report an Issue</b></p>
+                        <input type="text" name="title" id="title" placeholder="Title of the issue">
+                        <textarea name="raport_text" id="raport_text" placeholder="Describe the issue"></textarea>
+                        <button type="submit" id="rapport">Send</button>
+                    </div>
+                </section>
+            </div>
+        </form>
     </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        let input = document.getElementById("location");
+        let experience = document.getElementById("experience");
+        let interests = document.getElementById("interests");
+        let username = document.getElementById("username");
+        let email = document.getElementById("email");
+        let old_password = document.getElementById("old_password");
+        let new_password = document.getElementById("new_password");
+        let re_new_password = document.getElementById("re_new_password");
+        let sub = document.getElementById("sub");
+        let usersub = document.getElementById("usersub");
+        let emailsub = document.getElementById("emailsub");
+        let passsub = document.getElementById("passsub");
+        let edit_info = document.getElementById("edit_info");
+        let edit_username  = document.getElementById("edit_username");
+        let edit_email = document.getElementById("edit_email");
+        let edit_password = document.getElementById("edit_password");
+
+        function enableInfoInput(event) {
+            event.preventDefault();
+            input.disabled = false;
+            input.style.backgroundColor = "#F1F1F1";
+            experience.disabled = false;
+            experience.style.backgroundColor = "#F1F1F1";
+            interests.disabled = false;
+            interests.style.backgroundColor = "#F1F1F1";
+            sub.style.display = "inline-block";
+            edit_info.style.display = "none";
+        }
+        function enableUserInput(event) {
+            event.preventDefault();
+            username.disabled = false;
+            username.style.backgroundColor = "#F1F1F1";
+            usersub.style.display = "inline-block";
+            edit_username.style.display = "none";
+        }
+        function enableEmailInput(event) {
+            event.preventDefault();
+            email.disabled = false;
+            email.style.backgroundColor = "#F1F1F1";
+            emailsub.style.display = "inline-block";
+            edit_email.style.display = "none";
+        }
+        function enablePasswordInput(event) {
+            event.preventDefault();
+            old_password.disabled = false;
+            old_password.style.backgroundColor = "#F1F1F1";
+            new_password.disabled = false;
+            new_password.style.backgroundColor = "#F1F1F1";
+            re_new_password.disabled = false;
+            re_new_password.style.backgroundColor = "#F1F1F1";
+            passsub.style.display = "inline-block";
+            edit_password.style.display = "none";
+        }
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
 </html>

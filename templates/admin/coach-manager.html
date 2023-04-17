@@ -26,15 +26,15 @@
                 <ul>
                     <li><a href="/admin/events-manager">Event manager</a></li>
                     <hr>
-                    <li><a href="#">Coach Manager</a></li>
+                    <li><a href="/admin/coach-manager" class="active">Coach<br>Manager</a></li>
                     <hr>
-                    <li><a href="#">Course Manager</a></li>
+                    <li><a href="/admin/course-manager">Course Manager</a></li>
                     <hr>
                     <li><a href="#">Payment manager</a></li>
                     <hr>
                     <li><a href="/admin/news-manager">News Manager</a></li>
                     <hr>
-                    <li><a href="/admin/coach-manager" class="active">Coach<br>Request</a></li>
+                    <li><a href="/admin/coach-requests">Coach Request</a></li>
                 </ul>
             </div>
             <div class="logout_con">
@@ -42,53 +42,33 @@
             </div>
         </div>
         <div class="container">
-            <p id="main_title"><b>Coach Requests</b></p>
-            <div class="req_list">
+            <p id="main_title"><b>Coach Manager</b></p>
+            <div class="coach_list">
                 <table>
                     <form method=post>
                         <tbody>
-                        {% for header in heading_req %}
-                            <th>{{  header  }}</th>
-                        {% endfor %}
-                        {% for row_req in requests %}
-                            <tr>
-                                <td>{{  row[0]  }}</td>
-                                <td>{{  row[1]  }}</td>
-                                <td>{{  row[2]  }}</td>
-                                <td>{{  row[3]  }}</td>
-                                <td>{{  row[4]  }}</td>
-                                <td>{{  row[5]  }}</td>
-                                <td><img class="media" href="../{{  row[6] }}"></td>
-                                <td><a href="/admin/coach-manager/remove:{{row_req[0]}}" id="func">remove</a></td>
-                                <td><a href="/admin/coach-manager/accept:{{row_req[0]}}" id="func">accept</a></td>
-                            </tr>
-                        {% endfor %}
+                            {% for header in heading_coach %}
+                                <th>{{  header  }}</th>
+                            {% endfor %}
+                            {% for row in data %}
+                                <tr>
+                                    <td>{{  row[0]  }}</td>
+                                    <td>{{  row[2]  }}</td>
+                                    <td>{{  row[4]  }}</td>
+                                    <td>{{  row[5]  }}</td>
+                                    {% if row[3] == "None" %}
+                                        <td><img src="../../static/assets/user-avatar.svg"/></td>
+                                    {% else %}
+                                        <td>{{  row[3]  }}</td>
+                                    {% endif %}
+                                    <td class="func_remove"><a href="#remove:{{row[0]}}">remove</a></td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </form>
                 </table>
             </div>
         </div>
- <!--       <div class="coach_list">
-            <p id="Title"><b>Coachs list</b></p>
-            <table>
-                <form method=post>
-                    <tbody>
-                        {% for header in heading_coach %}
-                            <th>{{  header  }}</th>
-                        {% endfor %}
-                        {% for row_co in coach %}
-                            <tr>
-                                {% for cell in row_co %} 
-                                    <td>{{  cell  }}</td>
-                                {% endfor %}
-                                <td><a href="#remove:{{row_co[0]}}" id="func">remove</a></td>
-                                <td><a href="#edit:{{row_co[0]}}" id="func">edit</a></td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </form>
-            </table>
-        </div>-->
     </body>
     <script>
         let loader = document.getElementById("preloader");

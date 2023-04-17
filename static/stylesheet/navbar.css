@@ -21,7 +21,7 @@
         -moz-border-radius: 1rem;
         -ms-border-radius: 1rem;
         -o-border-radius: 1rem;
-}
+    }
     .fa-bars{
         color: #000000;
         font-size: 2rem;
@@ -41,7 +41,7 @@
         -moz-transition: 0.5s;
         -ms-transition: 0.5s;
         -o-transition: 0.5s;
-}
+    }
     #elements-links a,#elements-logins a{
         color: #FFFFFF
     }
@@ -100,7 +100,6 @@
         display: inline-block;
         line-height: 10vh;
         font-size: 1.5vw;
-        margin-right: 5vw;
     }
     .account_icon,.logout{
         background-color: #FFDB15;

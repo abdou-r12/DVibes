@@ -3,16 +3,69 @@
     <head>
         <meta charset="UTF-8">
         <title> DVibes</title>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/user.css')}}">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/usermain.css')}}">
     </head>
     <body>
-        <div class="sidebar">
-            <a class="active" href="/user">Home</a>
-            <a href="/evnew">News and Events</a>
-            <a href="/user/profile">Profile</a>
-            <a href="/user/cours">Cours</a>
-            <a href="/logout">Log out</a>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row one">
+                <div class="user_title">
+                    <p><b>Welcome<br>{{user_name}}</b></p>
+                </div>
+                <a href="/news"><div class="cell">
+                    <img src="../../static/assets/content-fire.png" id="icon">
+                    <p><b>Musical<br>Trends</b></p>
+                </div></a>
+            </div>
+            <div class="row">
+                <a href="/events"><div class="cell">
+                    <img src="../../static/assets/festival.png" id="icon">
+                    <p><b>Events &<br>Festivals</b></p>
+                </div></a>
+                <a href="#"><div class="cell">
+                    <img src="../../static/assets/course-tile-sort.png" id="icon">
+                    <p><b>My<br>Courses</b></p>
+                </div></a>
+            </div>
+            <div class="row">
+                <a href="#"><div class="cell">
+                    <img src="../../static/assets/wallet.png" id="icon">
+                    <p><b>My<br>Wallet</b></p>
+                </div></a>
+                <a href="/user/cours"><div class="cell">
+                    <img src="../../static/assets/shopping-cart.png" id="icon">
+                    <p><b>Enroll In<br>Course</b></p>
+                </div></a>
+            </div>
+            <div class="row">
+                <a href="/user/profile"><div class="cell">
+                    <img src="../../static/assets/user.png" id="icon">
+                    <p><b>Profile</b></p>
+                </div></a>
+                <a href="/logout"><div class="cell logout">
+                    <img src="../../static/assets/logout.png" id="icon">
+                    <p><b>Log<br>Out</b></p>
+                </div></a>
+            </div>
         </div>
     </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
 </html>

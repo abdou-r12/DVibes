@@ -5,6 +5,7 @@
         "newscontainer",
         "newsmore",
         "singup",
-        "titlenew"
+        "titlenew",
+        "werkzeug"
     ]
 }
