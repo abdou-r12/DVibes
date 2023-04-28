@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #F3F5F9;
+}
+@media screen and (min-width: 414px){
+    .container{
+        margin-left: 17%;
+        margin-top: 1%;
+    }
+    .row{
+        display: inline-block;
+    }
+    .admin_title{
+        height: 45vh;
+    }
+    .admin_title p{
+        margin-top: 15vh;
+        margin-left: 2vw;
+        display: inline-block;
+        font-size: 2vw;
+        border-left: 8px #FFDB15 solid;
+        padding-left: 1vw;
+    }
+    .cell{
+        margin-top: 2vh;
+        margin-left: 1vw;
+        background-color: #1E1E32;
+        width: 20vw;
+        height: 45vh;
+        border-radius: 20%;
+        -webkit-border-radius: 20%;
+        -moz-border-radius: 20%;
+        -ms-border-radius: 20%;
+        -o-border-radius: 20%;
+        transition: 0.5s ease;
+        -webkit-transition: 0.5s ease;
+        -moz-transition: 0.5s ease;
+        -ms-transition: 0.5s ease;
+        -o-transition: 0.5s ease;
+    }
+    .cell:hover{
+        transition: 0.5s ease;
+        -webkit-transition: 0.5s ease;
+        -moz-transition: 0.5s ease;
+        -ms-transition: 0.5s ease;
+        -o-transition: 0.5s ease;
+        background-color: #1e1e32cb;
+    }
+    .logout{
+        background-image: linear-gradient(to right, #1E1E32, #FFDB15 );
+        transition: 0.5s ease-in-out;
+    }
+    .logout:hover{
+        background-image: none;
+        background-color: rgb(250, 39, 39);
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+}
+    .cell p{
+        font-size: 2vw;
+        margin-left: 2vw;
+        color: #FFDB15;
+    }
+    #icon{
+        width: 5vw;
+        margin-top: 20vh;
+        margin-left: 2vw;
+    }
+}

@@ -1,0 +1,185 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #F3F5F9;
+}
+@media screen and (min-width: 414px){
+    .error{        width: 100vw;
+        color: #20721c;
+        background-color: #d7f8de;
+        font-size: 1.2vw;
+    }
+    .error p{
+        padding: 1.5vh 0vw 1.5vh 2vw;
+    }
+    .container{
+        margin-top: 8vh;
+        margin-left: 20vw;
+        display: inline-block;
+    }
+    #main_title{
+        font-size: 2vw;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 1vw;
+        margin-bottom: 4vh;
+    }
+    .add_course{
+        background-color: #FFFFFF;
+        width: 75vw;
+        padding: 5%;
+        padding-bottom: 8%;
+        margin-bottom: 10%;
+    }
+    .input{
+        border: 1px #000 solid;
+        border-radius:0.5rem;
+        width: 60vw;
+        height: 5vh;
+        margin: 5% 2%;
+        display: block;
+        font-size: 120%;
+        padding: 1%;
+        -webkit-border-radius:0.5rem;
+        -moz-border-radius:0.5rem;
+        -ms-border-radius:0.5rem;
+        -o-border-radius:0.5rem;
+}
+    select{
+        color: rgb(159, 159, 160);
+    }
+    ::placeholder{
+        color:rgb(159, 159, 160);
+    }
+    .form {
+        background-color: #fff;
+        box-shadow: 0 10px 60px rgb(218, 229, 255);
+        border: 1px solid rgb(159, 159, 160);
+        border-radius: 20px;
+        padding: 2rem .7rem .7rem .7rem;
+        text-align: center;
+        font-size: 1.125rem;
+    }
+    .drop-container {
+        margin-left: 2%;
+        width: 60vw;
+        background-color: #fff;
+        position: relative;
+        display: flex;
+        gap: 2vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1%;
+        margin-top: 2.1875rem;
+        border-radius: 10px;
+        border: 2px dashed rgb(171, 202, 255);
+        color: #444;
+        cursor: pointer;
+        transition: background .2s ease-in-out, border .2s ease-in-out;
+    }
+    .drop-container:hover {
+        background: rgba(0, 140, 255, 0.164);
+        border-color: rgba(17, 17, 17, 0.616);
+    }
+    .drop-container:hover .drop-title {
+        color: #222;
+    }
+    .drop-title {
+        color: #444;
+        font-size: 130%;
+        font-weight: bold;
+        text-align: center;
+        transition: color .2s ease-in-out;
+    }
+    #file-input {
+        width: 50vw;
+        color: #444;
+        padding: 1%;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid rgba(8, 8, 8, 0.288);
+    }
+    #file-input::file-selector-button {
+        margin-right: 2%;
+        border: none;
+        background: #084cdf;
+        padding: 1.5% 2%;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+    }
+    #file-input::file-selector-button:hover {
+        background: #0d45a5;
+    }
+    #Description{
+        height: 15vh;
+        resize: none;
+        padding: 1%;
+    }
+    #sub{
+        float: right;
+        padding: 2% 5%;
+        margin-right: 9%;
+        font-size: 110%;
+        background-color: #FFDB15;
+        border: 1px #000 solid;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        transition: background .2s ease-in-out, border .2s ease-in-out;
+        -webkit-transition: 0.3s ease-in-out;
+        -moz-transition: 0.3s ease-in-out;
+        -ms-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out;
+    }
+    #sub:hover{
+        background-color: #89760e;
+    }
+    .Course_list{
+        background-color: #FFF;
+        padding: 5%;
+        margin-bottom: 5vh;
+    }
+    td{
+        border-bottom: #000 solid 1px;
+    }
+    #info{
+        width: 70vw;
+    }
+    .cours_info{
+        float: left;
+        width: 50vw;
+    }
+    .cours_info p,h3{
+        font-size: 120%;
+        margin: 2% 3%;
+    }
+    .cover{
+        float: right;
+    }
+    #cover{
+        width: 10vw;
+    }
+    #edit{
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

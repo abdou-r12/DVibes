@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #F3F5F9;
+}
+@media screen and (min-width: 414px){
+    .error{        width: 100vw;
+        color: #20721c;
+        background-color: #d7f8de;
+        font-size: 1.2vw;
+    }
+    .error p{
+        padding: 1.5vh 0vw 1.5vh 2vw;
+    }
+    .container{
+        margin-top: 8vh;
+        margin-left: 20vw;
+        display: inline-block;
+    }
+    #main_title{
+        font-size: 2vw;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 1vw;
+        margin-bottom: 4vh;
+    }
+    .bal_info,.review{
+        background-color: #FFF;
+        width: 70vw;
+        padding: 5% 5%;
+    }
+    .bal_info p{
+        margin: 2%;
+        font-size: 120%;
+    }
+    .btn {
+        background-color: #FFDB15;
+        border: #000000 solid 1px;
+        color: #000000;
+        padding: 2% 2%;
+        font-size: 100%;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        -webkit-transition: 0.3s ease-in-out;
+        -moz-transition: 0.3s ease-in-out;
+        -ms-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out;
+        display: block;
+        margin: auto;
+    }
+    .btn:hover {
+        background-color: #8e7b10; /* Dark green on hover */
+    }
+    .ccp{
+        width: 45%;
+        height: 5vh;
+        padding: 2%;
+        border-radius: 5px;
+        display: inline-block;
+        border: #000000 solid 1px;
+        display: none;
+    }
+    .sub{
+        padding: 1% 2%;
+        background-color: #FFDB15;
+        border: #000000 solid 1px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        border-radius: 5px;
+        height: 5.5vh;
+        display: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+    }
+    .review{
+        margin: 5% 0;
+    }
+    table{
+        border-collapse: collapse;
+        margin: 2% 0;
+        width: 100%;
+        text-align: center;
+    }
+    th{
+        background-color: #FFDB15;
+    }
+    th, td {
+        padding: 1%;
+        border-bottom: 1px solid #ddd;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    td:nth-child(1) {
+        width: 20%;
+    }
+    td:nth-child(2) {
+        width: 20%;
+    }
+    td:nth-child(3) {
+        width: 20%;
+    }
+    td:nth-child(4) {
+        width: 40%;
+    }
+}

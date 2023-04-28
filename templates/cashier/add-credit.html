@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/add-credit.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <nav>
+            <a href="/cashier">Back</a>
+            <p>Cashier n°: {{cashier}}</p>
+            <a href="/logout-cashier" id="logout">logout</a>
+        </nav>
+        <div class="error">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="info">
+            <h1>Review credit request:</h1>
+            <h2>Request number:</h2>
+            <p> {{bill[0]}}</p>
+            <h2>User name request:</h2>
+            <p>{{bill[6]}}</p>
+            <h2>User email request:</h2>
+            <p>{{bill[9]}}</p>
+            <h2>Curent user balance:</h2>
+            <p>{{bill[8]}}</p>
+            <h2>Request date submiton:</h2>
+            <p>{{bill[4]}}</p>
+        </div>
+        <div class="image">
+            <img src="/{{bill[5]}}" id="img">
+        </div>
+        <div class="action">
+            <form method="post" class="my-form">
+                <input type="button" value="Accept" onclick="showAdd()" class="btn accept" id="add">
+                <input type="button" value="Refuse" onclick="showNote()" class="btn refuse" id="note">
+                <br><br>
+                <input type="number" placeholder="Insert value to add" name="add" id="add_input" min="0">
+                <input type="text" placeholder="Insert note for the user" name="note" id="note_input">
+                <input type="submit" value="submit" id="sub">
+            </form>
+        </div>
+    </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+        function showAdd() {
+            document.getElementById("add").style.display = "none";
+            document.getElementById("note").style.display = "block";
+            document.getElementById("add_input").style.display = "block";
+            document.getElementById("note_input").style.display = "none";
+            document.getElementById("sub").style.display = "block";
+        }
+        function showNote() {
+            document.getElementById("note").style.display = "none";
+            document.getElementById("add").style.display = "block";
+            document.getElementById("note_input").style.display = "block";
+            document.getElementById("add_input").style.display = "none";
+            document.getElementById("sub").style.display = "block";
+        }
+    </script>
+</html>

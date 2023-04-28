@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/course-manager-c.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <div class="error">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="sidebar">
+            <div class="main">
+                <ul>
+                    <li><a href="/coach/feed">My Feed</a></li>
+                    <hr>
+                    <li><a href="/coach/mentor-map">Mentor Map</a></li>
+                    <hr>
+                    <li><a href="/coach/mywallet">My Wallet</a></li>
+                    <hr>
+                    <li><a href="/coach/cours-manager" class="active">Course<br>Manager</a></li>
+                </ul>
+            </div>
+            <div class="logout_con">
+                <a href="/logout-coach" id="logout"><b>Log out</b></a>
+            </div>
+        </div>
+        <div class="container">
+            <p id="main_title"><b>Course Manager</b></p>
+            <div class="add_course">
+                <h2>Create new course</h2>
+                <form method="post" enctype="multipart/form-data">
+                    <input type="text" id="title" class="input" name="title" placeholder="Title" required>
+                    <select class="input" name="type" placeholder="Type" required>
+                        <option value="guitar">Guitar</option>
+                        <option value="piano">Piano</option>
+                        <option value="violin">Violin</option>
+                        <option value="drums">Drums</option>
+                        <option value="trumpet">Trumpet</option>
+                        <option value="flute">Flute</option>
+                        <option value="saxophone">Saxophone</option>
+                        <option value="bass">Bass</option>
+                        <option value="ukulele">Ukulele</option>
+                        <option value="harmonica">Harmonica</option>
+                        <option value="accordion">Accordion</option>
+                        <option value="banjo">Banjo</option>
+                        <option value="cello">Cello</option>
+                        <option value="clarinet">Clarinet</option>
+                        <option value="djembe">Djembe</option>
+                        <option value="mandolin">Mandolin</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <label for="file-input" class="drop-container">
+                        <span class="drop-title">Drop Cover here</span>
+                        or
+                        <input type="file" name="file" id="file-input" required>
+                    </label>
+                    <input type="number" id="Price" class="input" name="price" min="0" placeholder="Price" required>
+                    <textarea id="Description" class="input" name="description" placeholder="Description" required></textarea>
+                    <input type="submit" id="sub" value="Create course">
+                </form>
+            </div>
+            <div class="Course_list">
+                <h2>Course List</h2>
+                <table>
+                    {% for row in data %}
+                    <tr>
+                        <td id="info">
+                            <div class="cours">
+                                <div class="cours_info">
+                                    <h3 id="title">{{row[2]}}</h3>
+                                    <p id="type">{{row[3]}}</p>
+                                    <p id="price">{{row[4]}} DA</p>
+                                </div>
+                                <div class="cover">
+                                    <img src="../{{row[6]}}" id="cover">
+                                </div>
+                            </div>
+                        </td>
+                        <td id="fun">
+                            <a href="/coach/cours-manager/{{row[0]}}" id="edit">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+
+            </div>
+        </div>
+    </body>
+    <script>
+        function confirmAndRedirect(title) {
+            var confirmed = confirm('Are you sure you want to remove ' + title + '?','Removing Course');
+            if (confirmed) {
+                window.location.href = '/';
+            }
+        }
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

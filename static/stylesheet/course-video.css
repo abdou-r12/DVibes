@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+@media screen and (min-width: 414px){
+    * {
+        box-sizing: border-box;
+    }
+    main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 1%;
+    }
+    .video-container {
+        flex-basis: 70%;
+    }
+    video {
+        width: 100%;
+    }
+    .course-details {
+        flex-basis: 25%;
+    }
+    .course-details h2 {
+        font-size: 150%;
+        margin: 1% 0;
+      }
+    .course-details ul {
+        list-style: none;
+        padding: 0;
+    }
+    .course-details li {
+        width: 90%;
+        font-size: 100%;
+        margin: 0.5% 0;
+        padding: 2%;
+        border-bottom: #000000 solid 2px;
+        color: #000000;
+        transition: 0.3s ease-in-out;
+        -webkit-transition: 0.3s ease-in-out;
+        -moz-transition: 0.3s ease-in-out;
+        -ms-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out;
+}
+    .course-details li:hover{
+        background-color: #999;
+    }
+}

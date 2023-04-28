@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/my-wallet-c.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <div class="error">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="sidebar">
+            <div class="main">
+                <ul>
+                    <li><a href="/coach/feed">My Feed</a></li>
+                    <hr>
+                    <li><a href="/coach/mentor-map">Mentor Map</a></li>
+                    <hr>
+                    <li><a href="/coach/mywallet" class="active">My<br>Wallet</a></li>
+                    <hr>
+                    <li><a href="/coach/cours-manager">Course Manager</a></li>
+                </ul>
+            </div>
+            <div class="logout_con">
+                <a href="/logout-coach" id="logout"><b>Log out</b></a>
+            </div>
+        </div>
+        <div class="container">
+            <p id="main_title"><b>My Wallet</b></p>
+            <div class="bal_info">
+                <h2>Current balance</h2>
+                <p class="balance">{{balance}} DA</p>
+                <h2>Total student</h2>
+                <p class="purchases">{{total}}</p>
+                <div class="payment">
+                    <form method="post">
+                        <input type="button" value="Ask for payment" onclick="show()" class="btn" id="btn">
+                        <input type="number" placeholder="Enter your ccp account" name="ccp" class="ccp" id="ccp" min=0 required>
+                        <input type="submit" value="Submit" class="sub" id="sub">
+                    </form>
+                </div>
+            </div>
+            <div class="review">
+                <h2>Requests</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>CCP</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for payment in payment_req %}
+                    <tr>
+                        <td>{{payment[4]}}</td>
+                        <td>{{payment[2]}}</td>
+                        <td>{{payment[3]}}</td>
+                        <td>{{payment[5]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        function show(){
+            document.getElementById("btn").style.display = "none";
+            document.getElementById("ccp").style.display = "inline-block";
+            document.getElementById("sub").style.display = "inline-block";
+        }
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

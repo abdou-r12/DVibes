@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #F3F5F9;
+}
+@media screen and (min-width: 414px){
+    .error{        width: 100vw;
+        color: #20721c;
+        background-color: #d7f8de;
+        font-size: 1.2vw;
+    }
+    .error p{
+        padding: 1.5vh 0vw 1.5vh 2vw;
+    }
+    .container{
+        margin-top: 8vh;
+        margin-left: 20vw;
+        display: inline-block;
+    }
+    #main_title{
+        font-size: 2vw;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 1vw;
+        margin-bottom: 4vh;
+    }
+    .view,.add{
+        background-color: #FFF;
+        width: 70vw;
+        padding: 5% 5%;
+        margin: 4% 0;
+    }
+    textarea {
+        width: 100%;
+        height: 15vh;
+        padding: 2%;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        resize: none;
+        font-size: 100%;
+    }
+    input[type="submit"] {
+        float: right;
+        font-size: 110%;
+        background-color: #FFDB15;
+        color: #000;
+        border: none;
+        padding: 1% 2%;
+        border-radius: 5px;
+        cursor: pointer;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        transition: 0.3s ease-in;
+        -webkit-transition: 0.3s ease-in;
+        -moz-transition: 0.3s ease-in;
+        -ms-transition: 0.3s ease-in;
+        -o-transition: 0.3s ease-in;
+    }
+    input[type="submit"]:hover {
+        background-color: #97820e;
+    }
+    .tweet {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 1% 2%;
+    }
+    .tweet-content {
+        margin-bottom: 0.5%;
+    }
+    .tweet-content textarea {
+        border: none;
+        background-color: transparent;
+        resize: none;
+        width: 100%;
+        height: fit-content;
+        font-size: 100%;
+        line-height: 1.5;
+        margin-bottom: 1%;
+    }
+    .tweet-date {
+        color: #999;
+        font-size: 90%;
+        margin-left: 1%;
+    }
+    .tweet-buttons {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .edit-button, .delete-button {
+        border: none;
+        background-color: transparent;
+        color: #999;
+        cursor: pointer;
+        font-size: 100%;
+        margin-left: 1%;
+    }
+    .edit-button:hover, .delete-button:hover    {
+        color: #333;
+    }
+}

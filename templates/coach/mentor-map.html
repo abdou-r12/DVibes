@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/monitor-map.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <div class="error">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="sidebar">
+            <div class="main">
+                <ul>
+                    <li><a href="/coach/feed" class="active">My Feed</a></li>
+                    <hr>
+                    <li><a href="/coach/mentor-map">Mentor<br>Map</a></li>
+                    <hr>
+                    <li><a href="/coach/mywallet">My Wallet</a></li>
+                    <hr>
+                    <li><a href="/coach/cours-manager">Course Manager</a></li>
+                </ul>
+            </div>
+            <div class="logout_con">
+                <a href="/logout-coach" id="logout"><b>Log out</b></a>
+            </div>
+        </div>
+        <div class="container">
+            <p id="main_title"><b>Mentor Map</b></p>
+            <div class="add">
+                <h2>Add Location</h2>
+                <form method="post">
+                    <input type="text" name="location" placeholder="Enter location" class="input" required>
+                    <input type="text" name="locationlink" class="input" placeholder="Enter location link on google map" pattern="https?://.+">
+                    <input type="text" name="note" class="input" placeholder="Add some note here" required>
+                    <input type="submit" id="sub" value="Post">
+                    <span>To get the position link from Google Maps, you can follow these simple steps:</span>
+                    <p>- Open Google Maps in your web browser.
+                    <br>- Search for the location or place you want to share.
+                    <br>- Once the location is displayed on the map, right-click on the map at the desired location or point and select "What's here?" from the context menu.
+                    <br>- A small box will appear at the bottom of the screen with the coordinates of the selected location.
+                    <br>- Click on the coordinates to display them in the search box at the top of the screen.
+                    <br>- The URL in the address bar of your web browser will now show the position link for the selected location. You can copy and share this link with others to share the exact location.
+                </form>
+            </div>
+            <div class="view">
+                <h2>Location List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Location Name</th>
+                            <th>Google Maps Link</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for location in locations %}
+                        <tr>
+                            <td>{{location[2]}}</td>
+                            <td><a href="{{location[3]}}">View on Google Maps</a></td>
+                            <td>{{location[4]}}</td>
+                            <td><a id="delete" href="/coach/mentor-map/delete:{{location[0]}}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

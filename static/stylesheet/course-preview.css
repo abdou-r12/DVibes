@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+@media screen and (min-width: 414px){
+    .container-1{
+        position: sticky;
+        width: 49vw;
+        float: left;
+    }
+    .container-2{
+        width: 49vw;
+        height: 90vh;
+        float: right;
+        background-color: #d9d9d9;
+    }
+    .cours{
+        border: transparent solid 1px;
+        height: 55vh;
+    }
+    .cours p{
+        color: #999 ;
+        font-size: 1.2rem;
+        margin-bottom: 1vh;
+    }
+    #title{
+        margin: 5vh 1vw;
+    }
+    .cours img{
+        float: left;
+        width: 20vw;
+        margin: 5vh 2vw;
+    }
+    .document h2{
+        margin-left: 2vw;
+    }
+    .document li,.video li{
+        margin: 0 2vw 0 2vw;
+        color: #000000;
+        padding: 2vh 2vw 3vh 2vw;
+        border-bottom: rgb(127, 127, 127) solid 2px;
+        transition: 0.2s ease-in-out;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        -ms-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
+    }
+    .document li:hover,.video li:hover{
+        background-color: #999;
+    }
+    .video h2{
+        margin: 5vh 0 0 2vw;
+    }
+}

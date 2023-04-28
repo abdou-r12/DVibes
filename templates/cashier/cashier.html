@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/sidebar.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cashier.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <nav>
+            <p>Cashier n°: {{cashier}}</p>
+            <a href="/logout-cashier" id="logout">logout</a>
+        </nav>
+        <div class="bill_list">
+            <h1>pending bills</h1>
+            <table>
+                <tr>
+                    <th>User name</th>
+                    <th>Curent balance</th>
+                    <th>email</th>
+                    <th>Submition date</th>
+                </tr>
+                {% for bill in bill_pending %}
+                <tr>
+                        <td>{{bill[6]}}</td>
+                        <td>{{bill[8]}} DA</td>
+                        <td>{{bill[9]}}</td>
+                        <td>{{bill[4]}}</td>
+                        <td id="view"><a href="/cashier/add-credit:{{bill[0]}}">view</a></td>
+                <tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="bill_list">
+            <h1>done bills</h1>
+            <table>
+                <tr>
+                    <th>User name</th>
+                    <th>Curent balance</th>
+                    <th>email</th>
+                    <th>Submition date</th>
+                    <th>Status</th>
+                    <th>note</th>
+                </tr>
+                {% for bill in bill_done %}
+                <tr>
+                    <td>{{bill[6]}}</td>
+                    <td>{{bill[8]}}</td>
+                    <td>{{bill[9]}}</td>
+                    <td>{{bill[4]}}</td>
+                    <td>{{bill[2]}}</td>
+                    <td>{{bill[3]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+@media screen and (min-width: 414px){
+    .container{
+        border-radius: 1rem;
+        background-color: #F3F5F9;
+        width: 90%;
+        margin: auto;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        padding: 5% 5%;
+    }
+    .container *{
+        margin-top: 5vh;
+    }
+    #content{
+        line-height: 5vh;
+    }
+    .image{
+        float: right;
+        width: 40%;
+    }
+}

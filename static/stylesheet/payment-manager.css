@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #F3F5F9;
+}
+
+@media screen and (min-width: 414px){
+    .container{
+        margin-top: 8vh;
+        margin-left: 20vw;
+        display: inline-block;
+    }
+    #main_title{
+        font-size: 2vw;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 1vw;
+        margin-bottom: 4vh;
+    }
+    .budget{
+        background-color: #FFFFFF;
+        padding: 5vh 2vw 5vh 2vw;
+        margin-bottom: 5vh;
+    }
+    .add_cash{
+        background-color: #FFFFFF;
+        padding: 5vh 2vw 5vh 2vw;
+        margin-bottom: 5vh;
+    }
+    .input{
+        display: block;
+        width: 35vw;
+        height: 5vh;
+        margin: 2vh 15vw 2vh 15vw;
+        border: #000000 1px solid;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+    }
+    ::placeholder{
+        padding-left: 1vw;
+    }
+    .sub{
+        border-radius: 0.5rem;
+        padding: 2vh 2vw 2vh 2vw;
+        margin: 2vh 30vw 0 30vw;
+        background-color: #FFDB15;
+        font-size: 1.2rem;
+        border: 1px black solid;
+        transition: 0.2s ease-in-out;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        -ms-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+    }
+    .sub:hover{
+        background-color: #99840d;
+    }
+    .list{
+        background-color: #FFFFFF;
+    }
+    .list h2{
+        padding: 5vh 0 5vh 2vw;
+    }
+    table{
+        width: 75vw;
+        margin-bottom: 5vh;
+    }
+    th{
+        border: #000000 solid 1px;
+        background-color: #FFDB15;
+        font-size: 1.2vw;
+        overflow: hidden;
+        padding: 1vh 1vw;
+    }
+    td{
+        background-color: #FFFFFF;
+        border: #000000 1px solid;
+        padding: 1vh 1vw;
+    }
+    .func_remove{
+        background-color: #FF6969;
+        text-align: center;
+        transition: 0.5s ease-in-out;
+        border-radius: 2rem;
+        -webkit-border-radius: 2rem;
+        -moz-border-radius: 2rem;
+        -ms-border-radius: 2rem;
+        -o-border-radius: 2rem;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+    }
+    .func_remove a{
+        color: #FFFFFF;
+    }
+    .func_remove:hover{
+        background-color: #ff0000;
+    }
+}

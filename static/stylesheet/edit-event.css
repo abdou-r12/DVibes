@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+@media screen and (min-width: 414px){
+    .add-event {
+        width: 40%;
+        margin: 0 auto;
+        padding: 2%;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    }
+    .add-event #Title {
+        font-size: 130%;
+        font-weight: bold;
+        margin-bottom: 2vh;
+    }
+    .add-event #lable {
+        margin-top: 2vh;
+        margin-bottom: 1vh;
+        font-weight: bold;
+    }
+    .add-event input[type="text"], .add-event textarea {
+        width: 100%;
+        padding: 2%;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        font-size: 100%;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+}
+    .add-event textarea {
+        resize: vertical;
+    }
+    .add-event input[type="file"] {
+        margin-top: 2vh;
+    }
+    .add-event #sub {
+        border-radius: 0.5rem;
+        display: block;
+        width: 100%;
+        margin-top: 2vh;
+        padding: 2%;
+        background-color: #FFDB15;
+        color: #000000;
+        border: none;
+        font-size: 100%;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        -webkit-transition: 0.3s ease-in-out;
+        -moz-transition: 0.3s ease-in-out;
+        -ms-transition: 0.3s ease-in-out;
+        -o-transition: 0.3s ease-in-out;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+}
+    .add-event #sub:hover {
+        background-color: #8d7a0e;
+    }
+    .form {
+        background-color: #fff;
+        box-shadow: 0 10px 60px rgb(218, 229, 255);
+        border: 1px solid rgb(159, 159, 160);
+        border-radius: 20px;
+        padding: 2rem .7rem .7rem .7rem;
+        text-align: center;
+        font-size: 1.125rem;
+        max-width: 320px;
+      }
+      .form-title {
+        color: #000000;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+      .form-paragraph {
+        margin-top: 1vh;
+        font-size: 0.9375rem;
+        color: rgb(105, 105, 105);
+      }
+      .drop-container {
+        background-color: #fff;
+        position: relative;
+        display: flex;
+        gap: 1vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;
+        margin-top: 2.1875rem;
+        border-radius: 10px;
+        border: 2px dashed rgb(171, 202, 255);
+        color: #444;
+        cursor: pointer;
+        transition: background .2s ease-in-out, border .2s ease-in-out;
+      }
+      .drop-container:hover {
+        background: rgba(0, 140, 255, 0.164);
+        border-color: rgba(17, 17, 17, 0.616);
+      }
+      .drop-container:hover .drop-title {
+        color: #222;
+      }
+      .drop-title {
+        color: #444;
+        font-size: 120%;
+        font-weight: bold;
+        text-align: center;
+        transition: color .2s ease-in-out;
+      }
+      #file-input {
+        width: 80%;
+        max-width: 100%;
+        color: #444;
+        padding: 1%;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid rgba(8, 8, 8, 0.288);
+      }
+      #file-input::file-selector-button {
+        margin-right: 1vw;
+        border: none;
+        background: #084cdf;
+        padding: 1.3vh 1vw;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+      }
+      #file-input::file-selector-button:hover {
+        background: #0d45a5;
+      }
+}

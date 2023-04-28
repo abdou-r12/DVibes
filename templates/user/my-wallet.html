@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes-My Wallet</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/my-wallet.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <nav>
+            <div class="menu">
+                <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="../../static/assets/2x-removebg-preview.png" id="logo"></a>
+            </div>
+            <div class="links">
+                <ul id="elements-links">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li class="dropdown">
+                        <a href="">Courses</a>
+                        <ul class="submenu">
+                            <li id="link"><a href="/user/mycourses" id="link">My Courses</a></li>
+                            <li id="link"><a href="/user/cours" id="link">Buy Course</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="logins">
+                <ul id="elements-logins">
+                    <li><a href="/user" class="account_icon">{{user_info[1]}}</a></li>
+                    <li><a href="/logout" class="logout">Log out</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="error">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <h1>My Wallet</h1>
+        <div class="container1">
+            <div class="acc_bal">
+                <h2>Account Balance</h2>
+                <p>{{user_info[2]}} DA</p>
+            </div>
+            <div class="pur_his">
+                <h2>Purchase History</h2>
+                <ul>
+                    {% for purchase in purchases %}
+                        <li>
+                            <h3>{{purchase[2]}}</h3>
+                            <p>{{purchase[3]}}DA</p>
+                            <p>{{purchase[1]}}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="container2">
+            <div class="sub_ref">
+                <h2>Send credit request</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="file" class="file" name="file" required>
+                    <p>ccp 1234567891 15</p>
+                    <input type="submit" class="submit" value="Submit">
+                </form>
+            </div>
+            <div class="req_rev">
+                <table>
+                    <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Note</th>
+                    </tr>
+                    {% for request in requests %}
+                    <tr>
+                        <td>{{request[4]}}</td>
+                        <td>{{request[2]}}</td>
+                        <td>{{request[3]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

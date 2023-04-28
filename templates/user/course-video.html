@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/course-video.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <nav>
+            <div class="menu">
+                <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="{{url_for('static',filename='assets/2x-removebg-preview.png')}}" id="logo"></a>
+            </div>
+            <div class="links">
+                <ul id="elements-links">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li class="dropdown">
+                        <a href="">Courses</a>
+                        <ul class="submenu">
+                            <li id="link"><a href="/user/mycourses" id="link">My Courses</a></li>
+                            <li id="link"><a href="/user/cours" id="link">Buy Course</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="logins">
+                <ul id="elements-logins">
+                    <li><a href="/user" class="account_icon">{{user_info}}</a></li>
+                    <li><a href="/logout" class="logout">Log out</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main>
+            <section class="video-container">
+                <video controls>
+                    <source src="/{{video[2]}}" type="video/mp4">
+                </video>
+            </section>
+            <section class="course-details">
+                <h2>{{video[1]}}</h2>
+                <ul>
+                    {% for vid in video_list %}
+                        <a href="/user/mycourses/{{video[0]}}/{{vid[0]}}"><li>{{vid[1]}}</li></a>
+                    {% endfor %}
+                </ul>
+            </section>
+        </main>
+    </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+      </script>
+</html>

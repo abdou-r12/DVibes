@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/payment-manager.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="main">
+                <ul>
+                    <li><a href="/admin/events-manager">Event manager</a></li>
+                    <hr>
+                    <li><a href="/admin/coach-manager">Coach Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/course-manager">Course Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/payment-manager" class="active">Payment<br>manager</a></li>
+                    <hr>
+                    <li><a href="/admin/news-manager">News Manager</a></li>
+                    <hr>
+                    <li><a href="/admin/coach-requests">Coach Request</a></li>
+                </ul>
+            </div>
+            <div class="logout_con">
+                <a href="/logout-admin" id="logout"><b>Log out</b></a>
+            </div>
+        </div>
+        <div class="container">
+            <p id="main_title"><b>Payment Manager</b></p>
+            <div class="budget">
+                <p>DVibes profits: {{balance}} DA</p>
+                <p>DVibes total budget: {{total_budget}} DA</p>
+            </div>
+            <div class="add_cash">
+                <h2>Add Cashier</h2>
+                <form method="post">
+                    <input type="text" id="name" name="name" placeholder="Full Name" class="input" required>
+                    <input type="text" id="username" name="username" placeholder="User name" class="input" required>
+                    <input type="text" id="password" name="password" placeholder="Password" class="input" required>
+                    <button type="submit" class="sub">Submit</button>
+                </form>
+            </div>
+            <div class="list">
+                <h2>Cashier List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>User name</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cash in cashier %}
+                        <tr>
+                            <td>{{cash[3]}}</td>
+                            <td>{{cash[1]}}</td>
+                            <td>{{cash[2]}}</td>
+                            <td class="func_remove">remove</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <h2>User List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in user_info %}
+                        <tr>
+                            <td>{{user[0]}}</td>
+                            <td>{{user[2]}}</td>
+                            <td>{{user[1]}} DA</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>
