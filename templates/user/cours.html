@@ -6,7 +6,6 @@
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cours-list.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}">
-
     </head>
     <body>
         <div class="preloader" id="preloader">
@@ -30,9 +29,15 @@
             </div>
             <div class="links">
                 <ul id="elements-links">
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Courses</a></li>
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li class="dropdown">
+                        <a href="">Courses</a>
+                        <ul class="submenu">
+                            <li id="link"><a href="/user/mycourses" id="link">My Courses</a></li>
+                            <li id="link"><a href="/user/cours" id="link">Buy Course</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="logins">
@@ -70,6 +75,6 @@
             const searchTerm = searchInput.value;
             const url = `/user/cours/search:${encodeURIComponent(searchTerm)}`;
             window.location.href = url;
-          }
+        }
     </script>
 </html>

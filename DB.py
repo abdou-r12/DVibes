@@ -143,7 +143,8 @@ def Create_tables(cursor):
     CREATE TABLE IF NOT EXISTS Purchase(
         IdPur INTEGER PRIMARY KEY AUTOINCREMENT,
         IdUser INTEGER,
-        IdCour INTEGER
+        IdCour INTEGER,
+        Date TEXT
     )
     '''
     cursor.execute(Purchase)
@@ -162,11 +163,108 @@ def Create_tables(cursor):
     '''
     cursor.execute(rapport)
     print('rapport table created successfully')
+    Cashier = '''
+    CREATE TABLE IF NOT EXISTS LoginCashier(
+        IdLog INTEGER PRIMARY KEY AUTOINCREMENT,
+        UserName TEXT,
+        PassCode TEXT,
+        FullName TEXT
+    )
+    '''
+    cursor.execute(Cashier)
+    print('login cashier table created successfully')
+    transfer_history = '''
+    CREATE TABLE IF NOT EXISTS TRHistory(
+        IdTrans INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdUser TEXT,
+        IdLog INTEGER,
+        Send_Date TEXT,
+        Receive_Date TEXT,
+        Note TEXT,
+        CONSTRAINT fk_IdUser
+            FOREIGN KEY (IdUser)
+            REFERENCES  User(IdUser)
+    );
+    '''
+    cursor.execute(transfer_history)
+    print('transfer history table created successfully')
+    bill = '''
+    CREATE TABLE IF NOT EXISTS Bill(
+        IdBil INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdUser INTEGER,
+        Status TEXT,
+        Note TEXT,
+        Date TEXT,
+        Pwd TEXT,
+        CONSTRAINT fk_IdUser
+            FOREIGN KEY (IdUser)
+            REFERENCES  User(IdUser)
+    )
+    '''
+    cursor.execute(bill)
+    print('bill table created successfully')
+    DBalance = '''
+    CREATE TABLE IF NOT EXISTS DBalance(
+        Coin INTEGER
+    );
+    '''
+    cursor.execute(DBalance)
+    print('DBalance table created successfully')
+    cursor.execute("INSERT INTO DBalance (Coin) VALUES (0)")
+    Coach_payment = '''
+    CREATE TABLE IF NOT EXISTS CoachPayment(
+        IdCP INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdCoach INTEGER,
+        Date TEXT,
+        Status TEXT,
+        CCP TEXT,
+        Note TEXT,
+        CONSTRAINT fk_IdCoach
+            FOREIGN KEY (IdCoach)
+            REFERENCES  Coach(IdCoach)
+    );
+    '''
+    cursor.execute(Coach_payment)
+    print('Coach_payment table created successfully')
+    coach_feed = '''
+    CREATE TABLE IF NOT EXISTS CoachFeed(
+        IdFeed INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdCoach INTEGER,
+        Content TEXT,
+        Date TEXT,
+        CONSTRAINT fk_IdCoach
+            FOREIGN KEY (IdCoach)
+            REFERENCES  Coach(IdCoach)
+    );
+    '''
+    cursor.execute(coach_feed)
+    print('coach feed table created successfully')
+    coach_map = '''
+    CREATE TABLE IF NOT EXISTS CoachMap(
+        IdMap INTEGER PRIMARY KEY AUTOINCREMENT,
+        IdCoach INTEGER,
+        Location TEXT,
+        LocationLink TEXT,
+        Note TEXT,
+        CONSTRAINT fk_IdCoach
+            FOREIGN KEY (IdCoach)
+            REFERENCES  Coach(IdCoach)
+    )
+    '''
+    cursor.execute(coach_map)
+    print('coach map table created successfully')
+    connection.commit()
+
+def setVariable():
+    balance = cursor.execute("SELECT * FROM DBalance").fetchone()
+    if balance == None:
+        cursor.execute("UPDATE DBalance SET Coin = ?",[0])
+        connection.commit()
 
 def Update_News(id,title,description,text,dir):
     last_date=date.today()
     if dir == "":
-        cursor.execute("UPDATE News SET Title=?,Discription=?,Text=?,Date=? WHER IdNew=?",[title,description,text,last_date,id])
+        cursor.execute("UPDATE News SET Title=?,Discription=?,Text=?,Date=? WHERE IdNew=?",[title,description,text,last_date,id])
     else:
         cursor.execute("UPDATE News SET Title=?,Discription=?,Text=?,Img=?,Date=? WHERE IdNew=?",[title,description,text,dir,last_date,id])
     connection.commit()
@@ -187,10 +285,15 @@ def Remove_Events(id):
     cursor.execute("DELETE FROM Events WHERE IdEvent=?",[id])
     connection.commit()
 
-def Remove_Coach(id):
+def Remove_Coach_Req(id):
     cursor.execute("DELETE FROM Request WHERE IdReq=?",[id])
     connection.commit()
 
+def Remove_Coach(id):
+    cursor.execute("DELETE FROM Coach WHERE IdCoach=?",[id])
+    cursor.execute("DELETE FROM LoginCoach WHERE IdLog=?",[id])
+    connection.commit()
+
 if __name__ == "__main__":
-    print('data bese created')
+    print('database created')
     Create_tables(cursor)

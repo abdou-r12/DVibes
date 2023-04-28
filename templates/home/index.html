@@ -6,7 +6,6 @@
         <title>DVibes</title>
         <link rel="icon" href="../../static/assets/Untitled design.png"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/index.css')}}"/>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -34,25 +33,19 @@
             </div>
             <div class="links">
                 <ul id="elements-links">
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="/becoach">Become a coach</a></li>
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/user/mycourses">Courses</a></li>
+                    {% if log == False %}
+                        <li><a href="/becoach">Become a coach</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="logins">
                 <ul id="elements-logins">
                     {% if log == True %}
-                        {% if user=="user" %}
-                            <li><a href="/user" class="account_icon">{{info}}</a></li>
-                            <li><a href="/logout" class="logout">Log out</a></li>
-                        {% elif user=="coach"%}
-                            <li><a href="/coach" class="account_icon">{{info}}</a></li>
-                            <li><a href="/logout-coach" class="logout">Log out</a><li>
-                        {% elif user=="admin"%}
-                            <li><a href="/admin" class="account_icon">Admin</a><li>
-                            <li><a href="/logout" class="logout">Log out</a><li>
-                        {% endif %}
+                        <li><a href="/profile-check" class="account_icon">{{info}}</a></li>
+                        <li><a href="/logout-check" class="logout">Log out</a></li>
                     {% else %}
                         <li><a href="/login" id="login">Log in</a></li>
                         <li><a href="/singup" id="singup">Sing up</a></li>
@@ -65,7 +58,7 @@
                 <div class="numbertext first_label">
                     <p class="primary-title">Musical Buzz</p>
                     <p class="secondary-title">Check out the lateast musical news</p>
-                    <a href="#" class="btn">Explore Music Headlines</a>
+                    <a href="/news" class="btn">Explore Music Headlines</a>
                 </div>
                 <img src="../../static/assets/pexels-dmitry-demidov-3783471.jpg" class="slid-img" >
             </div>
@@ -73,7 +66,7 @@
                 <div class="numbertext second_label">
                     <p class="primary-title">Upcoming Events</p>
                     <p class="secondary-title">Don’t miss the biggest musical event across the country</p>
-                    <a href="#" class="btn">Explore Music Events</a>
+                    <a href="/events" class="btn">Explore Music Events</a>
                 </div>
                 <img src="../../static/assets/index.png" class="slid-img">
             </div>
@@ -81,7 +74,7 @@
                 <div class="numbertext third_label">
                     <p class="primary-title">Skill-Building Courses</p>
                     <p class="secondary-title">Apply for the best courses of music produced by the best coaches</p>
-                    <a href="#" class="btn">Explore Musical Courses</a>
+                    <a href="/user/mycourses" class="btn">Explore Musical Courses</a>
                 </div>
                 <img src="../../static/assets/pexels-pavel-danilyuk-7521299.jpg" class="slid-img">
             </div>

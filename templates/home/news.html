@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>DVibes</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/news.css')}}">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1" id="title-icon">
+        <title>DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/events.css')}}"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <script src="{{ url_for('static',filename='script.js/NavBarMenu.js')}}" type="text/javascript"></script>
     </head>
@@ -32,25 +33,19 @@
             </div>
             <div class="links">
                 <ul id="elements-links">
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="/becoach">Become a coach</a></li>
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/user/mycourses">Courses</a></li>
+                    {% if log == False %}
+                        <li><a href="/becoach">Become a coach</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="logins">
                 <ul id="elements-logins">
                     {% if log == True %}
-                        {% if user=="user" %}
-                            <li><a href="/user" class="account_icon">{{info}}</a></li>
-                            <li><a href="/logout" class="logout">Log out</a></li>
-                        {% elif user=="coach"%}
-                            <li><a href="/coach" class="account_icon">{{info}}</a></li>
-                            <li><a href="/logout-coach" class="logout">Log out</a><li>
-                        {% elif user=="admin"%}
-                            <li><a href="/admin" class="account_icon">Admin</a><li>
-                            <li><a href="/logout" class="logout">Log out</a><li>
-                        {% endif %}
+                        <li><a href="/profile-check" class="account_icon">{{info}}</a></li>
+                        <li><a href="/logout-check" class="logout">Log out</a></li>
                     {% else %}
                         <li><a href="/login" id="login">Log in</a></li>
                         <li><a href="/singup" id="singup">Sing up</a></li>
@@ -58,16 +53,31 @@
                 </ul>
             </div>
         </nav>
-        <h1>NEWS</h1>
-        <div class="news">
+        <h1>Sound Bites: Latest News from the World of Music</h1>
+        <div class="container">
             {% for element in data %}
-                <div class="el">
-                    <p>title: {{element[1]}}</p>
-                    <p>text: {{element[2]}}</p>
-                    <img src="{{element[3]}}" style="width: 10vw">
-                    <p>date: {{element[4]}}</p>
-                <div>
+            <div class="card">
+                <div class="image" style="background-image: url('/{{element[4]}}')"></div>
+                <div class="content">
+                <a href="#">
+                    <span class="title">{{element[1]}}</span>
+                </a>
+                <p class="desc">{{element[2]}}</p>
+                <a href="/news:{{element[0]}}" class="action">
+                    Find out more
+                    <span aria-hidden="true">
+                    →
+                    </span>
+                </a>
+                </div>
+            </div>
             {% endfor %}
         </div>
     </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
 </html>

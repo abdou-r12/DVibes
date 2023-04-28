@@ -29,12 +29,19 @@
                 <a href="/"><img src="../../static/assets/2x-removebg-preview.png" id="logo"></a>
             </div>
             <div class="links">
-                <ul id="elements-links">
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="/user/cours">Courses</a></li>
-                </ul>
-            </div>
+                <div class="links">
+                    <ul id="elements-links">
+                        <li><a href="/news">News</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <li class="dropdown">
+                            <a href="">Courses</a>
+                            <ul class="submenu">
+                                <li id="link"><a href="/user/mycourses" id="link">My Courses</a></li>
+                                <li id="link"><a href="/user/cours" id="link">Buy Course</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             <div class="logins">
                 <ul id="elements-logins">
                     <li><a href="/user" class="account_icon">{{user}}</a></li>

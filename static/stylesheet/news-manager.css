@@ -138,6 +138,7 @@ body{
     }
     #func_remove:hover{
         background-color: #ff0000;
+        cursor: pointer;
 
     }
     #func_edit a,#func_remove a{

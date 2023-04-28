@@ -23,6 +23,10 @@ def twostepcheck(receiver):
     return code
 
 def get_random_string(length):
-    letters = string.ascii_lowercase
-    result_str = ''.join(random.choice(letters) for i in range(length))
+    lowercase = string.ascii_lowercase
+    uppercase = string.ascii_uppercase
+    numbers = string.digits
+    all_characters = lowercase + uppercase + numbers
+    shuffled_characters = random.sample(all_characters, len(all_characters))
+    result_str = ''.join(random.choices(shuffled_characters, k=length))
     return result_str

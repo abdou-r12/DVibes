@@ -30,7 +30,7 @@
                     <hr>
                     <li><a href="/admin/course-manager">Course Manager</a></li>
                     <hr>
-                    <li><a href="#">Payment manager</a></li>
+                    <li><a href="/admin/payment-manager">Payment manager</a></li>
                     <hr>
                     <li><a href="/admin/news-manager" class="active">News<br>Manager</a></li>
                     <hr>
@@ -38,7 +38,7 @@
                 </ul>
             </div>
             <div class="logout_con">
-                <a href="/logout" id="logout"><b>Log out</b></a>
+                <a href="/logout-admin" id="logout"><b>Log out</b></a>
             </div>
         </div>
         <div class="container">
@@ -48,7 +48,7 @@
                 <form method=post enctype="multipart/form-data">
                     <input type="text" class="input title" name="title" placeholder="Title" required>
                     <input type="text" class="input discription" name="discription" placeholder="Description" required>
-                    <textarea class="input text" name="text" placeholder="Event content" required></textarea>
+                    <textarea class="input text" name="text" placeholder="News content" required></textarea>
                     <input type="file" id="file" name="file" required>
                     <input type="submit" id="sub" value="Submit">
                 </form>

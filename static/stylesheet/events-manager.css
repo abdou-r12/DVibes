@@ -10,6 +10,14 @@ body{
     background-color: #F3F5F9;
 }
 @media screen and (min-width: 414px){
+    .error{
+        width: 100vw;
+        color: #20721c;
+        background-color: #d9f8d7;
+    }
+    .error p{
+        padding: 2vh 5vw 2vh 5vw;
+    }
     .container{
         margin-top: 8vh;
         margin-left: 20vw;
@@ -102,6 +110,7 @@ body{
         background-color: #FFDB15;
         font-size: 1.2vw;
         overflow: hidden;
+        padding: 1%;
     }
     td{
         background-color: #FFFFFF;

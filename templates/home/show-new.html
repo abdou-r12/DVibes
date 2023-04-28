@@ -1,46 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title> DVibes</title>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/show-news.css')}}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" id="title-icon">
+        <title>DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/show-new.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <script src="{{ url_for('static',filename='script.js/NavBarMenu.js')}}" type="text/javascript"></script>
+        <style>
+            body{
+                background-image: url('/{{data[4]}}');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        </style>
     </head>
     <body>
-        <div class="menu_bar">
-            <div class="logo">
-                <a href="/"><img src="../../static/assets/The_Westmire_A56_Headset-removebg-preview-removebg-preview.png" id="logo"></a>
-            </div>
-            <div class="links">
-                <a href="#">News</a>
-                <a href="#">Events</a>
-                <a href="#">Cours</a>
-                <a href="#">Coach</a>
-            </div>
-            <div class="logins">
-                {% if log == False %}
-                    <a href="/singup" id="singup">Sing up</a>
-                    <a href="/login" id="login">Log in</a>
-                    <a href="/becoach" id="be_teach">Become a coach</a>
-                {% else %}
-                    <a href="/logout" id="logout">Logout</a>
-                    <a href="/user">
-                        <div class="profile">
-                            <img src="{{url_for('static',filename="assets/account-bold.svg")}}" id="acpic">
-                            <p>{{user}}</p>
-                            <div id="back"></div>
-                        </div>
-                    </a>
-                {% endif %}
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
             </div>
         </div>
-        <div class="container" style="background-image: url('{{data[4]}}');">
+        <nav>
+            <div class="menu">
+                <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="../../static/assets/2x-removebg-preview.png" id="logo"></a>
+            </div>
+            <div class="links">
+                <ul id="elements-links">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/user/mycourses">Courses</a></li>
+                    {% if log == False %}
+                        <li><a href="/becoach">Become a coach</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="logins">
+                <ul id="elements-logins">
+                    {% if log == True %}
+                        <li><a href="/profile-check" class="account_icon">{{info}}</a></li>
+                        <li><a href="/logout-check" class="logout">Log out</a></li>
+                    {% else %}
+                        <li><a href="/login" id="login">Log in</a></li>
+                        <li><a href="/singup" id="singup">Sing up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
             <div class="content">
-                <p id="title"><b>{{data[1]}}</b></p>
-                <p id="desc">{{data[2]}}</p>
+                <img class="image" src="/{{data[4]}}">
+                <h1 id="title"><b>{{data[1]}}</b></h1>
+                <h2 id="desc">{{data[2]}}</h2>
                 <p id="date">{{data[5]}}</p>
                 <p id="content">{{data[3]}}</p>
-                <img id="media"src="{{data[4]}}"/>
             </div>
         </div>
     </body>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
 </html>
