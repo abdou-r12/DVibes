@@ -20,6 +20,7 @@ app.secret_key = get_random_string(64)
 print("secret key : ",app.secret_key,"\n")
 connection = sqlite3.connect('DVibes.db', check_same_thread=False)
 cursor = connection.cursor()
+Create_tables(cursor)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 # home page
@@ -315,6 +316,7 @@ def userprofile():
             else:
                 flash("Invalid old password","error")
         connection.commit()
+        return redirect(url_for("userprofile"))
     return render_template("user/profile.html", data=data, email=email)
 
 # user profile picture
