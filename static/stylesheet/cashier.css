@@ -58,11 +58,15 @@
         margin-bottom: 1rem;
     }
     table {
+        table-layout: fixed;
         border-collapse: collapse;
         width: 100%;
     }
 
     th, td {
+        white-space: wrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         text-align: left;
         padding: 8px;
     }

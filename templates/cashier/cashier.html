@@ -9,22 +9,21 @@
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cashier.css')}}">
     </head>
     <body>
-        <div class="preloader" id="preloader">
-            <div class="middle">
-                <div class="bar bar1"></div>
-                <div class="bar bar2"></div>
-                <div class="bar bar3"></div>
-                <div class="bar bar4"></div>
-                <div class="bar bar5"></div>
-                <div class="bar bar6"></div>
-                <div class="bar bar7"></div>
-                <div class="bar bar8"></div>
-            </div>
-        </div>
         <nav>
             <p>Cashier n°: {{cashier}}</p>
             <a href="/logout-cashier" id="logout">logout</a>
         </nav>
+        <div class="preloader" id="preloader">
+            <div class="anim-box">
+                <div class="anim-interieur">
+                    <div class="rect rect1"></div>
+                    <div class="rect rect2"></div>
+                    <div class="rect rect3"></div>
+                    <div class="rect rect4"></div>
+                    <div class="rect rect5"></div>
+                </div>
+            </div>
+        </div>
         <div class="container-1">
             <div class="bill_list">
                 <h1>User Pending Bills</h1>

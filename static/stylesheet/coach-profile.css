@@ -1,0 +1,196 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    background-color: #F3F5F9;
+}
+@media screen and (min-width: 414px){
+    .flash-message {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .success {
+        color: #1c7227;
+        background-color: #d7f8d8;
+    }
+    .error {
+        color: #721c24;
+        background-color: #f8d7da;
+    }
+    .main{
+        margin-top: 10vh;
+    }
+    .container{
+        margin-left: 25vw;
+        margin-right: 5vw;
+        padding-top: 10vh;
+    }
+    .cont-1{
+        background-color: #FFFFFF;
+        padding-bottom: 10vh;
+    }
+    .info{
+        display: inline-block;
+        margin-left: 2vw;
+    }
+    .info p{
+        font-size: 1.5vw;
+        margin-top: 5vh;
+    }
+    .main_title{
+        font-size: 1.5vw;
+        padding-left: 2vw;
+        border-left: #FFDB15 solid 5px;
+        margin-bottom: 5vh;
+        margin-left: 2vw;
+    }
+    .pfp{
+        float: right;
+        margin: 5%;
+    }
+    .pfp a{
+        margin-left: 15%;
+        color: blue;
+        transition: 0.2s ease-in-out;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        -ms-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
+    }
+    .pfp a:hover{
+        color: navy;
+    }
+    .pic{
+        background-color: #F1F1F1;
+        width: 15vw;
+        height: 15vw;
+        object-fit: cover;
+        display: block;
+        padding: 2vh 1vw 2vh 1vw;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+    .text_title{
+        display: inline-block;
+        font-size: 1.5vw;
+        margin-left: 2vw;
+        margin-top: 5vh;
+        width: 30vw;
+    }
+    textarea{
+        display: inline-block;
+        margin-left: 2vw;
+        margin-top: 5vh;
+        background-color: transparent;
+        resize: none;
+        width: 30vw;
+        height: 20vh;
+        font-size: 1.5vw;
+    }
+    .btn{
+        padding: 1vh 1.5vw 1vh 1.5vw;
+        font-size: 1.2vw;
+        float: right;
+        margin-top: 2vh;
+        margin-right: 2vw;
+        background-color: #FFFFFF;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+    }
+    .btn:hover{
+        background-color: #aeaeae;
+    }
+    #sub{
+        display: none;
+        background-color: #FFDB15;
+    }
+    #passsub{
+        display: none;
+    }
+    .cont-2{
+        background-color: #FFFFFF;
+        margin-top: 10vh;
+        padding-top: 5vh;
+        padding-bottom: 2vh;
+    }
+    .cont-2 .main_title{
+        margin-left: 4vw;
+    }
+    .cont-2 *{
+        display: block;
+    }
+    label{
+        font-size: 1.5vw;
+        margin-left: 2vw;
+    }
+    .input{
+        width: 40vw;
+        height: 5vh;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        margin-left: 10vw;
+        background-color: #FFFFFF;
+    }
+    ::placeholder{
+        padding-left: 1vw;
+        font-size: 1.2vw;
+    }
+    .cont-2 .sub{
+        display: none;
+        background-color: #FFDB15;
+    }
+    .cont-2 .sub:hover{
+        background-color: #FFDB15;
+    }
+    .cont-3{
+        margin-top: 10vh;
+        padding-top: 5vh;
+        padding-bottom: 15vh;
+        background-color: #FFFFFF;
+    }
+    .cont-3 *{
+        display: block;
+    }
+    #title{
+        width: 60vw;
+        height: 5vh;
+        margin-left: 5vw;
+        font-size: 1.5vw;
+    }
+    #raport_text{
+        width: 60vw;
+        height: 25vh;
+        margin-left: 5vw;
+    }
+    #rapport{
+        width: 10vw;
+        height: 5vh;
+        margin-top: 5vh;
+        float: right;
+        margin-right: 4vw;
+        margin-bottom: 15vh;
+        font-size: 1.2vw;
+        background-color: #FFDB15;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+    }
+}

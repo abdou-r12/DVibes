@@ -200,6 +200,7 @@
         padding-top: 3%;
     }
     .news-title label{
+        width: 70%;
         font-size: 120%;
         display: block;
         margin: 1% 10%;
@@ -238,7 +239,7 @@
         -moz-border-radius: 2rem;
         -ms-border-radius: 2rem;
         -o-border-radius: 2rem;
-}
+    }
     .news-marque marquee{
         border-radius: 2rem;
 

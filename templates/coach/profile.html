@@ -5,7 +5,7 @@
         <title> DVibes</title>
         <link rel="icon" href="../../static/assets/Untitled design.png"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/user-profile.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/coach-profile.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/user-sidebar.css')}}">
     </head>
     <body>
@@ -54,24 +54,15 @@
                             <p>User name:      {{data[2]}}</p>
                             <p>Gender:         {{data[4]}}</p>
                             <p>Birthday:       {{data[5]}}</p>
-                            <p style="display: inline;">Location:</p><input type="text" name="location" id="location" placeholder="{{data[6]}}" disabled>
                         </div>
                         <div class="pfp">
-                            {% if data[3] == None %}
+                            {% if data[3] == "None" %}
                                 <img src="../static/assets/user.png" class="pic">
                             {% else %}
                                 <img src="../{{data[3]}}" class="pic">
                             {% endif %}
-                            <a href="/user/profile/change-profile-picture">Change profile picture</a>
+                            <a href="/coach/profile/change-profile-picture">Change profile picture</a>
                         </div>
-                        <div class="music_car">
-                            <p class="text_title">music Experience</p>
-                            <p class="text_title">music Interests</p>
-                            <textarea name="experience" id="experience" placeholder="{{data[7]}}" disabled></textarea>
-                            <textarea name="interests" id="interests" placeholder="{{data[11]}}" disabled></textarea>
-                        </div>
-                        <button type="submit" class="btn sub" id="sub">Submit</button>
-                        <button onclick="enableInfoInput(event)" class="btn edit" id="edit_info">Edit Information</button>
                     </div>
                 </section>
                 <section id="section2">

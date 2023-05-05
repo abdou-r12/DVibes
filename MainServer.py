@@ -16,7 +16,7 @@ from Functions import *
 from DB import *
 
 app = Flask(__name__)
-app.secret_key = "test" #get_random_string(64)
+app.secret_key = get_random_string(64)
 print("secret key : ",app.secret_key,"\n")
 connection = sqlite3.connect('DVibes.db', check_same_thread=False)
 cursor = connection.cursor()
@@ -92,7 +92,9 @@ def coach_view(id):
     coach_course = cursor.execute("SELECT * FROM Cours WHERE IdCoach=?",[id]).fetchall()
     coach_location = cursor.execute("SELECT * FROM CoachMap WHERE IdCoach=?",[id]).fetchall()
     coach_feed = cursor.execute("SELECT * FROM CoachFeed WHERE IdCoach=? ORDER BY IdFeed DESC",[id]).fetchall()
-    return render_template("home/coach-view.html",info=info,coach_info=coach_info,coach_course=coach_course,coach_location=coach_location,coach_feed=coach_feed)
+    return render_template("home/coach-view.html",info=info,coach_info=coach_info
+                           ,coach_course=coach_course,coach_location=coach_location,
+                           coach_feed=coach_feed,log=session.get("log"))
 
 # show all the events
 @app.route("/events")
@@ -857,6 +859,55 @@ def coach():
         return redirect(url_for('login'))
     name = cursor.execute("SELECT FullName FROM Coach WHERE IdLog = ?",[session.get("coach")]).fetchone()[0]
     return render_template("coach/coachmain.html",name=name)
+
+# coach profile
+@app.route('/coach/profile', methods=['GET', 'POST'])
+def coach_profile():
+    if session.get("log") != True or session.get("coach") == None:
+        return redirect(url_for('login'))
+    data = cursor.execute("SELECT * FROM Coach WHERE IdCoach=?", [session.get("coach")]).fetchone()
+    email = cursor.execute("SELECT UserName FROM LoginCoach WHERE IdLog=?", [data[1]]).fetchone()[0]
+    if request.method == "POST":
+        username = request.form.get("username")
+        new_email = request.form.get("email")
+        old_password = request.form.get("old_password")
+        new_password = request.form.get("new_password")
+        title = request.form.get("title")
+        rapport_text = request.form.get("raport_text")
+        if username is not None and username.strip():
+            cursor.execute("UPDATE Coach SET FullName=? WHERE IdCoach=?", [username.strip(), session.get("coach")])
+        if (title is not None and title.strip() ) and (rapport_text is not None and rapport_text.strip()):
+            current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cursor.execute("INSERT INTO Rapports (IdUser, Title, RapportText, Date) VALUES (?, ?, ?, ?)", [session.get("coach"), title, rapport_text, current_time])
+        if (old_password is not None and old_password.strip() ) and (new_password is not None and new_password.strip()):
+            user_data = cursor.execute("SELECT * FROM LoginCoach WHERE IdLog=?", [data[1]]).fetchone()
+            if user_data[2] == old_password:
+                cursor.execute("UPDATE LoginCoach SET PassCode=? WHERE IdLog=?", [new_password, data[1]])
+                flash("Password updated successfully","success")
+            else:
+                flash("Invalid old password","error")
+        connection.commit()
+    return render_template("coach/profile.html", data=data, email=email)
+
+# coach profile picture
+@app.route('/coach/profile/change-profile-picture',methods=["POST","GET"])
+def change_pfp_coach():
+    if session.get("log") != True or session.get("coach") == None:
+        return redirect(url_for('login'))
+    user_info = cursor.execute("SELECT FullName,Pfp FROM Coach WHERE IdCoach=?", [session.get("coach")]).fetchall()[0]
+    if request.method == "POST":
+            UPLOAD_FOLDER = 'static/uploads/coach/profile'
+            app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+            file = request.files['file']
+            ALLOWED_EXTENSIONS = set(['bmp','svg','png', 'jpg', 'jpeg'])
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            filedir = app.config['UPLOAD_FOLDER']+"/"+filename
+            cursor.execute("UPDATE Coach SET Pfp = ? WHERE IdCoach = ?",[filedir,session.get("coach")])
+            connection.commit()
+            flash("Profile picture added successfully","success")
+            return redirect(url_for("coach_profile"))
+    return render_template("user/change-pfp.html",user_info=user_info)
 
 # cours manager page
 @app.route("/coach/cours-manager",methods = ['POST','GET'])
