@@ -48,7 +48,7 @@
                 <div class="cour">
                     {% for video in cour_video %}
                         <h3>{{video[2]}}</h3>
-                        <a href="#" class="delete_att">Delete video</a>
+                        <a href="/couch/cours-manager/delete:{{info[0]}}-{{video[0]}}" class="delete_att">Delete video</a>
                         <video width="400" controls>
                             <source src="/{{video[4]}}">
                         </video>
@@ -58,11 +58,14 @@
             <div class="show-doc">
                 <h1>Daocument</h1>
                 <div class="cour">
-                    <ul>
-                    {% for doc in cour_doc %}
-                        <li><a href="/{{doc[4]}}">{{doc[2]}}</a></li>
-                    {% endfor %}
-                    </ul>
+                    <table>
+                        {% for doc in cour_doc %}
+                        <tr>
+                            <td><a href="/{{doc[4]}}">{{doc[2]}}</a></td>
+                            <td><a href="/couch/cours-manager/delete:{{info[0]}}-{{doc[0]}}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
             </div>
         </div>

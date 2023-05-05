@@ -22,8 +22,9 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
     .course img {
-        height: 100px;
-        margin-right: 20px;
+        margin: auto 2%;
+        width: 10%;
+        height: 15vh;
     }
     .course h3 {
         margin: 0;

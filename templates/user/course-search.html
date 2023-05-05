@@ -26,7 +26,7 @@
                 <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
             </div>
             <div class="logo">
-                <a href="/"><img src="../../static/assets/2x-removebg-preview.png" id="logo"></a>
+                <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
             </div>
             <div class="links">
                 <div class="links">
@@ -40,6 +40,7 @@
                                 <li id="link"><a href="/user/cours" id="link">Buy Course</a></li>
                             </ul>
                         </li>
+                        <li><a href="/coaches">Coaches</a></li> 
                     </ul>
                 </div>
             <div class="logins">
@@ -50,14 +51,14 @@
             </div>
         </nav>
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search...">
+            <input type="text" id="search-input" placeholder="Search..." required>
             <button type="button" id="search-btn" onclick="searchAndRedirect()">Search</button>
         </div>
         <div class="playlist">
                 {% for course in courses %}
                     <a href="/user/cours/overview:{{course[0]}}">
                         <div class="cours">
-                            <img src="../{{course[6]}}" id="cover">
+                            <img src="/{{course[6]}}" id="cover">
                             <p id="title">{{course[2]}}</p>
                             <p id="type">{{course[3]}}</p>
                             <p id="price">{{course[4]}} DA</p>

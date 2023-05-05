@@ -72,12 +72,12 @@
                         <tr>
                             <td><p>{{row[0]}}</p></td>
                             <td><p>{{row[1]}}</p></td>
-                            <td><p>{{row[2]}}</p></td>
-                            <td><p>{{row[3]}}</p></td>
+                            <td><p>{{row[2][:200]}}</p></td>
+                            <td><p>{{row[3][:200]}} ....</p></td>
                             <td><img src="../../{{row[4]}}" id="media"></td>
                             <td><p>{{row[5]}}</p></td>
-                            <td id="func_remove"><a onclick="confirmAndRedirect('{{row[1]}}','/admin/events-manager/remove:{{row[0]}}')">remove</a></td>
-                            <td id="func_edit"><a href="/admin/events-manager/edit:{{row[0]}}">Edit</a></td>
+                            <td id="func_remove"><a onclick="confirmAndRedirect('{{row[1]}}','/admin/news-manager/remove:{{row[0]}}')">remove</a></td>
+                            <td id="func_edit"><a href="/admin/news-manager/edit:{{row[0]}}">Edit</a></td>
                         </tr>
                     {% endfor %}
                 </table>

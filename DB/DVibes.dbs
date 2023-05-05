@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="SQLshema.sql" id="Project-1446" database="Sqlite" >
+	<schema name="public" >
+		<table name="Attachment" spec="" >
+			<column name="IdAtt" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdCour" type="INTEGER" jt="4" />
+			<column name="Title" type="TEXT" jt="-1" />
+			<column name="Type" type="TEXT" jt="-1" />
+			<column name="Pwd" type="TEXT" jt="-1" />
+			<index name="pk_Attachment" unique="PRIMARY_KEY" >
+				<column name="IdAtt" />
+			</index>
+			<fk name="fk_IdCour" to_schema="public" to_table="Cours" options="" >
+				<fk_column name="IdCour" pk="IdCour" />
+			</fk>
+		</table>
+		<table name="Bill" spec="" >
+			<column name="IdBil" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdUser" type="INTEGER" jt="4" />
+			<column name="Status" type="TEXT" jt="-1" />
+			<column name="Note" type="TEXT" jt="-1" />
+			<column name="Date" type="TEXT" jt="-1" />
+			<column name="Pwd" type="TEXT" jt="-1" />
+			<index name="pk_Bill" unique="PRIMARY_KEY" >
+				<column name="IdBil" />
+			</index>
+			<fk name="fk_IdUser" to_schema="public" to_table="User" options="" >
+				<fk_column name="IdUser" pk="IdUser" />
+			</fk>
+		</table>
+		<table name="CheckUser" spec="" >
+			<column name="IdLog" type="INTEGER" jt="4" />
+			<column name="Code" type="TEXT" jt="-1" />
+			<fk name="fk_IdLog" to_schema="public" to_table="Login" options="" >
+				<fk_column name="IdLog" pk="IdLog" />
+			</fk>
+		</table>
+		<table name="Coach" spec="" >
+			<column name="IdCoach" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdLog" type="INTEGER" jt="4" />
+			<column name="FullName" type="TEXT" jt="-1" />
+			<column name="Pfp" type="TEXT" jt="-1" />
+			<column name="Gender" type="TEXT" jt="-1" />
+			<column name="BirthDay" type="TEXT" jt="-1" />
+			<column name="Balance" type="INTEGER" jt="4" />
+			<index name="pk_Coach" unique="PRIMARY_KEY" >
+				<column name="IdCoach" />
+			</index>
+			<fk name="fk_IdLog" to_schema="public" to_table="LoginCoach" options="" >
+				<fk_column name="IdLog" pk="IdLog" />
+			</fk>
+		</table>
+		<table name="CoachFeed" spec="" >
+			<column name="IdFeed" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdCoach" type="INTEGER" jt="4" />
+			<column name="Content" type="TEXT" jt="-1" />
+			<column name="Date" type="TEXT" jt="-1" />
+			<index name="pk_CoachFeed" unique="PRIMARY_KEY" >
+				<column name="IdFeed" />
+			</index>
+			<fk name="fk_IdCoach" to_schema="public" to_table="Coach" options="" >
+				<fk_column name="IdCoach" pk="IdCoach" />
+			</fk>
+		</table>
+		<table name="CoachMap" spec="" >
+			<column name="IdMap" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdCoach" type="INTEGER" jt="4" />
+			<column name="Location" type="TEXT" jt="-1" />
+			<column name="LocationLink" type="TEXT" jt="-1" />
+			<column name="Note" type="TEXT" jt="-1" />
+			<index name="pk_CoachMap" unique="PRIMARY_KEY" >
+				<column name="IdMap" />
+			</index>
+			<fk name="fk_IdCoach" to_schema="public" to_table="Coach" options="" >
+				<fk_column name="IdCoach" pk="IdCoach" />
+			</fk>
+		</table>
+		<table name="CoachPayment" spec="" >
+			<column name="IdCP" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdCoach" type="INTEGER" jt="4" />
+			<column name="Date" type="TEXT" jt="-1" />
+			<column name="Status" type="TEXT" jt="-1" />
+			<column name="CCP" type="TEXT" jt="-1" />
+			<column name="Note" type="TEXT" jt="-1" />
+			<index name="pk_CoachPayment" unique="PRIMARY_KEY" >
+				<column name="IdCP" />
+			</index>
+			<fk name="fk_IdCoach" to_schema="public" to_table="Coach" options="" >
+				<fk_column name="IdCoach" pk="IdCoach" />
+			</fk>
+		</table>
+		<table name="Cours" spec="" >
+			<column name="IdCour" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdCoach" type="INTEGER" jt="4" />
+			<column name="Title" type="TEXT" jt="-1" />
+			<column name="Type" type="TEXT" jt="-1" />
+			<column name="Price" type="INTEGER" jt="4" />
+			<column name="Description" type="TEXT" jt="-1" />
+			<column name="Pwd" type="TEXT" jt="-1" />
+			<index name="pk_Cours" unique="PRIMARY_KEY" >
+				<column name="IdCour" />
+			</index>
+			<fk name="fk_IdCoach" to_schema="public" to_table="Coach" options="" >
+				<fk_column name="IdCoach" pk="IdCoach" />
+			</fk>
+		</table>
+		<table name="DBalance" spec="" >
+			<column name="Coin" type="INTEGER" jt="4" />
+		</table>
+		<table name="Events" spec="" >
+			<column name="IdEvent" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="Title" type="TEXT" jt="-1" />
+			<column name="Discription" type="TEXT" jt="-1" />
+			<column name="Text" type="TEXT" jt="-1" />
+			<column name="Image" type="TEXT" jt="-1" />
+			<column name="Date" type="TEXT" jt="-1" />
+			<index name="pk_Events" unique="PRIMARY_KEY" >
+				<column name="IdEvent" />
+			</index>
+		</table>
+		<table name="Login" spec="" >
+			<column name="IdLog" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="UserName" type="TEXT" jt="-1" />
+			<column name="PassCode" type="TEXT" jt="-1" />
+			<index name="pk_Login" unique="PRIMARY_KEY" >
+				<column name="IdLog" />
+			</index>
+		</table>
+		<table name="LoginCashier" spec="" >
+			<column name="IdLog" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="UserName" type="TEXT" jt="-1" />
+			<column name="PassCode" type="TEXT" jt="-1" />
+			<column name="FullName" type="TEXT" jt="-1" />
+			<index name="pk_LoginCashier" unique="PRIMARY_KEY" >
+				<column name="IdLog" />
+			</index>
+		</table>
+		<table name="LoginCoach" spec="" >
+			<column name="IdLog" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="UserName" type="TEXT" jt="-1" />
+			<column name="PassCode" type="TEXT" jt="-1" />
+			<index name="pk_LoginCoach" unique="PRIMARY_KEY" >
+				<column name="IdLog" />
+			</index>
+		</table>
+		<table name="News" spec="" >
+			<column name="IdNew" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="Title" type="TEXT" jt="-1" />
+			<column name="Discription" type="TEXT" jt="-1" />
+			<column name="Text" type="TEXT" jt="-1" />
+			<column name="Img" type="TEXT" jt="-1" />
+			<column name="Date" type="TEXT" jt="-1" />
+			<index name="pk_News" unique="PRIMARY_KEY" >
+				<column name="IdNew" />
+			</index>
+		</table>
+		<table name="Purchase" spec="" >
+			<column name="IdPur" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdUser" type="INTEGER" jt="4" />
+			<column name="IdCour" type="INTEGER" jt="4" />
+			<column name="Date" type="TEXT" jt="-1" />
+			<index name="pk_Purchase" unique="PRIMARY_KEY" >
+				<column name="IdPur" />
+			</index>
+			<fk name="fk_IdCour" to_schema="public" to_table="Cours" options="" >
+				<fk_column name="IdCour" pk="IdCour" />
+			</fk>
+			<fk name="fk_IdUser" to_schema="public" to_table="User" options="" >
+				<fk_column name="IdUser" pk="IdUser" />
+			</fk>
+		</table>
+		<table name="Rapports" spec="" >
+			<column name="IdRapport" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdUser" type="INTEGER" jt="4" />
+			<column name="Title" type="TEXT" jt="-1" />
+			<column name="RapportText" type="TEXT" jt="-1" />
+			<column name="Date" type="TEXT" jt="-1" />
+			<index name="pk_Rapports" unique="PRIMARY_KEY" >
+				<column name="IdRapport" />
+			</index>
+			<fk name="fk_IdUser" to_schema="public" to_table="User" options="" >
+				<fk_column name="IdUser" pk="IdUser" />
+			</fk>
+		</table>
+		<table name="Request" spec="" >
+			<column name="IdReq" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="FullName" type="TEXT" jt="-1" />
+			<column name="Gender" type="TEXT" jt="-1" />
+			<column name="BDay" type="TEXT" jt="-1" />
+			<column name="Email" type="TEXT" jt="-1" />
+			<column name="Resume" type="TEXT" jt="-1" />
+			<column name="CV" type="TEXT" jt="-1" />
+			<index name="pk_Request" unique="PRIMARY_KEY" >
+				<column name="IdReq" />
+			</index>
+		</table>
+		<table name="TRHistory" spec="" >
+			<column name="IdTrans" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdUser" type="TEXT" jt="-1" />
+			<column name="IdLog" type="INTEGER" jt="4" />
+			<column name="Send_Date" type="TEXT" jt="-1" />
+			<column name="Receive_Date" type="TEXT" jt="-1" />
+			<column name="Note" type="TEXT" jt="-1" />
+			<index name="pk_TRHistory" unique="PRIMARY_KEY" >
+				<column name="IdTrans" />
+			</index>
+			<fk name="fk_IdUser" to_schema="public" to_table="User" options="" >
+				<fk_column name="IdUser" pk="IdUser" />
+			</fk>
+			<fk name="fk_IdLog" to_schema="public" to_table="LoginCashier" options="" >
+				<fk_column name="IdLog" pk="IdLog" />
+			</fk>
+		</table>
+		<table name="Tbl" />
+		<table name="User" spec="" >
+			<column name="IdUser" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="IdLog" type="INTEGER" jt="4" />
+			<column name="FullName" type="TEXT" jt="-1" />
+			<column name="Pfp" type="TEXT" jt="-1" />
+			<column name="Gender" type="TEXT" jt="-1" />
+			<column name="BirthDay" type="TEXT" jt="-1" />
+			<column name="Location" type="TEXT" jt="-1" />
+			<column name="Experience" type="TEXT" jt="-1" />
+			<column name="Phone" type="INTEGER" jt="4" />
+			<column name="SocialMedia" type="TEXT" jt="-1" />
+			<column name="Balance" type="INTEGER" jt="4" />
+			<column name="Interests" type="TEXT" jt="-1" />
+			<index name="pk_User" unique="PRIMARY_KEY" >
+				<column name="IdUser" />
+			</index>
+			<fk name="fk_IdLog" to_schema="public" to_table="Login" options="" >
+				<fk_column name="IdLog" pk="IdLog" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Layout" id="Layout-1a0" show_relation="columns" >
+		<entity schema="public" name="Attachment" color="C7F4BE" x="464" y="384" />
+		<entity schema="public" name="Bill" color="F4DDBE" x="624" y="352" />
+		<entity schema="public" name="CheckUser" color="F4DDBE" x="912" y="304" />
+		<entity schema="public" name="Coach" color="C7F4BE" x="240" y="48" />
+		<entity schema="public" name="CoachFeed" color="C7F4BE" x="160" y="320" />
+		<entity schema="public" name="CoachMap" color="C7F4BE" x="64" y="48" />
+		<entity schema="public" name="CoachPayment" color="C7F4BE" x="352" y="240" />
+		<entity schema="public" name="Cours" color="C7F4BE" x="432" y="48" />
+		<entity schema="public" name="DBalance" color="BED3F4" x="48" y="384" />
+		<entity schema="public" name="Events" color="BED3F4" x="48" y="448" />
+		<entity schema="public" name="Login" color="F4DDBE" x="768" y="400" />
+		<entity schema="public" name="LoginCashier" color="F4DDBE" x="1120" y="48" />
+		<entity schema="public" name="LoginCoach" color="F4DDBE" x="336" y="544" />
+		<entity schema="public" name="News" color="BED3F4" x="176" y="448" />
+		<entity schema="public" name="Purchase" color="C7F4BE" x="624" y="48" />
+		<entity schema="public" name="Rapports" color="F4DDBE" x="576" y="192" />
+		<entity schema="public" name="Request" color="BED3F4" x="48" y="224" />
+		<entity schema="public" name="TRHistory" color="F4DDBE" x="928" y="48" />
+		<entity schema="public" name="User" color="F4DDBE" x="768" y="48" />
+	</layout>
+</project>

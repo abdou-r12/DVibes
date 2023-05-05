@@ -108,7 +108,7 @@ def Create_tables(cursor):
     )
     '''
     cursor.execute(Login_coach)
-    print('logincoch table created successfully')
+    print('login coach table created successfully')
     Cours = '''
     CREATE TABLE IF NOT EXISTS Cours(
         IdCour INTEGER PRIMARY KEY AUTOINCREMENT,

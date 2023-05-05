@@ -25,48 +25,95 @@
             <p>Cashier n°: {{cashier}}</p>
             <a href="/logout-cashier" id="logout">logout</a>
         </nav>
-        <div class="bill_list">
-            <h1>pending bills</h1>
-            <table>
-                <tr>
-                    <th>User name</th>
-                    <th>Curent balance</th>
-                    <th>email</th>
-                    <th>Submition date</th>
-                </tr>
-                {% for bill in bill_pending %}
-                <tr>
+        <div class="container-1">
+            <div class="bill_list">
+                <h1>User Pending Bills</h1>
+                <table>
+                    <tr>
+                        <th>User name</th>
+                        <th>Curent balance</th>
+                        <th>email</th>
+                        <th>Submition date</th>
+                    </tr>
+                    {% for bill in bill_pending %}
+                    <tr>
+                            <td>{{bill[6]}}</td>
+                            <td>{{bill[8]}} DA</td>
+                            <td>{{bill[9]}}</td>
+                            <td>{{bill[4]}}</td>
+                            <td id="view"><a href="/cashier/add-credit:{{bill[0]}}">view</a></td>
+                    <tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="bill_list">
+                <h1>User Done Bills</h1>
+                <table>
+                    <tr>
+                        <th>User name</th>
+                        <th>Curent balance</th>
+                        <th>email</th>
+                        <th>Submition date</th>
+                        <th>Status</th>
+                        <th>note</th>
+                    </tr>
+                    {% for bill in bill_done %}
+                    <tr>
                         <td>{{bill[6]}}</td>
-                        <td>{{bill[8]}} DA</td>
+                        <td>{{bill[8]}}</td>
                         <td>{{bill[9]}}</td>
                         <td>{{bill[4]}}</td>
-                        <td id="view"><a href="/cashier/add-credit:{{bill[0]}}">view</a></td>
-                <tr>
-                {% endfor %}
-            </table>
+                        <td>{{bill[2]}}</td>
+                        <td>{{bill[3]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
-        <div class="bill_list">
-            <h1>done bills</h1>
-            <table>
-                <tr>
-                    <th>User name</th>
-                    <th>Curent balance</th>
-                    <th>email</th>
-                    <th>Submition date</th>
-                    <th>Status</th>
-                    <th>note</th>
-                </tr>
-                {% for bill in bill_done %}
-                <tr>
-                    <td>{{bill[6]}}</td>
-                    <td>{{bill[8]}}</td>
-                    <td>{{bill[9]}}</td>
-                    <td>{{bill[4]}}</td>
-                    <td>{{bill[2]}}</td>
-                    <td>{{bill[3]}}</td>
-                </tr>
-                {% endfor %}
-            </table>
+        <div class="container-2">
+            <div class="req_list">
+                <h1>Coach Pending Requests</h1>
+                <table>
+                    <tr>
+                        <th>Coach name</th>
+                        <th>Curent balance</th>
+                        <th>email</th>
+                        <th>Submition date</th>
+                    </tr>
+                    {% for req in coach_pending %}
+                    <tr>
+                            <td>{{req[6]}}</td>
+                            <td>{{req[7]}} DA</td>
+                            <td>{{req[8]}}</td>
+                            <td>{{req[2]}}</td>
+                            <td id="view"><a href="/cashier/coach-payment:{{req[0]}}">view</a></td>
+                    <tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="req_list">
+                <h1>Coach Done Requests</h1>
+                <table>
+                    <tr>
+                        <th>User name</th>
+                        <th>Curent balance</th>
+                        <th>email</th>
+                        <th>Submition date</th>
+                        <th>Status</th>
+                        <th>note</th>
+                    </tr>
+                    {% for req in coach_done %}
+                    <tr>
+                        <td>{{req[6]}}</td>
+                        <td>{{req[7]}}</td>
+                        <td>{{req[8]}}</td>
+                        <td>{{req[2]}}</td>
+                        <td>{{req[3]}}</td>
+                        <td>{{req[5]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </body>
     <script>

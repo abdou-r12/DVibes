@@ -25,7 +25,7 @@
                 <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
             </div>
             <div class="logo">
-                <a href="/"><img src="../../static/assets/2x-removebg-preview.png" id="logo"></a>
+                <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
             </div>
             <div class="links">
                 <ul id="elements-links">
@@ -38,12 +38,18 @@
                             <li id="link"><a href="/user/cours" id="link">Buy Course</a></li>
                         </ul>
                     </li>
+                    <li><a href="/coaches">Coaches</a></li>
                 </ul>
             </div>
             <div class="logins">
                 <ul id="elements-logins">
-                    <li><a href="/user" class="account_icon">{{user_info}}</a></li>
-                    <li><a href="/logout" class="logout">Log out</a></li>
+                {% if log == True %}
+                    <li><a href="/profile-check" class="account_icon">{{info}}</a></li>
+                    <li><a href="/logout-check" class="logout">Log out</a></li>
+                {% else %}
+                    <li><a href="/login" id="login">Log in</a></li>
+                    <li><a href="/singup" id="singup">Sing up</a></li>
+                {% endif %}
                 </ul>
             </div>
         </nav>

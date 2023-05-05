@@ -5,8 +5,8 @@ import random
 import string
 
 def twostepcheck(receiver):
-    email_sender= "abdoupolo29@gmail.com"
-    email_password ="oxbcpxmjwubxufox"
+    email_sender= "dvibeslildeep@gmail.com"
+    email_password ="ehvjllblgpjttanm"
     email_receiver = receiver
     subject ="Confirmation code"
     code = get_random_string(8)

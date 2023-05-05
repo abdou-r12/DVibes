@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/coach-view.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <nav>
+            <div class="menu">
+                <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
+            </div>
+            <div class="links">
+                <ul id="elements-links">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/user/cours">Courses</a></li>
+                    <li><a href="/coaches">Coaches</a></li>
+                    {% if log == False %}
+                        <li><a href="/becoach">Become a coach</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="logins">
+                <ul id="elements-logins">
+                    {% if log == True %}
+                        <li><a href="/profile-check" class="account_icon">{{info}}</a></li>
+                        <li><a href="/logout-check" class="logout">Log out</a></li>
+                    {% else %}
+                        <li><a href="/login" id="login">Log in</a></li>
+                        <li><a href="/singup" id="singup">Sing up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <section id="info">
+            <div class="info">
+                <h1>Coach info</h1>
+                <span>Name: {{coach_info[2]}}</span>
+                <span>Gender: {{coach_info[4]}}</span>
+                <span>Birthday: {{coach_info[5]}}</span>
+            </div>
+            <div class="pfp">
+                {% if coach_info[3] != 'None' %}
+                    <img src="../../{{coach_info[3]}}">
+                {% else %}
+                    <img src="../../static/assets/user.png">
+                {% endif %}
+            </div>
+        </section>
+        <section id="course">
+            <div class="course">
+                <h1>Coach Course List</h1>
+                <table>
+                    {% for course in coach_course %}
+                    <tr>
+                        <td>{{course[2]}}</td>
+                        <td>{{course[3]}}</td>
+                        <td>{{course[4]}} DA</td>
+                        <td><a href="/user/cours/overview:{{course[0]}}">view course</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+        <section id="location">
+            <div class="location">
+                <h1>Where i can find that coach ?</h1>
+                <table>
+                    {% for location in coach_location %}
+                    <tr>
+                        <td>{{location[2]}}<td>
+                        <td>{{location[4]}}</td>
+                        <td><a href="{{location[3]}}">view on google map</a></td>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+        <section id="feed">
+            <div class="view">
+                <h1>Coach Feed</h1>
+                {% for feed in coach_feed %}
+                <div class="feed_post">
+                    <span id="post" id="text">{{feed[2]}}</span>
+                    <label id="date">{{feed[3]}}</label>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </body>
+    <footer>
+        <div class="row rowone">
+            <div class="footer_logo">
+                <a href="/"><img src="../../static/assets/2x-removebg-preview.png"></a>
+            </div>
+            <div class="explorer">
+                <span>Explorer</span>
+                <a href="/about-us">What's DVibes</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="coach">
+                <span>Coach</span>
+                <a href="#">FAQ</a>
+            </div>
+        </div>
+        <div class="row rowtwo">
+            <div class="contact">
+                <p>Contact us<br>dvibeslildeep@gmail.com</p>
+            </div>
+            <div class="sm">
+                <span>follow us</span>
+                <a href="https://www.facebook.com/dvibeslildeep" target="_blank"><img src="../../static/assets/facebook.png"></a>
+                <a href="https://www.instagram.com/dvibeslildeep/" target="_blank"><img src="../../static/assets/instagram.png"></a>
+            </div>
+        </div>
+        <div class="row rowthree">
+            <div class="copyright">
+                <p>DVibes © 2023 Company, Inc</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

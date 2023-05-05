@@ -12,7 +12,7 @@
 }
 @media screen and (min-width: 414px){
     ::placeholder{
-        padding-left: 1vw;
+        padding-left: 1%;
     }
     .links a{
         text-decoration: none;
@@ -70,6 +70,7 @@
         opacity: 1;
     }
     .input{
+        padding-left: 2%;
         display: block;
         width: 22vw;
         height: 5vh;

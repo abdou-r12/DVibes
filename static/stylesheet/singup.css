@@ -67,6 +67,7 @@
         opacity: 1;
     }
     .input{
+        padding-left: 2%;
         display: block;
         width: 22vw;
         height: 5vh;

@@ -10,7 +10,8 @@ body{
     background-color: #F3F5F9;
 }
 @media screen and (min-width: 414px){
-    .error{        width: 100vw;
+    .error{
+        width: 100vw;
         color: #20721c;
         background-color: #d7f8de;
         font-size: 1.2vw;
@@ -59,7 +60,12 @@ body{
         margin: auto;
     }
     .btn:hover {
-        background-color: #8e7b10; /* Dark green on hover */
+        background-color: #8e7b10;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
     .ccp{
         width: 45%;

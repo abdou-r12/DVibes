@@ -194,8 +194,13 @@ body{
     a.delete_att:hover {
         background-color: #d32f2f;
     }
-    li{
-        margin: 2%;
-        font-size: 110%;
+    table{
+        width: 100%;
+    }
+    table td:first-child{
+        width: 90%;
+    }
+    table td:last-child{
+        width: 10%;
     }
 }

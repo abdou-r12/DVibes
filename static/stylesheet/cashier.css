@@ -36,21 +36,26 @@
         background-color: #FFDB15;
         color: #000000;
     }
-    .bill_list {
+    .container-1,.container-2{
+        width: 50%;
+    }
+    .container-1{
+        float: left;
+    }
+    .container-2{
+        float: right;
+    }
+    .bill_list ,.req_list{
         margin: 2rem;
         background-color: white;
         padding: 2rem;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
-    h1 {
+    h1{
         font-size: 2rem;
         font-weight: bold;
         margin-bottom: 1rem;
-    }
-    img {
-        margin-top: 1rem;
-        max-width: 100%;
     }
     table {
         border-collapse: collapse;

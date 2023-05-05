@@ -97,21 +97,36 @@ body{
         margin-top: 8vh;
     }
     table{
-        width: 75vw;
+        width: 95%;
         margin-bottom: 5vh;
     }
     th{
         border: #000000 solid 1px;
         background-color: #FFDB15;
         font-size: 1.2vw;
-        overflow: hidden;
     }
     td{
         background-color: #FFFFFF;
         border: #000000 solid 1px;
+        padding: 1%;
+    }
+    table td:nth-child(1){
+        width: 5%;
+    }
+    table td:nth-child(2){
+        width: 10%;
+    }
+    table td:nth-child(3){
+        width: 25%;
+    }
+    table td:nth-child(4){
+        width: 25%;
+    }
+    table td:nth-child(5){
+        width: 15%
     }
     #media{
-        width: 5vw;
+        max-width: 100%;
     }
     #func_edit{
         background-color: #C1FF72;

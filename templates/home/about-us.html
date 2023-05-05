@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" id="title-icon">
+        <title>DVibes</title>
+        <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/about-us.css')}}"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <script src="{{ url_for('static',filename='script.js/NavBarMenu.js')}}" type="text/javascript"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <nav>
+            <div class="menu">
+                <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
+            </div>
+            <div class="links">
+                <ul id="elements-links">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/user/cours">Courses</a></li>
+                    <li><a href="/coaches">Coaches</a></li>
+                    {% if log == False %}
+                        <li><a href="/becoach">Become a coach</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="logins">
+                <ul id="elements-logins">
+                    {% if log == True %}
+                        <li><a href="/profile-check" class="account_icon">{{info}}</a></li>
+                        <li><a href="/logout-check" class="logout">Log out</a></li>
+                    {% else %}
+                        <li><a href="/login" id="login">Log in</a></li>
+                        <li><a href="/singup" id="singup">Sing up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <section id="summary">
+        <div class="summary" data-aos="fade-right">
+            <div class="container-1">
+                <div class="summary-logo">
+                    <img src="../../static/assets/User_name-removebg-preview.png">
+                </div>
+                <div class="summary-title">
+                    <span><b>What's DVibes</b></span>
+                </div>
+                <div class="summary-desc">
+                    <span>The first musical learnig platform in Algeria !</span>
+                </div>
+                <div class="summary-rm">
+                    <button onclick="scrollToSectionFirst()">Read More</div>
+                </div>
+            </div>
+        </div>
+        </section>
+        <section id="about">
+        <div class="about">
+            <div class="abouttext" data-aos="slide-right">
+                <span>About DVibes</span>
+                <p>Dvibes is a music streaming platform that allows users to discover and listen to a wide variety of music genres. It offers personalized playlists, radio stations, and recommendations based on users' listening history and preferences. Dvibes also features a social aspect where users can connect with friends, follow artists and share music. The platform has a sleek and user-friendly interface that makes it easy to navigate and explore. Overall, Dvibes aims to provide a seamless and enjoyable music listening experience for its users.</p>
+            </div>
+            <div class="aboutimg" data-aos="fade-left">
+                <img src="../../static/assets/pexels-james-sutton-228842.jpg">
+            </div>
+            <div class="aboutmore">
+                <button onclick="scrollToSectionSecond()">Read More</div>
+            </div>
+        </div>
+        </section>
+        <section id="service">
+        <div class="service">
+            <div class="service-title" data-aos="zoom-in">
+                <span>Our Services</span>
+            </div>
+            <div class="service-container">
+                <div class="service-card" data-aos="flip-up">
+                    <span>News</span>
+                    <p><i>Dvibes News is a digital media platform for news and current affairs.</i></p>
+                </div>
+                <div class="service-card" data-aos="flip-down">
+                    <span>Events</span>
+                    <p><i>Dvibes events feature live music performances and DJ sets.</i></p>
+                </div>
+                <div class="service-card" data-aos="flip-up">
+                    <span>Courses</span>
+                    <p><i>Interactive online courses in design and creative technology.</i></p>
+                </div>
+                <div class="service-card" data-aos="flip-down">
+                    <span>Coaches</span>
+                    <p><i>Dvibes coaches individuals and teams to achieve their full potential.</i></p>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <div class="row rowone">
+            <div class="footer_logo">
+                <a href="/"><img src="../../static/assets/2x-removebg-preview.png"></a>
+            </div>
+            <div class="explorer">
+                <span>Explorer</span>
+                <a href="/about-us">What's DVibes</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="coach">
+                <span>Coach</span>
+                <a href="#">FAQ</a>
+            </div>
+        </div>
+        <div class="row rowtwo">
+            <div class="contact">
+                <p>Contact us<br>dvibeslildeep@gmail.com</p>
+            </div>
+            <div class="sm">
+                <span>follow us</span>
+                <a href="https://www.facebook.com/dvibeslildeep" target="_blank"><img src="../../static/assets/facebook.png"></a>
+                <a href="https://www.instagram.com/dvibeslildeep/" target="_blank"><img src="../../static/assets/instagram.png"></a>
+            </div>
+        </div>
+        <div class="row rowthree">
+            <div class="copyright">
+                <p>DVibes © 2023 Company, Inc</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        AOS.init({
+            duration: 2000,
+            delay: 500,
+        });
+        function scrollToSectionFirst() {
+			const section = document.getElementById('about');
+			section.scrollIntoView({behavior: 'smooth'});
+		}
+        function scrollToSectionSecond() {
+			const section = document.getElementById('service');
+			section.scrollIntoView({behavior: 'smooth'});
+		}
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
+</html>

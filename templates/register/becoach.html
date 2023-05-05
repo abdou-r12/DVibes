@@ -23,15 +23,15 @@
         </div>
         <div class="head">
             <div class="links left">
-                <a href="#">News</a>
-                <a href="#">Events</a>
+                <a href="/news">News</a>
+                <a href="/events">Events</a>
             </div>
             <div class="logo">
                 <a href="/"><img class="logo" src="../../static/assets/2-removebg-preview-coach-removebg-preview.png"></a>
             </div>
             <div class="links right">
-                <a href="#">Course</a>
-                <a href="/login">Login</a>
+                <a href="/user/cours">Course</a>
+                <a href="/singup">Explorer</a>
             </div>
         </div>
         <hr>
@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="tab-1" id="tab-1">
                     <p id="title">Create Account</p>
-                    <input type="text" class="input email" name="email" placeholder="Email" required>
+                    <input type="text" class="input email" name="email" placeholder="Email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
                     <div class="error">
                         {% with messages = get_flashed_messages() %}
                             {% if messages %}

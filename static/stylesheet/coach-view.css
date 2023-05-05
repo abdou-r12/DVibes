@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+}
+body{
+    width: 100vw;
+}
+@media screen and (min-width: 414px){
+    #info{
+        width: 100%;
+        display: flex;
+    }
+    .info{
+        width: 80%;
+    }
+    .info h1{
+        border-left: #FFDB15 solid 5px;
+        padding-left: 2%;
+        margin: 5%;
+        font-size: 200%;
+    }
+    .info span{
+        margin: 5%;
+        display: block;
+        font-size: 1.5vw;
+    }
+    .pfp img{
+        width: 50%;
+        margin: 15%;
+    }
+    #course{
+        width: 100%;
+    }
+    .course h1{
+        border-left: #FFDB15 solid 5px;
+        padding-left: 2%;
+        margin: 0 3%;
+        font-size: 200%;
+    }
+    .course table{
+        margin: 3%;
+        width: 80%;
+        text-align: left;
+    }
+    .course td{
+        padding: 1%
+    }
+    #location{
+        width: 100%;
+    }
+    .location h1{
+        border-left: #FFDB15 solid 5px;
+        padding-left: 2%;
+        margin: 0 3%;
+        font-size: 200%;
+    }
+    .location table{
+        width: 85%;
+        margin: 4%;
+        text-align: left;
+    }
+    .location a,.course a{
+        color: blue;
+    }
+    .location a:hover,.course a:hover{
+        color: navy;
+        transition: 0.2s ease-in-out;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        -ms-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
+    }
+    .location table td:last-child{
+        width: 15%;
+    }
+    .location table td:first-child{
+        width: 35%;
+    }
+    .location table td:nth-child(2){
+        width: 35%;
+    }
+    .view{
+        width: 100%;
+    }
+    .view h1{
+        border-left: #FFDB15 solid 5px;
+        padding-left: 2%;
+        margin: 0 3%;
+        font-size: 200%;
+    }
+    .feed_post{
+        width: 90%;
+        margin: auto;
+    }
+    .feed_post *{
+        display: block;
+    }
+    .feed_post span{
+        padding: 2% 0 2% 2%;
+        font-size: 1.3vw;
+    }
+    .feed_post label{
+        color: #999;
+        font-size: small;
+    }
+}

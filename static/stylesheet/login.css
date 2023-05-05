@@ -6,22 +6,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-.user_login,.coach_login{
-    display: none;
-    transition: 0.5s;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -ms-transition: 0.5s;
-    -o-transition: 0.5s;
-}
 @media screen and (min-width: 414px){
-    .head{
-        position: absolute;
-        margin-left: 42.5%;
-    }
-    .logo{
-        width: 15vw;
-    }
     .error{
         width: 100vw;
         color: #721c24;
@@ -31,193 +16,72 @@
     .error p{
         padding: 1.5vh 0vw 1.5vh 2vw;
     }
-    .check{
-        margin: auto;
+    .container{
+        background: #ffffff;
+        box-shadow:  -11px -11px 22px #e8e8e8,11px 11px 22px #ffffff;
+        border-radius: 2rem;
+        margin: 5% 30% 0 30%;
+        width: 40%;
+        height: 80vh;
+        padding: 3% 5%;
     }
-    .user_con,.coach_con{
-        width: 50%;
-        height: 100vh;
-    }
-    .user_con{
-        float: left;
-        background-color: #FFDB15;
-    }
-    .coach_con{
-        float: right;
-        background-color: #F3F5F9;
-    }
-    .btn{
-        margin-top: 40%;
-        margin-left: 25%;
-        border: none;
-        border-radius: 1.5rem;
-        font-size: 2vw;
-        padding: 5vh;
-        -webkit-border-radius: 1.5rem;
-        -moz-border-radius: 1.5rem;
-        -ms-border-radius: 1.5rem;
-        -o-border-radius: 1.5rem;
-        transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
-    }
-    .user{
-        background-color: #F3F5F9;
-    }
-    .coach{
-        background-color: #FFDB15;
-    }
-    .btn:hover{
-        background-color: #000000;
-        color: #FFFFFF;
-        transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
-    }
-    .user_login,.coach_login{
-        margin-top: 30vh;
-        margin-left: 15vw;
-    }
-    .user_login p,.coach_login p{
-        font-size: 2vw;
-    }
-    .user_login a,.coach_login a{
-        color: #000000;
-        text-decoration: underline;
-    }
-    .input{
-        border: none;
-        border-bottom: #000000 0.5px solid;
+    .container *{
         display: block;
-        width: 20vw;
-        height: 5vh;
-        margin-top: 5vh;
-        font-size: 1.2vw;
+    }
+    .container img{
+        width: 50%;
+        margin: 5% 0 5% 22%;
+    }
+    .switch{
+        border-radius: 1rem;
+        width: 80%;
+        margin-left: 10%;
+    }
+    #exp{
+        background-color: #FFDB15;
+    }
+    .container button{
+        border-radius: 1rem;
+        display: inline-block;
+        border: #999 1px solid;
+        width: 48%;
+        padding: 2% 0;
+        background-color: transparent;
+    }
+    .container input{
+        border: 1px #999 solid;
         border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
-        transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
+        width: 100%;
+        padding: 2%;
+        margin: 10% 0;
+        transition: 0.2s ease-in-out;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        -ms-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
     }
-    ::placeholder{
-        padding-left: 1vw;
-    }
-    .input:hover{
-        background-color: #F3F5F9;
-        transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
+    .container input:focus{
+        background-color: #e2e1e1;
     }
     .sub{
-        background-color: #1E1E32;
-        color:#FFFFFF;
-        transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
+        background-color: #FFDB15;
     }
     .sub:hover{
-        background-color: #F3F5F9;
-        color: #000000;
-        transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
+        background-color: #d7ba13;
+    }
+    .coach_con{
+        display: none;
+    }
+    .container a{
+        color: rgb(2, 2, 176);
+        text-align: center;
+    }
+    .container a:hover{
+        color:rgb(4, 4, 224);
     }
     .copyright{
-        width: 100vw;
-        position: fixed;
+        color: #999;
+        position: absolute;
         bottom: 0;
-    }
-}
-@media screen and (max-width: 414px){
-    .head{
-        width: 100vw;
-        background-color: #FFDB15;
-        border-bottom: #000000 solid 1px;
-    }
-    .logo{
-        width: 50vw;
-        margin: 2vh 25vw 2vh 25vw;
-        margin-left: 25vw;
-    }
-    .user_con,.coach_con{
-        width: 100vw;
-    }
-    .btn{
-        margin-top: 2vh;
-        margin-left: 5vw;
-        width: 90vw;
-        height: 10vh;
-        border: none;
-        font-size: 8vw;
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
-    }
-    .user_login{
-        width: 100vw;
-        margin-top: 2vh;
-    }
-    .user_login p,.coach_con p{
-        font-size: 10vw;
-        margin-left: 5vw;
-    }
-    .input{
-        width: 90vw;
-        height: 7vh;
-        margin-left: 5vw;
-        margin-top: 2vh;
-        font-size: 7vw;
-        border: #000000 1px solid;
-        border-radius: 0.5rem;
-        -webkit-border-radius: 0.5rem;
-        -moz-border-radius: 0.5rem;
-        -ms-border-radius: 0.5rem;
-        -o-border-radius: 0.5rem;
-    }
-    ::placeholder{
-        padding-left: 5vw;
-        color: rgb(165, 165, 165);
-    }
-    .sub{
-        background-color: #1E1E32;
-        color: #F3F5F9;
-        margin-bottom: 5vh;
-    }
-    .user_con a,.coach_con a{
-        font-size: 5vw;
-        margin-left: 15vw;
-        color: #000000;
-        text-decoration: underline;
-    }
-    .copyright{
-        width: 100vw;
-        position: fixed;
-        bottom: 0;
-    }
-    .error{
-        width: 100vw;
-        color: #721c24;
-        background-color: #f8d7da;
-        font-size: 5vw;
-    }
-    .error p{
-        padding: 2vh 5vw 2vh 5vw;
     }
 }

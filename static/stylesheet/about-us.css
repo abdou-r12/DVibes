@@ -1,0 +1,204 @@
+@keyframes start{
+    0%{opacity: 0;}
+    100%{opacity: 100%;}
+}
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+        -webkit-transform: translateY(10px);
+        -moz-transform: translateY(10px);
+        -ms-transform: translateY(10px);
+        -o-transform: translateY(10px);
+}
+    100% {
+        transform: translateY(0);
+    }
+}
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+}
+body{
+    width: 100vw;
+}
+@media screen and (min-width: 414px){
+    body::-webkit-scrollbar {
+        width: 0;
+    }
+    body::-webkit-scrollbar {
+        width: 0;
+    }
+    body::-moz-scrollbar {
+        width: 0;
+    }
+    body::-ms-scrollbar {
+        width: 0;
+    }
+    .summary{
+        background-image: url("../../static/assets/aboutuscover.png");
+        height: 90vh;
+    }
+    .container-1{
+        height: 90vh;
+        width: 70%;
+        float: right;
+    }
+    .summary-logo,.summary-title,.summary-desc,.summary-rm{
+        width: 100%;
+        opacity: 0;
+    }
+    .summary-logo{
+        animation: start 1.5s forwards;
+    }
+    .summary-title{
+        animation: start 1.5s forwards;
+        animation-delay: 1s;
+    }
+    .summary-desc{
+        animation: start 1.5s forwards;
+        animation-delay: 1.5s;
+    }
+    .summary-rm{
+        animation: start 1.5s forwards;
+        animation-delay: 2s;
+    }
+    .summary-logo img{
+        width: 30%;
+        margin: 5% 5% 0 40%;
+    }
+    .summary-title span{
+        font-size: 2.5vw;
+        margin: 0 0 0 43%;
+    }
+    .summary-desc span{
+        font-size: 1.5vw;
+        margin: 0 0 0 34%;
+    }
+    .summary-rm button{
+        border: none;
+        background-color: #FFDB15;
+        margin: 2% 0 0 48.5%;
+        font-size: 1.2vw;
+        padding: 2%;
+        border-radius: 1rem;
+        transition: 0.2s ease-in-out;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        -ms-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
+}
+    .summary-rm button:hover{
+        background-color: #ddbf13;
+        animation: none;
+        animation: jump 2s infinite;
+    }
+    .about{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        background-color: #F3F5F9;
+    }
+    .abouttext{
+        width: 50%;
+        padding: 5% 5% 0 5%;
+    }
+    .abouttext span{
+        font-size: 2.5vw;
+        margin: 5% 5% 0 5%;
+    }
+    .abouttext p{
+        margin: 5%;
+        font-size: 1.5vw;
+        line-height: 2;
+        text-align: justify;
+        text-indent: 1em;
+    }
+    .aboutimg{
+        width: 50%;
+        padding: 5% 5% 0% 5%;
+    }
+    .aboutimg img{
+        width: 90%;
+    }
+    .aboutmore{
+        width: 100%;
+        height: 7vh;
+        align-self: flex-end;
+    }
+    .aboutmore button{
+        border-radius: 0.5rem;
+        background-color: #FFDB15;
+        width: 20%;
+        font-size: 1.5vw;
+        border: none;
+        margin: 0 0 0 45%;
+        transition: 0.2s ease-in-out;
+    }
+    .aboutmore button:hover{
+        background-color: #ddbf13;
+        animation: jump 1s infinite;
+    }
+    .service{
+        width: 100%;
+        height: 100vh;
+        background-image: url(../../static/assets/pexels-pavel-danilyuk-7521175.jpg);
+        background-size: cover;
+    }
+    .service-title{
+        color: #fff;
+        font-size: 4vw; 
+        padding: 5% 38%;
+        display: block;
+        width: 100%;
+    }
+    .service-container{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    .service-card{
+        padding: 2%;
+        border-radius: 2rem;
+        background-color: rgba(0,0,0, 0.8);
+        color: #fff;
+        width: 20%;
+        height: 35vh;
+        margin: 2.5%;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        -webkit-transition: 0.2s ease-in-out;
+        -moz-transition: 0.2s ease-in-out;
+        -ms-transition: 0.2s ease-in-out;
+        -o-transition: 0.2s ease-in-out;
+}
+    .service-card:hover{
+        margin-top: 2%;
+        background-color: rgba(0,0,0, 0.9);
+    }
+    .service-card span{
+        margin-left: 5%;
+        font-size: 2vw;
+        font-weight: bolder;
+        color:#FFDB15;
+    }
+    .service-card p{
+        margin-top: 5%;
+        font-weight: lighter;
+        line-height: 2;
+        text-indent: 1em;
+    }
+}

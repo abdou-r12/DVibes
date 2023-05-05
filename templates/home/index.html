@@ -5,11 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" id="title-icon">
         <title>DVibes</title>
         <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/index.css')}}"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <script src="{{ url_for('static',filename='script.js/NavBarMenu.js')}}" type="text/javascript"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     </head>
     <body>
         <div class="preloader" id="preloader">
@@ -29,14 +32,15 @@
                 <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
             </div>
             <div class="logo">
-                <a href="/"><img src="../../static/assets/2x-removebg-preview.png" id="logo"></a>
+                <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
             </div>
             <div class="links">
                 <ul id="elements-links">
                     <li><a href="/news">News</a></li>
                     <li><a href="/events">Events</a></li>
-                    <li><a href="/user/mycourses">Courses</a></li>
-                    {% if log == False %}
+                    <li><a href="/user/cours">Courses</a></li>
+                    <li><a href="/coaches">Coaches</a></li>
+                    {% if log == None %}
                         <li><a href="/becoach">Become a coach</a></li>
                     {% endif %}
                 </ul>
@@ -53,121 +57,218 @@
                 </ul>
             </div>
         </nav>
-        <div class="slideshow-container">
-            <div class="mySlides fade">
-                <div class="numbertext first_label">
-                    <p class="primary-title">Musical Buzz</p>
-                    <p class="secondary-title">Check out the lateast musical news</p>
-                    <a href="/news" class="btn">Explore Music Headlines</a>
-                </div>
-                <img src="../../static/assets/pexels-dmitry-demidov-3783471.jpg" class="slid-img" >
+        <section id="section-1">
+            <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 690" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+                        <stop offset="5%" stop-color="#FFDB15"></stop>
+                        <stop offset="95%" stop-color="#8ED1FC"></stop>
+                    </linearGradient>
+                </defs>
+                <path d="M 0,700 C 0,700 0,233 0,233 C 106.44976076555025,222.71291866028707 212.8995215311005,212.42583732057417 292,215 C 371.1004784688995,217.57416267942583 422.8516746411483,233.0095693779904 523,216 C 623.1483253588517,198.9904306220096 771.6937799043061,149.53588516746413 881,156 C 990.3062200956939,162.46411483253587 1060.3732057416269,224.8468899521531 1147,247 C 1233.6267942583731,269.1531100478469 1336.8133971291866,251.07655502392345 1440,233 C 1440,233 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 350)"></path><defs><linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="5%" stop-color="#F78DA7"></stop><stop offset="95%" stop-color="#8ED1FC"></stop></linearGradient></defs><path d="M 0,700 C 0,700 0,466 0,466 C 111.11004784688996,462.47846889952154 222.2200956937799,458.95693779904303 306,440 C 389.7799043062201,421.04306220095697 446.2296650717702,386.65071770334936 550,394 C 653.7703349282298,401.34928229665064 804.8612440191389,450.44019138755976 911,459 C 1017.1387559808611,467.55980861244024 1078.3253588516745,435.58851674641147 1159,430 C 1239.6746411483255,424.41148325358853 1339.8373205741627,445.2057416267943 1440,466 C 1440,466 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-1" transform="rotate(-180 720 350)"></path>
+            </svg>
+            <div class="summary">
+                <h1 data-aos="slide-right">DVibes</h1>
+                <span data-aos="slide-right">Let the music speaks !</span>
+                <br><br>
+                <span data-aos="slide-right">The first Algerian musical learning platform</span>
+                <br><br>
+                <button data-aos="zoom-in" onclick="ScrollTo('section-2')">LEARN MORE</button>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat">
+                <img src="../../static/assets/laptop.png" data-aos="slide-up" id="laptop">
+                <img src="../../static/assets/idk-removebg-preview.png" data-aos="fade-down-right" class="img idk">
+                <img src="../../static/assets/banjo-removebg-preview.png" data-aos="fade-right" class="img banjo">
+                <img src="../../static/assets/piano-removebg-preview.png" data-aos="fade-left" class="img piano">
+                <img src="../../static/assets/sax-removebg-preview.png" data-aos="fade-down-right" class="img sax">
+                <img src="../../static/assets/Accordion-removebg-preview.png" data-aos="fade-down-left" class="img acc">
+                <img src="../../static/assets/drum-removebg-preview.png" data-aos="fade-down-left" class="img drum">
             </div>
-            <div class="mySlides fade">
-                <div class="numbertext second_label">
-                    <p class="primary-title">Upcoming Events</p>
-                    <p class="secondary-title">Don’t miss the biggest musical event across the country</p>
-                    <a href="/events" class="btn">Explore Music Events</a>
+        </section>
+        <hr data-aos="fade">
+        <section id="section-2">
+            <div class="services">
+                <div class="service-img">
+                    <img data-aos="fade-right" src="../../static/assets/listen.png" class="listen">
                 </div>
-                <img src="../../static/assets/index.png" class="slid-img">
-            </div>
-            <div class="mySlides fade">
-                <div class="numbertext third_label">
-                    <p class="primary-title">Skill-Building Courses</p>
-                    <p class="secondary-title">Apply for the best courses of music produced by the best coaches</p>
-                    <a href="/user/mycourses" class="btn">Explore Musical Courses</a>
-                </div>
-                <img src="../../static/assets/pexels-pavel-danilyuk-7521299.jpg" class="slid-img">
-            </div>
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
-        </div>
-        <br>
-        <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
-        <div class="container-1">
-            <img src="../../static/assets/Untitled designfs.png" class="img first">
-            <p class="texttitle1">Unleash Your Musical Potential</p>
-            <p class="textdesc1">Unleash your musical potential with our expert-led lessons for various instruments. Learn at your own pace and stay up-to-date with the latest music news and events. Join our community of music enthusiasts and unlock your potential today!</p>
-        </div>
-        <hr>
-        <div class="container-2">
-            <img src="../../static/assets/Untitled designqsdqsd.png" class="img second">
-            <p class="texttitle2">Unleash Your Musical Potential</p>
-            <p class="textdesc2">Unleash your musical potential with our expert-led lessons for various instruments. Learn at your own pace and stay up-to-date with the latest music news and events. Join our community of music enthusiasts and unlock your potential today!</p>
-        </div>
-        <hr>
-        <div class="container-3">
-            <p class="texttitle">Choose Your Musical Path</p>
-            <div class="container-31">
-                <div class="row1">
-                    <a href="#"><img  class="test" src="../../static/assets/piano.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/drum.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/flut.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/guitar.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/sax.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/violent.png"></a>
-                </div>
-                <div class="row2">
-                    <a href="#"><img  class="test" src="../../static/assets/Accordion.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/banjo.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/guitar2.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/harp.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/idk.png"></a>
-                    <a href="#"><img  class="test" src="../../static/assets/trumpet.png"></a>
+                <div class="service-cards">
+                    <div class="service-title-div">
+                        <div class="service-title" data-aos="fade-down">
+                            <span>Learn and Explore with DVibes</span>
+                        </div>
+                    </div>
+                    <div class="service-card-div">
+                        <div class="service-card" data-aos="fade-up">
+                            <div class="service-card-img" >
+                                <img src="../../static/assets/broadcast.png">
+                            </div>
+                            <div class="service-card-content">
+                                <h2>Check out Leatest news and events</h2>
+                                <span>Stay informed and inspired with the latest news and events from dvibes - your gateway to a world of creativity and innovation!</span>
+                            </div>
+                            <button onclick="ScrollTo('section-3')">Learn more</button>
+                        </div>
+                        <div class="service-card" data-aos="fade-up">
+                            <div class="service-card-img">
+                                <img src="../../static/assets/online-learning.png">
+                            </div>
+                            <div class="service-card-content">
+                                <h2>Learn or emprove your musical skils</h2>
+                                <span>Transform your passion into a profitable online business with DVibes' expert coaches and comprehensive courses.</span>
+                            </div>
+                            <button onclick="ScrollTo('section-4')">Learn more</button>
+                        </div>
+                        <div class="service-card" data-aos="fade-up">
+                            <div class="service-card-img">
+                                <img src="../../static/assets/whistle.png">
+                            </div>
+                            <div class="service-card-content">
+                                <h2>Meet the best musical coach</h2>
+                                <span>Unlock your full potential and achieve your goals with the expert guidance of the experienced coaches at Dvibes.</span>
+                            </div>
+                            <button onclick="ScrollTo('section-5')">Learn more</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <hr data-aos="fade">
+        <section id="section-3">
+            <div class="news">
+                <div class="news-title">
+                    <img src="../../static/assets/undraw_content_re_33px.svg" data-aos="fade">
+                    <span data-aos="slide-right">Check out Leatest news and events</span>
+                    <label data-aos="slide-right">Stay in the loop with the latest happenings and exciting events and find out what's new and noteworthyat Dvibes!</label>
+                </div>
+                <div class="news-search-container" data-aos="slide-right">
+                    <div class="search-container">
+                        <form>
+                          <input type="text" placeholder="Search...">
+                          <a href='#'><i class="fa fa-search"></i></a>
+                        </form>
+                      </div>
+                </div>
+                <div class="news-marque" data-aos="fade">
+                    <marquee>
+                        {% for element in data %}
+                        <div class="card">
+                            <div class="image" style="background-image: url('/{{element[4]}}')"></div>
+                            <div class="content">
+                            <a href="/news:{{element[0]}}" >
+                                <span class="title">{{element[1]}}</span>
+                            </a>
+                            <p class="desc">{{element[2]}}</p>
+                            <a href="/news:{{element[0]}}" class="action">
+                                Find out more
+                                <span aria-hidden="true">
+                                →
+                                </span>
+                            </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </marquee>
+                </div>
+            </div>
+        </section>
+        <hr data-aos="fade">
+        <section id="section-4">
+            <div class="course">
+                <div class="course-title" data-aos="slide-down">
+                    <label>Choose Your Musical Path Whith DVibes</label>
+                </div>
+                <div class="course-type-container" data-aos="slide-up">
+                    <div class="course-type-container-row1">
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:piano"><img  class="test" src="../../static/assets/piano.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:drum"><img  class="test" src="../../static/assets/drum.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:flut"><img  class="test" src="../../static/assets/flut.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:guitar"><img  class="test" src="../../static/assets/guitar.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:saxophone"><img  class="test" src="../../static/assets/sax.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:violent"><img  class="test" src="../../static/assets/violent.png"></a></div>
+                    </div>
+                    <div class="course-type-container-row2">
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:accordion"><img  class="test" src="../../static/assets/Accordion.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:banjo"><img  class="test" src="../../static/assets/banjo.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:electrical guitar"><img  class="test" src="../../static/assets/guitar2.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:harp"><img  class="test" src="../../static/assets/harp.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:clarinet"><img  class="test" src="../../static/assets/idk.png"></a></div>
+                        <div class="course-type-container-img"><a href="/user/cours/search-category:trumpet"><img  class="test" src="../../static/assets/trumpet.png"></a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr data-aos="fade">
+        <section id="section-5">
+            <div class="coaches">
+                <img src="../../static/assets/undraw_teaching_re_g7e3.svg" data-aos="slide-right"></img>
+                <div class="coaches-title" data-aos="slide-down">
+                    <span>Unlock Your Full Potential with Our Expert Coaches - Join Now</span>
+                </div>
+                <div class="coaches-container" data-aos="slide-up">
+                {% for coach in coaches %}
+                <div class="card" >
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="card-inner">
+                        <div class="card-inner-img">
+                            {% if coach[3] == "None"%}
+                            <img src="../../static/assets/user.png"></img>
+                            {% else %}
+                            <img src="{{coach[3]}}"></img>
+                            {% endif %}
+                        </div>
+                        <div class="card-inner-content">
+                            <lable>{{coach[2]}}</label>
+                            <a href="/coaches:{{coach[0]}}">View coach profile</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+        </section>
     </body>
     <footer>
-        <div class="cont-1">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Contact Us</a>
-            <a href="#">About Us</a>
-            <a href="#">Terms and Conditions</a>
-        </div>
-        <div class="cont-2">
-            <div class="socialmedia">
-                <a href="#"><img  class="icon" src="../../static/assets/facebook.png"></a>
-                <a href="#"><img  class="icon" src="../../static/assets/youtube.png"></a>
-                <a href="#"><img  class="icon" src="../../static/assets/linkedin.png"></a>
-                <a href="#"><img  class="icon" src="../../static/assets/twitter.png"></a>
-                <a href="#"><img  class="icon" src="../../static/assets/instagram.png"></a>
+        <div class="row rowone">
+            <div class="footer_logo">
+                <a href="/"><img src="../../static/assets/2x-removebg-preview.png"></a>
             </div>
+            <div class="explorer">
+                <span>Explorer</span>
+                <a href="/about-us">What's DVibes</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="coach">
+                <span>Coach</span>
+                <a href="#">FAQ</a>
+            </div>
+        </div>
+        <div class="row rowtwo">
+            <div class="contact">
+                <p>Contact us<br>dvibeslildeep@gmail.com</p>
+            </div>
+            <div class="sm">
+                <span>follow us</span>
+                <a href="https://www.facebook.com/dvibeslildeep" target="_blank"><img src="../../static/assets/facebook.png"></a>
+                <a href="https://www.instagram.com/dvibeslildeep/" target="_blank"><img src="../../static/assets/instagram.png"></a>
+            </div>
+        </div>
+        <div class="row rowthree">
             <div class="copyright">
                 <p>DVibes © 2023 Company, Inc</p>
             </div>
         </div>
     </footer>
     <script>
-        let slideIndex = 1;
         let loader = document.getElementById("preloader");
         window.addEventListener("load", function(){
             loader.style.display = "none";
         })
-        showSlides(slideIndex);
-        function plusSlides(n) {
-          showSlides(slideIndex += n);
+        function ScrollTo(section){
+			const sec = document.getElementById(section);
+			sec.scrollIntoView({behavior: 'smooth'});
         }
-        function currentSlide(n) {
-          showSlides(slideIndex = n);
-        }
-        function showSlides(n) {
-          let i;
-          let slides = document.getElementsByClassName("mySlides");
-          let dots = document.getElementsByClassName("dot");
-          if (n > slides.length) {slideIndex = 1}
-          if (n < 1) {slideIndex = slides.length}
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-          }
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";
-          dots[slideIndex-1].className += " active";
-        }
+        AOS.init({
+            duration: 1000,
+        });
     </script>
 </html>

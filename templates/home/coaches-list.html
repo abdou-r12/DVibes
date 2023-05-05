@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> DVibes</title>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/cours-list.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
+    </head>
+    <body>
+        <div class="preloader" id="preloader">
+            <div class="middle">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+                <div class="bar bar4"></div>
+                <div class="bar bar5"></div>
+                <div class="bar bar6"></div>
+                <div class="bar bar7"></div>
+                <div class="bar bar8"></div>
+            </div>
+        </div>
+        <nav>
+            <div class="menu">
+                <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="logo">
+                <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
+            </div>
+            <div class="links">
+                <ul id="elements-links">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/user/cours">Courses</a></li>
+                    <li><a href="/coaches">Coaches</a></li>
+                    {% if log == False %}
+                        <li><a href="/becoach">Become a coach</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="logins">
+                <ul id="elements-logins">
+                    <li><a href="/user" class="account_icon">{{info}}</a></li>
+                    <li><a href="/logout" class="logout">Log out</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search...">
+            <button type="button" id="search-btn" onclick="searchAndRedirect()">Search</button>
+        </div>
+        <div class="playlist">
+                {% for coach in coaches_list %}
+                    <a href="/coaches:{{coach[0]}}">
+                        <div class="cours">
+                            {% if coach[3] != 'None' %}
+                                <img src="../../{{coach[3]}}" id="cover">
+                            {% else %}
+                                <img src="../../static/assets/user.png" id="cover">
+                            {% endif %}
+                            <p id="title">{{coach[2]}}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+        </div>
+    </body>
+    <footer>
+        <div class="row rowone">
+            <div class="footer_logo">
+                <a href="/"><img src="../../static/assets/2x-removebg-preview.png"></a>
+            </div>
+            <div class="explorer">
+                <span>Explorer</span>
+                <a href="/about-us">What's DVibes</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="coach">
+                <span>Coach</span>
+                <a href="#">FAQ</a>
+            </div>
+        </div>
+        <div class="row rowtwo">
+            <div class="contact">
+                <p>Contact us<br>dvibeslildeep@gmail.com</p>
+            </div>
+            <div class="sm">
+                <span>follow us</span>
+                <a href="https://www.facebook.com/dvibeslildeep" target="_blank"><img src="../../static/assets/facebook.png"></a>
+                <a href="https://www.instagram.com/dvibeslildeep/" target="_blank"><img src="../../static/assets/instagram.png"></a>
+            </div>
+        </div>
+        <div class="row rowthree">
+            <div class="copyright">
+                <p>DVibes © 2023 Company, Inc</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+        function searchAndRedirect() {
+            const searchInput = document.getElementById('search-input');
+            const searchTerm = searchInput.value;
+            const url = `/coaches/search:${encodeURIComponent(searchTerm)}`;
+            window.location.href = url;
+        }
+    </script>
+</html>
