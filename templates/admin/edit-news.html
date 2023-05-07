@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title> DVibes</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" id="title-icon">
         <link rel="icon" href="../../static/assets/Untitled design.png"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/edit-event.css')}}">
@@ -24,11 +25,11 @@
         <div class="add-event">
             <p id="Title"><b>Edit News</b></p>
             <form method=post enctype="multipart/form-data">
-                <p id="lable">Title:</p>
+                <p id="lable">Title</p>
                 <input type="text" id="title" name="title" value="{{data[1]}}">
-                <p id="lable">Discription:</p>
+                <p id="lable">Discription</p>
                 <input type="text" id="discription" name="discription" value="{{data[2]}}">
-                <p id="lable">Content:</p>
+                <p id="lable">Content</p>
                 <textarea rows="10" id="text" name="text">{{data[3]}}</textarea>
                 <label for="file-input" class="drop-container">
                     <span class="drop-title">Drop files here</span>

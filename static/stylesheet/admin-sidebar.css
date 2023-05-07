@@ -1,22 +1,66 @@
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .menu{
+        height: 9vh;
+        display: block;
+        background-color: #1E1E32;
+    }
+    .menu button{
+        padding: 3%;
+        margin-top: 1.5vh;
+        margin-left: 3%;
+        background-color: #FFDB15;
+        border: #c5a700 solid 1px;
+        border-radius: 1rem;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+    }
+    .main,#elements-logins{
+        background-color: #1E1E32;
+    }
+    hr{
+        border: #FFDB15 solid 1px;
+    }
+    li{
+        text-align: center;
+        padding: 5%;
+    }
+    .main,.logout_con{
+        display: none;
+    }
+    .main a{
+        width: 100%;
+        color: #FFDB15;
+        text-align: center;
+    }
+    #elements-logins{
+        width: 100%;
+        padding: 5%;
+        border-top: 1px solid #FFDB15;
+    }
+    #elements-logins a{
+        color: red;
+        margin: 0 41%;
+    }
+    .active{
+        font-size: 2rem;
+    }
+}
+@media screen and (min-width: 480px){
+    .menu{
+        display: none;
+    }
     .sidebar{
         margin: 8vh 5vw 10vh 2vw;
         position: fixed;
         border-radius: 1rem;
         height: 80vh;
         display: inline-block;
-        -webkit-border-radius: 1rem;
-        -moz-border-radius: 1rem;
-        -ms-border-radius: 1rem;
-        -o-border-radius: 1rem;
     }
     .main{
         background-color: #1E1E32;
         border-radius: 2rem;
-        -webkit-border-radius: 2rem;
-        -moz-border-radius: 2rem;
-        -ms-border-radius: 2rem;
-        -o-border-radius: 2rem;
     }
     ul{
         padding: 2vh 2vw 2vh 2vw;
@@ -25,18 +69,10 @@
         padding-top: 3vh;
         padding-bottom: 3vh;
         transition: 0.5s ease-in-out;
-        -webkit-transition: 0.5s ease-in-out;
-        -moz-transition: 0.5s ease-in-out;
-        -ms-transition: 0.5s ease-in-out;
-        -o-transition: 0.5s ease-in-out;
     }
     li:hover{
         background-color:#46465b;
         transition: 0.5s ease-in-out;
-        -webkit-transition: 0.5s ease-in-out;
-        -moz-transition: 0.5s ease-in-out;
-        -ms-transition: 0.5s ease-in-out;
-        -o-transition: 0.5s ease-in-out;
     }
     .active{
         font-size: 3vw;
@@ -54,15 +90,7 @@
         padding: 3vh 5vw 3vh 5vw;
         margin-top: 1vh;
         border-radius: 2rem;
-        -webkit-border-radius: 2rem;
-        -moz-border-radius: 2rem;
-        -ms-border-radius: 2rem;
-        -o-border-radius: 2rem;
         transition: 0.5s ease-in-out;
-        -webkit-transition: 0.5s ease-in-out;
-        -moz-transition: 0.5s ease-in-out;
-        -ms-transition: 0.5s ease-in-out;
-        -o-transition: 0.5s ease-in-out;
 }
     .logout_con a{
         color: #FFDB15;

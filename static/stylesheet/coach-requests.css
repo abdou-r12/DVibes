@@ -9,7 +9,79 @@
 body{
     background-color: #F3F5F9;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .menu{
+        width: 150%;
+        height: 12vh;
+    }
+    .container{
+        width: 100%;
+    }
+    #main_title{
+        margin: 5%;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 5%;
+        font-size: 1.5rem;
+    }
+    table{
+        width: 120%;
+        margin: 5%;
+    }
+    table td:nth-child(1){
+        width: 50%;
+        text-align: center;
+    }
+    table td:nth-child(2){
+        width: 20%;
+    }
+    table td:nth-child(3){
+        width: 5%;
+    }
+    table td:nth-child(4){
+        width: 10%;
+    }
+    table td:nth-child(5){
+        width: 20%;
+    }
+    table td:nth-child(7),
+    table td:nth-child(8){
+        width: fit-content;
+    }
+    th{
+        background-color: #FFDB15;
+        border: #000000 1px solid;
+    }
+    td{
+        text-align: center;
+        border: #000000 solid 1px;
+    }
+    .container img{
+        max-width: 100%;
+    }
+    #func_accept{
+        text-align: center;
+        background-color: #C1FF72;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+    }
+    #func_remove{
+        text-align: center;
+        background-color: #FF6969;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+    }
+}
+@media screen and (min-width: 480px){
     .container{
         margin-top: 8vh;
         margin-left: 20vw;
@@ -25,13 +97,33 @@ body{
         width: 75vw;
         margin-bottom: 5vh;
     }
+    table td:nth-child(1){
+        width: 5%;
+        text-align: center;
+    }
+    table td:nth-child(2){
+        width: 20%;
+    }
+    table td:nth-child(3){
+        width: 5%;
+    }
+    table td:nth-child(4){
+        width: 10%;
+    }
+    table td:nth-child(5){
+        width: 20%;
+    }
+    table td:nth-child(7),
+    table td:nth-child(8){
+        width: fit-content;
+    }
     th{
         border: #000000 solid 1px;
         background-color: #FFDB15;
         font-size: 1.2vw;
-        overflow: hidden;
     }
     td{
+        text-align: center;
         background-color: #FFFFFF;
         border: #000000 1px solid;
     }

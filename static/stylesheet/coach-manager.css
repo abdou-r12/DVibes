@@ -9,7 +9,36 @@
 body{
     background-color: #F3F5F9;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .container{
+        width: 100%;
+    }
+    #main_title{
+        margin: 5%;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 5%;
+        font-size: 1.5rem;
+    }
+    table{
+        margin: 5%;
+    }
+    th{
+        background-color: #FFDB15;
+        border: #000000 1px solid;
+    }
+    .container img{
+        max-width: 100%;
+    }
+    .func_remove{
+        background-color: #FF6969;
+        text-align: center;
+        border-radius: 2rem;
+    }
+    .func_remove a{
+        color: #FFFFFF;
+    }
+}
+@media screen and (min-width: 480px){
     .container{
         margin-top: 8vh;
         margin-left: 20vw;
@@ -22,18 +51,34 @@ body{
         margin-bottom: 4vh;
     }
     table{
+        margin-left: 0;
         width: 75vw;
         margin-bottom: 5vh;
     }
+    table td:nth-child(1){
+        width: 5%;
+        text-align: center;
+    }
+    table td:nth-child(5){
+        width: 20%;
+    }
+    table td:last-child(){
+        width: 20%;
+    }
     th{
+        text-align: center;
         border: #000000 solid 1px;
         background-color: #FFDB15;
         font-size: 1.2vw;
         overflow: hidden;
     }
     td{
+        text-align: center;
         background-color: #FFFFFF;
         border: #000000 1px solid;
+    }
+    .container img{
+        max-width: 20%;
     }
     .func_remove{
         background-color: #FF6969;

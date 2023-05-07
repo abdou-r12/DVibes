@@ -6,7 +6,43 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+  .add-event{
+    width: 90%;
+    height: 90vh;
+    margin: 5vh 5%;
+    background-color: #f5f5f5;
+    border-radius: 1rem;
+    border: #999 solid 1px;
+  }
+  .add-event p{
+    font-size: 1.1rem;
+    margin: 5%;
+  }
+  .add-event input{
+    margin: 0 5%;
+    width: 90%;
+    padding: 2%;
+    border: #999 solid 1px;
+    border-radius: 0.5rem;
+  }
+  .add-event textarea{
+    width: 90%;
+    margin: 0 5%;
+    padding: 2%;
+    border-radius: 1rem;
+  }
+  .drop-title{
+    display: none;
+  }
+  #file-input{
+    margin: 5%;
+  }
+  #sub{
+    background-color: #FFDB15;
+  }
+}
+@media screen and (min-width: 480px){
     .add-event {
         width: 40%;
         margin: 0 auto;

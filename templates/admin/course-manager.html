@@ -2,11 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" id="title-icon">
         <title> DVibes</title>
         <link rel="icon" href="../../static/assets/Untitled design.png"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/course-manager.css')}}">
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/admin-sidebar.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        <script src="{{ url_for('static',filename='script.js/NavBarMenu.js')}}" type="text/javascript"></script>
     </head>
     <body>
         <div class="preloader" id="preloader">
@@ -22,7 +25,10 @@
         </div>
 
         <div class="sidebar">
-            <div class="main">
+            <div class="menu">
+                <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
+            </div>
+            <div class="main" id="elements-links">
                 <ul>
                     <li><a href="/admin/events-manager">Event manager</a></li>
                     <hr>
@@ -37,7 +43,7 @@
                     <li><a href="/admin/coach-requests">Coach Request</a></li>
                 </ul>
             </div>
-            <div class="logout_con">
+            <div class="logout_con" id="elements-logins">
                 <a href="/logout-admin" id="logout"><b>Log out</b></a>
             </div>
         </div>

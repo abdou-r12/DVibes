@@ -9,7 +9,52 @@
 body{
     background-color: #F3F5F9;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .menu{
+        width: 160%;
+        height: 12vh;
+    }
+    .container{
+        width: 100%;
+    }
+    #main_title{
+        margin: 5%;
+        font-size: 1.5rem;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 5%;
+    }
+    table{
+        margin: 5%;
+        width: 150%;
+        margin-bottom: 5vh;
+    }
+    th{
+        border: #000000 solid 1px;
+        background-color: #FFDB15;
+        font-size: 1rem;
+        overflow: hidden;
+    }
+    td{
+        background-color: #FFFFFF;
+        border: #000000 1px solid;
+        text-align: center;
+    }
+    .cover{
+        width: 10vw;
+        margin: auto;
+    }
+    .func_remove{
+        text-align: center;
+        background-color: #FF6969;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+        transition: 0.5s ease-in-out;
+    }
+    .func_remove a{
+        color: #000000;
+    }
+}
+@media screen and (min-width: 480px){
     .container{
         margin-top: 8vh;
         margin-left: 20vw;
@@ -46,10 +91,6 @@ body{
         padding-left: 0.5vw;
         padding-right: 0.5vw;
         transition: 0.5s ease-in-out;
-        -webkit-transition: 0.5s ease-in-out;
-        -moz-transition: 0.5s ease-in-out;
-        -ms-transition: 0.5s ease-in-out;
-        -o-transition: 0.5s ease-in-out;
     }
     .func_remove:hover{
         background-color: #ff0000;

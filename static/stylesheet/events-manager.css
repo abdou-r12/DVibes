@@ -9,7 +9,110 @@
 body{
     background-color: #F3F5F9;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .error{
+        width: 100%;
+        color: #20721c;
+        background-color: #d9f8d7;
+        font-size: 1rem;
+    }
+    .error p{
+        padding: 4%;
+    }
+    .container{
+        width: 100%;
+    }
+    #main_title{
+        font-size: 1.5rem;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 5%;
+        margin: 5%;
+    }
+    .add-event,.events-list{
+        width: 90%;
+        margin: 5%;
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 2%;
+    }
+    #sec_title{
+        font-size: 1.3rem;
+    }
+    .input{
+        width: 90%;
+        padding: 2% 4%;
+        margin: 2% 5%;
+        font-size: 1rem;
+        border: #999 solid 1px;
+        border-radius: 1rem;
+    }
+    .text{
+        height: 35vh;
+        resize: none;
+    }
+    #file{
+        width: 90%;
+        padding: 2% 5%;
+        margin: 2% 5%;
+        border: #999 solid 1px;
+        border-radius: 1rem;
+    }
+    #sub{
+        width: 90%;
+        padding: 5%;
+        margin: 2% 5%;
+        border-radius: 1rem;
+        background-color: #FFDB15;
+        border: #999 solid 1px;
+    }
+    td{
+        border: #000000 solid 1px;
+        text-align: center;
+    }
+    table td:nth-child(1),
+    table th:nth-child(1),
+    table td:nth-child(4),
+    table th:nth-child(4),
+    table td:nth-child(6),
+    table th:nth-child(6){
+        display: none;
+    }
+    img{
+        width: 100%;
+    }
+    #func_edit{
+        background-color: #C1FF72;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+        cursor: pointer;
+    }
+    #func_edit:hover{
+        background-color: #92ff04;
+    }
+    #func_remove{
+        background-color: #FF6969;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+        transition: 0.5s ease-in-out;
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+        cursor: pointer;
+    }
+    #func_remove:hover{
+        background-color: #ff0000;
+    }
+    #func_edit a,#func_remove a{
+        color: #000000;
+    }
+}
+@media screen and (min-width: 480px){
     .error{
         width: 100vw;
         color: #20721c;

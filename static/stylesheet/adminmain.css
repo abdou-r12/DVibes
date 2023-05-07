@@ -5,20 +5,59 @@
     list-style: none;
     box-sizing: border-box;
     font-family: sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
 }
 body{
     background-color: #F3F5F9;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .container{
+        width: 90%;
+        margin: 3% 5%;
+    }
+    .row{
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+    }
+    .cell, .admin_title{
+        width: 40vw;
+        height: 22vh;
+        margin-top: 5%;
+    }
+    .admin_title{
+        margin-top: 2%;
+    }
+    .admin_title p{
+        border-left: 5px #FFDB15 solid;
+        padding-left: 5%;
+        font-size: 1.5rem;
+        margin-top: 25%;
+    }
+    .cell{
+        background-color: #1E1E32;
+        border-radius: 2rem;
+        padding: 15%;
+    }
+    #icon{
+        width: 40%;
+        margin-bottom: 5%;
+    }
+    .cell p{
+        color: #FFDB15;
+    }
+    .logout{
+        background-image: linear-gradient(to right, #1E1E32, #FFDB15 );
+    }
+}
+@media screen and (min-width: 480px){
     .container{
         margin-top: 2vh;
         margin-left: 5vw;
     }
     .row{
-        display: inline-block;
-    }
-    #logo{
-        width: 5vw;
         display: inline-block;
     }
     .admin_title{
@@ -39,22 +78,9 @@ body{
         width: 20vw;
         height: 45vh;
         border-radius: 20%;
-        -webkit-border-radius: 20%;
-        -moz-border-radius: 20%;
-        -ms-border-radius: 20%;
-        -o-border-radius: 20%;
-        transition: 0.5s ease;
-        -webkit-transition: 0.5s ease;
-        -moz-transition: 0.5s ease;
-        -ms-transition: 0.5s ease;
-        -o-transition: 0.5s ease;
     }
     .cell:hover{
         transition: 0.5s ease;
-        -webkit-transition: 0.5s ease;
-        -moz-transition: 0.5s ease;
-        -ms-transition: 0.5s ease;
-        -o-transition: 0.5s ease;
         background-color: #1e1e32cb;
     }
     .logout{

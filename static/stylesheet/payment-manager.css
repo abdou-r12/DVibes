@@ -9,8 +9,79 @@
 body{
     background-color: #F3F5F9;
 }
-
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .container{
+        width: 100%;
+    }
+    #main_title{
+        font-size: 1.5rem;
+        border-left: #FFDB15 solid 5px;
+        padding-left: 5%;
+        margin: 5%;
+    }
+    .budget{
+        width: 90%;
+        margin: 2% 5%;
+        background-color: #fff;
+        padding: 5%;
+        border-radius: 1rem;
+        border: #999 solid 1px;
+    }
+    .add_cash{
+        width: 90%;
+        margin: 2% 5%;
+        background-color: #fff;
+        padding: 5%;
+        border-radius: 1rem;
+        border: #999 solid 1px;
+    }
+    .add_cash h2{
+        font-size: 1.2rem;
+    }
+    .add_cash input{
+        display: block;
+        width: 100%;
+        padding: 2%;
+        margin: 3% 0;
+        border-radius: 1rem;
+        border: #999 solid 1px;
+    }
+    .sub{
+        width: 100%;
+        padding: 2%;
+        background-color: #FFDB15;
+        border-radius: 1rem;
+        border: #999 solid 1px;
+    }
+    .list{
+        width: 90%;
+        margin: 2% 5%;
+        background-color: #fff;
+        padding: 5%;
+        border-radius: 1rem;
+        border: #999 solid 1px;
+    }
+    .list h2{
+        font-size: 1.2rem;
+    }
+    table{
+        width: 100%;
+        margin: 5% 0;
+    }
+    th{
+        background-color: #FFDB15;
+    }
+    th,td{
+        border: #000 solid 1px;
+        text-align: center;
+    }
+    .func_remove{
+        color: #fff;
+        background-color: #ff0000;
+        border-radius: 1rem;
+    }
+}
+@media screen and (min-width: 480px){
     .container{
         margin-top: 8vh;
         margin-left: 20vw;
