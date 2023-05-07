@@ -6,7 +6,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-@media screen and (min-width: 414px){
+@media screen and (min-width:480px){
     nav {
         display: flex;
         justify-content: space-between;
@@ -19,10 +19,6 @@
     nav a{
         color: #ffffff;
         transition: 0.2s ease-in-out;
-        -webkit-transition: 0.2s ease-in-out;
-        -moz-transition: 0.2s ease-in-out;
-        -ms-transition: 0.2s ease-in-out;
-        -o-transition: 0.2s ease-in-out;
     }
     nav a:hover{
         color: #999;

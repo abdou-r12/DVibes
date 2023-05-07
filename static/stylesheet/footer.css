@@ -5,8 +5,9 @@
     list-style: none;
     box-sizing: border-box;
     font-family: sans-serif;
+
 }
-@media screen and (min-width: 414px){
+@media screen and (min-width: 480px){
     footer{
         width: 100%;
         background-color: #000 ;
@@ -73,31 +74,48 @@
         margin: 2%;
     }
 }
-@media screen and (max-width: 414px){
+@media screen and (max-width: 480px){
     footer{
-        background-color: #1E1E32;
+        width: 100%;
+        background-color: #000;
+        color: #fff;
     }
-    .cont-1,.cont-2,.copyright{
-        width: 100vw;
+    footer span{
+        border-bottom: #999 solid 1px;
+        margin-top: 20%;
+        color: #999;
+        padding-bottom: 5%;
         display: block;
     }
-    .cont-1 a{
+    .row{
+        display: flex;
+        width: 100%;
+    }
+    .footer_logo{
+        padding: 5%;
+        width: 50%;
+        height: fit-content;
+    }
+    .footer_logo img{
+        width: 100%;
+    }
+    .explorer,.coach{
+        width: 20%;
+        margin: 0 2.5%;
+    }
+    .explorer a,.coach a{
         display: block;
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 5vw;
-        margin-left: 5vw;
-        margin-top: 2vh;
+        color: #fff;
+        padding: 10% 0;
     }
-    .icon{
-        width: 10vw;
-        float: right;
+    .contact{
+        width: 60%;
     }
-    .socialmedia{
-        margin-top: 3vh;
-        height: 5vh;
+    .sm{
+        width: 35%;
+        margin-right: 5%;
     }
-    .copyright{
-        color: #FFFFFF;
+    .sm img{
+        width: 20%;
     }
 }

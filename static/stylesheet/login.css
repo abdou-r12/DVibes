@@ -6,7 +6,71 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px) {
+    .error{
+        width: 100%;
+        color: #721c24;
+        background-color: #f8d7da;
+        font-size: 1rem;
+    }
+    .error p{
+        padding: 4%;
+    }
+    .container{
+        border-radius: 1rem;
+        width: 90%;
+        margin: 20% 5%;
+    }
+    .container img{
+        width: 70%;
+        margin-left: -5%;
+    }
+    .switch{
+        width: 80%;
+        margin: 5% 10% 0 10%;
+    }
+    #exp{
+        background-color: #FFDB15;
+    }
+    .switch button{
+        background-color: transparent;
+        border: #999 1px solid;
+        border-radius: 1rem;
+        padding: 5% 10%;
+        margin-left: 8%;
+    }
+    .user_con,.coach_con{
+        width: 90%;
+        margin: 5% 5%;
+        padding: 0 5% 5% 5%;
+    }
+    .user_con *,.coach_con *{
+        display: block;
+    }
+    .user_con input,.coach_con input{
+        border: #999 solid 1px;
+        border-radius: 1rem;
+        margin: 15% 0;
+        padding: 5%;
+        width: 100%;
+    }
+    .sub{
+        background-color:#FFDB15;
+    }
+    .container a{
+        margin-left: 15%;
+        color:rgb(4, 4, 224);
+    }
+    .coach_con{
+        display: none;
+    }
+    .copyright{
+        color: #999;
+        position: absolute;
+        bottom: 0;
+    }
+}
+@media screen and (min-width: 480px){
     .error{
         width: 100vw;
         color: #721c24;
@@ -17,8 +81,6 @@
         padding: 1.5vh 0vw 1.5vh 2vw;
     }
     .container{
-        background: #ffffff;
-        box-shadow:  -11px -11px 22px #e8e8e8,11px 11px 22px #ffffff;
         border-radius: 2rem;
         margin: 5% 30% 0 30%;
         width: 40%;

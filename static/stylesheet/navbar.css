@@ -1,9 +1,9 @@
-@media screen and (max-width: 414px){
+@media screen and (max-width: 480px){
     nav{
-        background-color: #1E1E32;
-        width: 100vw;
+        width: 100%;
         height: fit-content;
-        z-index: 100;
+        box-shadow:  -11px 11px 22px #e8e8e8,11px -11px 22px #ffffff;
+        z-index: 1;
         top: 0;
     }
     .menu{
@@ -12,10 +12,10 @@
     }
     .menu button{
         padding: 1.5vh 2vw 1.5vh 2vw;
-        margin-top: 3vh;
+        margin-top: 1.5vh;
         margin-right: 5vw;
         background-color: #FFDB15;
-        border: none;
+        border: #c5a700 solid 1px;
         border-radius: 1rem;
         -webkit-border-radius: 1rem;
         -moz-border-radius: 1rem;
@@ -28,8 +28,7 @@
     }
     #logo{
         width: 50vw;
-        margin-left: 15vw;
-        margin-top: 1vh;
+        margin-left: 20%;
     }
     #elements-links,#elements-logins{
         display: none;
@@ -43,17 +42,21 @@
         -o-transition: 0.5s;
     }
     #elements-links a,#elements-logins a{
-        color: #FFFFFF
+        color: #000;
     }
     #elements-links li,#elements-logins li{
-        border-bottom: 1px solid #FFFFFF;
+        border: 1px solid #999;
+    }
+    .account_icon{
+        padding: 2% 40%;
+        background-color: #FFDB15;
     }
     .logout{
-        padding: 1.2vh 40vw 1.2vh 42vw;
+        padding: 2% 40%;
         background-color: rgb(255, 62, 62);
     }
 }
-@media screen and (min-width: 414px) {
+@media screen and (min-width: 480px) {
     nav{
         width: 100%;
         height: 10vh;

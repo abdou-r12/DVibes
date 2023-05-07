@@ -30,32 +30,30 @@
                 {% endif %}
             {% endwith %}
         </div>
-        <div class="check">
-            <div class="container">
-                <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
-                <div class="switch">
-                    <button id="exp" onClick="Switch('explorer')">Explorer</button>
-                    <button id="ch" onClick="Switch('coach')">Coach</button>
-                </div>
-                <form method="post">
-                <div class="user_con" id="user_login">
-                    <div class="user_login">
-                        <input type="text" name="user_username" placeholder="Email or Username" value="" class="input username">
-                        <input type="password" name="user_password" placeholder="Password" value="" class="input password">
-                        <input type="submit" value="LOG IN" class="input sub">
-                        <a href="/singup">You don't have an account ?</a>
-                    </div>
-                </div>
-                <div class="coach_con" id="coach_login">
-                    <div class="coach_login">
-                        <input type="text" name="coach_username" placeholder="Email or Username" value="" class="input username">
-                        <input type="password" name="coach_password" placeholder="Password" value="" class="input password">
-                        <input type="submit" value="LOG IN" class="input sub">
-                        <a href="/becoach">Become a coach to day !</a>
-                    </div>
-                </div>
-                </form>
+        <div class="container">
+            <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
+            <div class="switch">
+                <button id="exp" onClick="Switch('explorer')">Explorer</button>
+                <button id="ch" onClick="Switch('coach')">Coach</button>
             </div>
+            <form method="post">
+            <div class="user_con" id="user_login">
+                <div class="user_login">
+                    <input type="text" name="user_username" placeholder="Email or Username" value="" class="input username">
+                    <input type="password" name="user_password" placeholder="Password" value="" class="input password">
+                    <input type="submit" value="LOG IN" class="input sub">
+                    <a href="/singup">You don't have an account ?</a>
+                </div>
+            </div>
+            <div class="coach_con" id="coach_login">
+                <div class="coach_login">
+                    <input type="text" name="coach_username" placeholder="Email or Username" value="" class="input username">
+                    <input type="password" name="coach_password" placeholder="Password" value="" class="input password">
+                    <input type="submit" value="LOG IN" class="input sub">
+                    <a href="/becoach">Become a coach to day !</a>
+                </div>
+            </div>
+            </form>
         </div>
         <div class="copyright">
             <p>DVibes © 2023 Company, Inc</p>

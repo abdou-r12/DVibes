@@ -20,7 +20,6 @@ app.secret_key = get_random_string(64)
 print("secret key : ",app.secret_key,"\n")
 connection = sqlite3.connect('DVibes.db', check_same_thread=False)
 cursor = connection.cursor()
-Create_tables(cursor)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 # home page
@@ -672,9 +671,10 @@ def Remove_coach(id):
 def accept_coach(id):
     if session.get("log") == True and session.get("admin") == True:
         info = cursor.execute("SELECT * FROM Request WHERE IdReq=?",[id]).fetchone()
+        Coach_password = Coach_password(info[4])
         cursor.execute('''INSERT INTO LoginCoach(UserName, PassCode)
                             VALUES('{email}','{password}')
-                    '''.format(email=info[4],password=get_random_string(8)))
+                    '''.format(email=info[4],password=Coach_password))
         iD = cursor.execute("SELECT IdLog FROM LoginCoach WHERE UserName = '{email}'".format(email=info[4])).fetchone()[0]
         cursor.execute('''INSERT INTO Coach(IdLog, FullName, pfp, Gender, BirthDay,Balance)
                             VALUES('{id}','{fullname}','{pfp}','{gender}','{bd}','{bal}')

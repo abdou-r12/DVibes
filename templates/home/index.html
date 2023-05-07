@@ -15,7 +15,7 @@
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     </head>
     <body>
-        <nav>
+        <nav style="box-shadow: none;">
             <div class="menu">
                 <button type="button" onclick="NavBarMenu()"><i class="fas fa-bars"></i></button>
             </div>
@@ -56,19 +56,16 @@
                 </div>
             </div>
         </div>
+        <section class="wave-background">
+            <div class='air air1'></div>
+            <div class='air air2'></div>
+            <div class='air air3'></div>
+            <div class='air air4'></div>
+        </section>
         <section id="section-1">
-            <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 690" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
-                <defs>
-                    <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-                        <stop offset="5%" stop-color="#FFDB15"></stop>
-                        <stop offset="95%" stop-color="#8ED1FC"></stop>
-                    </linearGradient>
-                </defs>
-                <path d="M 0,700 C 0,700 0,233 0,233 C 106.44976076555025,222.71291866028707 212.8995215311005,212.42583732057417 292,215 C 371.1004784688995,217.57416267942583 422.8516746411483,233.0095693779904 523,216 C 623.1483253588517,198.9904306220096 771.6937799043061,149.53588516746413 881,156 C 990.3062200956939,162.46411483253587 1060.3732057416269,224.8468899521531 1147,247 C 1233.6267942583731,269.1531100478469 1336.8133971291866,251.07655502392345 1440,233 C 1440,233 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 350)"></path><defs><linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="5%" stop-color="#F78DA7"></stop><stop offset="95%" stop-color="#8ED1FC"></stop></linearGradient></defs><path d="M 0,700 C 0,700 0,466 0,466 C 111.11004784688996,462.47846889952154 222.2200956937799,458.95693779904303 306,440 C 389.7799043062201,421.04306220095697 446.2296650717702,386.65071770334936 550,394 C 653.7703349282298,401.34928229665064 804.8612440191389,450.44019138755976 911,459 C 1017.1387559808611,467.55980861244024 1078.3253588516745,435.58851674641147 1159,430 C 1239.6746411483255,424.41148325358853 1339.8373205741627,445.2057416267943 1440,466 C 1440,466 1440,700 1440,700 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-1" transform="rotate(-180 720 350)"></path>
-            </svg>
             <div class="summary">
-                <h1 data-aos="slide-right">DVibes</h1>
-                <span data-aos="slide-right">Let the music speaks !</span>
+                <h1 data-aos="slide-right">D V I B E S</h1>
+                <span data-aos="slide-right"><b>Let the music speaks !</b></span>
                 <br><br>
                 <span data-aos="slide-right">The first Algerian musical learning platform</span>
                 <br><br>
@@ -135,13 +132,13 @@
             <div class="news">
                 <div class="news-title">
                     <img src="../../static/assets/undraw_content_re_33px.svg" data-aos="fade">
-                    <span data-aos="slide-right">Check out Leatest news and events</span>
+                    <span data-aos="slide-right"><b>Check out Leatest news and events</b></span>
                     <label data-aos="slide-right">Stay in the loop with the latest happenings and exciting events and find out what's new and noteworthyat Dvibes!</label>
                 </div>
                 <div class="news-search-container" data-aos="slide-right">
                     <div class="search-container">
                         <form>
-                          <input type="text" placeholder="Search...">
+                          <input type="text" placeholder="Search For News....">
                           <a href='#'><i class="fa fa-search"></i></a>
                         </form>
                       </div>
@@ -153,7 +150,7 @@
                             <div class="image" style="background-image: url('/{{element[4]}}')"></div>
                             <div class="content">
                             <a href="/news:{{element[0]}}" >
-                                <span class="title">{{element[1]}}</span>
+                                <span class="title"><b>{{element[1]}}</b></span>
                             </a>
                             <p class="desc">{{element[2]}}</p>
                             <a href="/news:{{element[0]}}" class="action">
@@ -204,7 +201,7 @@
                 </div>
                 <div class="coaches-container" data-aos="slide-up">
                 {% for coach in coaches %}
-                <div class="card" >
+                <div class="coach-card" >
                     <div class="circle"></div>
                     <div class="circle"></div>
                     <div class="card-inner">
@@ -258,7 +255,6 @@
         </div>
     </footer>
     <script>
-        
         let loader = document.getElementById("preloader");
         window.addEventListener("load", function(){
             loader.style.display = "none";
