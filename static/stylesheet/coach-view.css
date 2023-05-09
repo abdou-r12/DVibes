@@ -9,7 +9,7 @@
 body{
     width: 100vw;
 }
-@media screen and (min-width: 414px){
+@media screen and (min-width: 480px){
     #info{
         width: 100%;
         display: flex;
