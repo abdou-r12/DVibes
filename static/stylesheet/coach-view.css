@@ -6,8 +6,57 @@
     box-sizing: border-box;
     font-family: 'Open Sans',sans-serif;
 }
-body{
-    width: 100vw;
+@media screen and (max-width: 480px){
+    #info{
+        display: flex;
+    }
+    .info{
+        width: 50%;
+        padding: 5%;
+    }
+    .info h1,.course h1,.view h1,.location h1{
+        border-left: #FFDB15 solid 5px;
+        padding-left: 5%;
+    }
+    .info span{
+        font-size: 1.2rem;
+        display: block;
+        margin: 5% 0;
+    }
+    .pfp{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+    .pfp img{
+        width: 100%;
+        height: 30vh;
+        object-fit: cover;
+        padding: 10%;
+    }
+    .course,.location,.view{
+        padding: 5%;
+    }
+    .course table,.location table{
+        width: 100%;
+        font-size: 1.2rem;
+    }
+    td{
+        padding: 5% 0;
+    }
+    .course a,.location a{
+        color: blue;
+    }
+    .feed_post *{
+        display: block;
+    }
+    .feed_post span{
+        margin: 5%;
+        font-size: 1.2rem;
+    }
+    .feed_post label{
+        color: #999;
+    }
 }
 @media screen and (min-width: 480px){
     #info{

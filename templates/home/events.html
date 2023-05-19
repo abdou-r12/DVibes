@@ -9,7 +9,6 @@
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/navbar.css')}}"/>
-        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/footer.css')}}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <script src="{{ url_for('static',filename='script.js/NavBarMenu.js')}}" type="text/javascript"></script>
     </head>
@@ -21,19 +20,19 @@
             <div class="logo">
                 <a href="/"><img src="../../static/assets/2-removebg-preview.png" id="logo"></a>
             </div>
-            <div class="links">
-                <ul id="elements-links">
+            <div class="links" id="elements-links">
+                <ul>
                     <li><a href="/news">News</a></li>
                     <li><a href="/events">Events</a></li>
                     <li><a href="/user/cours">Courses</a></li>
                     <li><a href="/coaches">Coaches</a></li>
-                    {% if log == False %}
+                    {% if log == None %}
                         <li><a href="/becoach">Become a coach</a></li>
                     {% endif %}
                 </ul>
             </div>
-            <div class="logins">
-                <ul id="elements-logins">
+            <div class="logins" id="elements-logins">
+                <ul>
                     {% if log == True %}
                         <li><a href="/profile-check" class="account_icon">{{info}}</a></li>
                         <li><a href="/logout-check" class="logout">Log out</a></li>
@@ -61,16 +60,16 @@
             <div class="card">
                 <div class="image" style="background-image: url('/{{element[4]}}')"></div>
                 <div class="content">
-                <a href="#">
-                    <span class="title">{{element[1]}}</span>
-                </a>
-                <p class="desc">{{element[2]}}</p>
-                <a href="/event:{{element[0]}}" class="action">
-                    Find out more
-                    <span aria-hidden="true">
-                    →
-                    </span>
-                </a>
+                    <a href="/event:{{element[0]}}">
+                        <span class="title">{{element[1]}}</span>
+                    </a>
+                    <p class="desc">{{element[2]}}</p>
+                    <a href="/event:{{element[0]}}" class="action">
+                        Find out more
+                        <span aria-hidden="true">
+                        →
+                        </span>
+                    </a>
                 </div>
             </div>
             {% endfor %}

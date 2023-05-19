@@ -6,7 +6,49 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    h1{
+        margin: 5%;
+    }
+    .container{
+        border: #999 solid 1px;
+        background-color: #F3F5F9;
+        margin: 5%;
+        border-radius: 1rem;
+        padding: 5%;
+    }
+    .card{
+        border: #999 solid 1px;
+        height: 50vh;
+        width: 100%;
+        background-color: #fff;
+        margin: 5% 0;
+        border-radius: 0 0 1rem 1rem;
+    }
+    .image{
+        height: 20vh;
+    }
+    .content{
+        padding: 5%;
+    }
+    .title{
+        color: #000;
+        font-size: 1.2rem;
+    }
+    .desc{
+        overflow: hidden;
+        height: 15vh;
+        margin: 4% 0;
+    }
+    .action{
+        padding: 2% 5%;
+        background-color: #FFDB15;
+        color: #000;
+        border: #999 solid 1px;
+        border-radius: 0.5rem;
+    }
+}
+@media screen and (min-width: 480px){
     h1{
         margin: 5vh 5vw;
     }

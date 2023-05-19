@@ -59,11 +59,13 @@ def coaches_list():
     elif session.get("admin") == True:
         info = "admin"
     coaches_list = cursor.execute("SELECT * FROM Coach").fetchall()
-    return render_template("home/coaches-list.html",info=info,coaches_list=coaches_list)
+    return render_template("home/coaches-list.html",info=info,coaches_list=coaches_list,log=session.get("log"))
 
 # coach search
 @app.route('/coaches/search:<name>')
 def coach_search(name):
+    if name.strip() == '':
+        return redirect(url_for("coaches_list"))
     info = None
     if session.get("user") != None:
         info = cursor.execute("SELECT FullName FROM User WHERE IdUser = ?",[session.get("user")]).fetchone()[0]

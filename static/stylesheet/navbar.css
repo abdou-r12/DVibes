@@ -3,8 +3,9 @@
         width: 100%;
         height: fit-content;
         box-shadow:  -11px 11px 22px #e8e8e8,11px -11px 22px #ffffff;
-        z-index: 1;
+        z-index: -1;
         top: 0;
+        background: #fff;
     }
     .menu{
         display: block;
@@ -17,10 +18,6 @@
         background-color: #FFDB15;
         border: #c5a700 solid 1px;
         border-radius: 1rem;
-        -webkit-border-radius: 1rem;
-        -moz-border-radius: 1rem;
-        -ms-border-radius: 1rem;
-        -o-border-radius: 1rem;
     }
     .fa-bars{
         color: #000000;
@@ -32,14 +29,17 @@
     }
     #elements-links,#elements-logins{
         display: none;
+        z-index: 1;
+        width: 100%;
+        background-color: #fff;
+        position: absolute;
         font-size: 1.2rem;
         line-height: 5vh;
         text-align: center;
         transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
+    }
+    #elements-links{
+        margin-top: 10vh;
     }
     #elements-links a,#elements-logins a{
         color: #000;

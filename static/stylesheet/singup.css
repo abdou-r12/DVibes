@@ -9,8 +9,24 @@
     list-style: none;
     box-sizing: border-box;
     font-family: sans-serif;
+    outline: red solid 1px
 }
-@media screen and (min-width: 414px){
+@media screen and (max-width: 480px){
+    .error{
+        color: #721c24;
+        background-color: #f8d7da;
+        margin-left: 4vw;
+        margin-right: 4vw;
+        margin-top: 5vh;
+    }
+    .error p{
+        padding: 2vh 2vw 2vh 2vw;
+    }
+    .tab-2,.links{
+        display: none;
+    }
+}
+@media screen and (min-width: 480px){
     .links a{
         text-decoration: none;
         color: #000000;
@@ -46,7 +62,7 @@
         margin: auto;
     }
     .container{
-        border: #000000 solid 1px;
+        border: #999 solid 1px;
         background-color: #F3F5F9;
         width: 30vw;
         margin: auto;
@@ -78,7 +94,7 @@
         -moz-border-radius: 0.5rem;
         -ms-border-radius: 0.5rem;
         -o-border-radius: 0.5rem;
-        border: #000000 0.5px solid;
+        border: #999 0.5px solid;
         transition: 0.5s;
         -webkit-transition: 0.5s;
         -moz-transition: 0.5s;

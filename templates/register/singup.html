@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> DVibes</title>
         <link rel="icon" href="../../static/assets/Untitled design.png"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/preloader.css')}}">
@@ -55,9 +56,7 @@
                 <p id="title">Personal Info</p>
                 <input type="text" class="input fullname" name="fullname" placeholder="Full Name" required>
                 <p class="lable gender">Gender</p>
-                <lable>male</lable>
                 <input type="Radio" name="check" value="male" class="check">Male
-                <lable>Female</lable>
                 <input type="Radio" name="check" value="female" class="check">Female
                 <p class="lable bday">Birthday </p>
                 <input type="date" class="input bday" name="bday" required>

@@ -20,7 +20,7 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Tajawal', sans-serif;
 }
 @media screen and (max-width:480px){
     hr{

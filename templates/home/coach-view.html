@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" id="title-icon">
         <title> DVibes</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/coach-view.css')}}">
@@ -24,7 +25,7 @@
                     <li><a href="/events">Events</a></li>
                     <li><a href="/user/cours">Courses</a></li>
                     <li><a href="/coaches">Coaches</a></li>
-                    {% if log == False %}
+                    {% if log == None %}
                         <li><a href="/becoach">Become a coach</a></li>
                     {% endif %}
                 </ul>

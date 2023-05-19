@@ -7,7 +7,6 @@
     font-family: sans-serif;
 }
 @media screen and (max-width: 480px) {
-    img{width: 20%;}
     .search-container{
         margin: 5%;
         border: #999 solid 1px;
@@ -42,20 +41,19 @@
         padding: 2%;
     }
     .cours img{
-        float: left;
-        width: 30%;
+        border-radius: 50%;
+        border: #999 solid 1px;
+        margin: 0 30%;
+        width: 30vw;
         padding: 3%;
-    }
-    .cours p{
-        margin: 2%;
-        color: #000000;
-        font-size: 1.1rem;
+        max-height: 16vh;
+        object-fit: cover;
     }
     #title{
+        color:#0077FF;
         font-size: 1.2rem;
-    }
-    #coach{
-        color: #0077FF;
+        display: flex;
+        justify-content: center;
     }
 }
 @media screen and (min-width: 480px) {
@@ -83,10 +81,6 @@
         font-size: 16px;
         cursor: pointer;
         transition: 0.5s ease-in-out;
-        -webkit-transition: 0.5s ease-in-out;
-        -moz-transition: 0.5s ease-in-out;
-        -ms-transition: 0.5s ease-in-out;
-        -o-transition: 0.5s ease-in-out;
     }
     #search-btn:hover{
         background-color: #a48e12;
